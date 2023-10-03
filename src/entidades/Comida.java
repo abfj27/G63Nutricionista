@@ -12,6 +12,13 @@ public class Comida {
 
     }
 
+    public Comida(String nombre, String detalle, int calorias, int estado) {
+        this.nombre = nombre;
+        this.detalle = detalle;
+        this.calorias = calorias;
+        this.estado = estado;
+    }
+
     public Comida(String nombre, String detalle, int calorias, int idComida, int estado) {
         this.nombre = nombre;
         this.detalle = detalle;
@@ -60,5 +67,4 @@ public class Comida {
         this.estado = estado;
     }
 
-    
 }

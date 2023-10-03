@@ -11,6 +11,12 @@ public class DietaComida {
 
     }
 
+    public DietaComida(int idComida, int idDieta, int estado) {
+        this.idComida = idComida;
+        this.idDieta = idDieta;
+        this.estado = estado;
+    }
+
     public DietaComida(int idComida, int idDieta, int idDC, int estado) {
         this.idComida = idComida;
         this.idDieta = idDieta;
@@ -50,5 +56,4 @@ public class DietaComida {
         this.estado = estado;
     }
 
-    
 }

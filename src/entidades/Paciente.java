@@ -16,6 +16,17 @@ public class Paciente {
 
     }
 
+    public Paciente(int dni, String apellido, String nombre, double pesoActual, String domicilio, String telefono, String email, int estado) {
+        this.dni = dni;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.pesoActual = pesoActual;
+        this.domicilio = domicilio;
+        this.telefono = telefono;
+        this.email = email;
+        this.estado = estado;
+    }
+
     public Paciente(int dni, String apellido, String nombre, double pesoActual, String domicilio, String telefono, String email, int idPaciente, int estado) {
         this.dni = dni;
         this.apellido = apellido;
@@ -100,5 +111,4 @@ public class Paciente {
         this.estado = estado;
     }
 
-    
 }

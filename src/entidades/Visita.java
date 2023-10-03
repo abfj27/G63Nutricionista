@@ -15,12 +15,11 @@ public class Visita {
 
     }
 
-    public Visita(int idDieta, int idPaciente, double peso, LocalDate fecha, int idVisita, int estado) {
+    public Visita(int idDieta, int idPaciente, double peso, LocalDate fecha, int estado) {
         this.idDieta = idDieta;
         this.idPaciente = idPaciente;
         this.peso = peso;
         this.fecha = fecha;
-        this.idVisita = idVisita;
         this.estado = estado;
     }
 
