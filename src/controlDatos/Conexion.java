@@ -18,6 +18,7 @@ private Conexion (){
         Class.forName("org.mariadb.jdbc.Driver");
     } catch (ClassNotFoundException ex) {
         mensaje("Error en cargar Drivers");
+    }
 }
 
     public static Connection getConexion() {
