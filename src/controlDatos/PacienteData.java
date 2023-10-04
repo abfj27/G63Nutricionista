@@ -34,10 +34,10 @@ public class PacienteData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 paciente.setIdPaciente(rs.getInt(1));
+                //mensaje
             }
             rs.close();
             ps.close();
-            //mensaje
         } catch (SQLIntegrityConstraintViolationException ex) {
             Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
             // mensaje
@@ -61,6 +61,7 @@ public class PacienteData {
             ps.setInt(9, paciente.getIdPaciente());
             ps.executeUpdate();
             ps.close();
+            //mensaje
         } catch (SQLException ex) {
             Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,7 +69,6 @@ public class PacienteData {
 
     public void eliminarPaciente(Paciente paciente) {
         String sql = "UPDATE paciente SET estado=0 WHERE idPaciente=?";
-
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
             ps.setInt(1, paciente.getIdPaciente());

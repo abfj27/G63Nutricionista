@@ -7,8 +7,8 @@ public class Dieta {
     private String nombre;
     private int idPaciente;
     private double pesoInicial;
-    private double peroObjetivo;
-    private LocalDate fechaInicla;
+    private double pesoObjetivo;
+    private LocalDate fechaInicial;
     private LocalDate fechaFinal;
     private int idDieta;
     private int estado;
@@ -21,8 +21,8 @@ public class Dieta {
         this.nombre = nombre;
         this.idPaciente = idPaciente;
         this.pesoInicial = pesoInicial;
-        this.peroObjetivo = peroObjetivo;
-        this.fechaInicla = fechaInicla;
+        this.pesoObjetivo = peroObjetivo;
+        this.fechaInicial = fechaInicla;
         this.fechaFinal = fechaFinal;
         this.estado = estado;
     }
@@ -31,8 +31,8 @@ public class Dieta {
         this.nombre = nombre;
         this.idPaciente = idPaciente;
         this.pesoInicial = pesoInicial;
-        this.peroObjetivo = peroObjetivo;
-        this.fechaInicla = fechaInicla;
+        this.pesoObjetivo = peroObjetivo;
+        this.fechaInicial = fechaInicla;
         this.fechaFinal = fechaFinal;
         this.idDieta = idDieta;
         this.estado = estado;
@@ -62,20 +62,20 @@ public class Dieta {
         this.pesoInicial = pesoInicial;
     }
 
-    public double getPeroObjetivo() {
-        return peroObjetivo;
+    public double getPesoObjetivo() {
+        return pesoObjetivo;
     }
 
-    public void setPeroObjetivo(double peroObjetivo) {
-        this.peroObjetivo = peroObjetivo;
+    public void setPesoObjetivo(double peroObjetivo) {
+        this.pesoObjetivo = peroObjetivo;
     }
 
-    public LocalDate getFechaInicla() {
-        return fechaInicla;
+    public LocalDate getFechaInicial() {
+        return fechaInicial;
     }
 
-    public void setFechaInicla(LocalDate fechaInicla) {
-        this.fechaInicla = fechaInicla;
+    public void setFechaInicial(LocalDate fechaInicla) {
+        this.fechaInicial = fechaInicla;
     }
 
     public LocalDate getFechaFinal() {
