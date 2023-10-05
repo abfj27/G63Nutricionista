@@ -33,7 +33,7 @@ public class ComidaData {
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                comida.setIdComida(1);
+                comida.setIdComida(rs.getInt(1));
                 //mensaje
             }
             rs.close();

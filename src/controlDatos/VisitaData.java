@@ -22,8 +22,8 @@ public class VisitaData {
         String sql = "INSERT INTO visita (idDieta, idPaciente, peso, fecha, estado) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps = conec.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, visita.getIdDieta());
-            ps.setInt(2, visita.getIdPaciente());
+            ps.setInt(1, visita.getDieta().getIdDieta());
+            ps.setInt(2, visita.getPaciente().getIdPaciente());
             ps.setDouble(3, visita.getPeso());
             ps.setDate(4, Date.valueOf(visita.getFecha()));
             ps.setInt(5, visita.getEstado());
@@ -44,8 +44,8 @@ public class VisitaData {
         String sql = "UPDATE visita SET idDieta=?, idPaciente=?, peso=?, fecha=?, estado=? WHERE idVisita=? ";
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
-            ps.setInt(1, visita.getIdDieta());
-            ps.setInt(2, visita.getIdPaciente());
+            ps.setInt(1, visita.getDieta().getIdDieta());
+            ps.setInt(2, visita.getPaciente().getIdPaciente());
             ps.setDouble(3, visita.getPeso());
             ps.setDate(4, Date.valueOf(visita.getFecha()));
             ps.setInt(5, visita.getEstado());

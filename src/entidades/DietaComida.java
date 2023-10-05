@@ -2,8 +2,8 @@ package entidades;
 
 public class DietaComida {
 
-    private int idComida;
-    private int idDieta;
+    private Comida comida;
+    private Dieta dieta;
     private Horario horario;
     private int idDC;
     private int estado;
@@ -12,36 +12,35 @@ public class DietaComida {
 
     }
 
-    public DietaComida(int idComida, int idDieta, Horario horario, int estado) {
-        this.idComida = idComida;
-        this.idDieta = idDieta;
+    public DietaComida(Comida comida, Dieta dieta, Horario horario, int estado) {
+        this.comida = comida;
+        this.dieta = dieta;
+        this.horario = horario;
+        this.estado = estado;
+    }
+
+    public DietaComida(Comida comida, Dieta dieta, Horario horario, int idDC, int estado) {
+        this.comida = comida;
+        this.dieta = dieta;
         this.horario = horario;
         this.idDC = idDC;
         this.estado = estado;
     }
 
-    public DietaComida(int idComida, int idDieta, Horario horario, int idDC, int estado) {
-        this.idComida = idComida;
-        this.idDieta = idDieta;
-        this.horario = horario;
-        this.idDC = idDC;
-        this.estado = estado;
+    public Comida getComida() {
+        return comida;
     }
 
-    public int getIdComida() {
-        return idComida;
+    public void setComida(Comida comida) {
+        this.comida = comida;
     }
 
-    public void setIdComida(int idComida) {
-        this.idComida = idComida;
+    public Dieta getDieta() {
+        return dieta;
     }
 
-    public int getIdDieta() {
-        return idDieta;
-    }
-
-    public void setIdDieta(int idDieta) {
-        this.idDieta = idDieta;
+    public void setDieta(Dieta dieta) {
+        this.dieta = dieta;
     }
 
     public Horario getHorario() {
@@ -68,6 +67,5 @@ public class DietaComida {
         this.estado = estado;
     }
 
-   
-
+    
 }

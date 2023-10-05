@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class Visita {
 
-    private int idDieta;
-    private int idPaciente;
+    private Dieta Dieta;
+    private Paciente Paciente;
     private double peso;
     private LocalDate fecha;
     private int idVisita;
@@ -15,28 +15,37 @@ public class Visita {
 
     }
 
-    public Visita(int idDieta, int idPaciente, double peso, LocalDate fecha, int estado) {
-        this.idDieta = idDieta;
-        this.idPaciente = idPaciente;
+    public Visita(Dieta Dieta, Paciente Paciente, double peso, LocalDate fecha, int estado) {
+        this.Dieta = Dieta;
+        this.Paciente = Paciente;
         this.peso = peso;
         this.fecha = fecha;
         this.estado = estado;
     }
 
-    public int getIdDieta() {
-        return idDieta;
+    public Visita(Dieta Dieta, Paciente Paciente, double peso, LocalDate fecha, int idVisita, int estado) {
+        this.Dieta = Dieta;
+        this.Paciente = Paciente;
+        this.peso = peso;
+        this.fecha = fecha;
+        this.idVisita = idVisita;
+        this.estado = estado;
     }
 
-    public void setIdDieta(int idDieta) {
-        this.idDieta = idDieta;
+    public Dieta getDieta() {
+        return Dieta;
     }
 
-    public int getIdPaciente() {
-        return idPaciente;
+    public void setDieta(Dieta Dieta) {
+        this.Dieta = Dieta;
     }
 
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
+    public Paciente getPaciente() {
+        return Paciente;
+    }
+
+    public void setPaciente(Paciente Paciente) {
+        this.Paciente = Paciente;
     }
 
     public double getPeso() {
@@ -71,4 +80,5 @@ public class Visita {
         this.estado = estado;
     }
 
+    
 }

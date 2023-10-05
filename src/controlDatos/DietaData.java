@@ -24,7 +24,7 @@ public class DietaData {
         try {
             PreparedStatement ps = conec.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, dieta.getNombre());
-            ps.setInt(2, dieta.getIdPaciente());
+            ps.setInt(2, dieta.getPaciente().getIdPaciente());
             ps.setDouble(3, dieta.getPesoInicial());
             ps.setDouble(4, dieta.getPesoObjetivo());
             ps.setDate(5, Date.valueOf(dieta.getFechaInicial()));
@@ -51,7 +51,7 @@ public class DietaData {
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
             ps.setString(1, dieta.getNombre());
-            ps.setInt(2, dieta.getIdPaciente());
+            ps.setInt(2, dieta.getPaciente().getIdPaciente());
             ps.setDouble(3, dieta.getPesoInicial());
             ps.setDouble(4, dieta.getPesoObjetivo());
             ps.setDate(5, Date.valueOf(dieta.getFechaInicial()));

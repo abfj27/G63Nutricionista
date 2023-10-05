@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Dieta {
 
     private String nombre;
-    private int idPaciente;
+    private Paciente Paciente;
     private double pesoInicial;
     private double pesoObjetivo;
     private LocalDate fechaInicial;
@@ -17,22 +17,22 @@ public class Dieta {
 
     }
 
-    public Dieta(String nombre, int idPaciente, double pesoInicial, double peroObjetivo, LocalDate fechaInicla, LocalDate fechaFinal, int estado) {
+    public Dieta(String nombre, Paciente Paciente, double pesoInicial, double pesoObjetivo, LocalDate fechaInicial, LocalDate fechaFinal, int estado) {
         this.nombre = nombre;
-        this.idPaciente = idPaciente;
+        this.Paciente = Paciente;
         this.pesoInicial = pesoInicial;
-        this.pesoObjetivo = peroObjetivo;
-        this.fechaInicial = fechaInicla;
+        this.pesoObjetivo = pesoObjetivo;
+        this.fechaInicial = fechaInicial;
         this.fechaFinal = fechaFinal;
         this.estado = estado;
     }
 
-    public Dieta(String nombre, int idPaciente, double pesoInicial, double peroObjetivo, LocalDate fechaInicla, LocalDate fechaFinal, int idDieta, int estado) {
+    public Dieta(String nombre, Paciente Paciente, double pesoInicial, double pesoObjetivo, LocalDate fechaInicial, LocalDate fechaFinal, int idDieta, int estado) {
         this.nombre = nombre;
-        this.idPaciente = idPaciente;
+        this.Paciente = Paciente;
         this.pesoInicial = pesoInicial;
-        this.pesoObjetivo = peroObjetivo;
-        this.fechaInicial = fechaInicla;
+        this.pesoObjetivo = pesoObjetivo;
+        this.fechaInicial = fechaInicial;
         this.fechaFinal = fechaFinal;
         this.idDieta = idDieta;
         this.estado = estado;
@@ -46,12 +46,12 @@ public class Dieta {
         this.nombre = nombre;
     }
 
-    public int getIdPaciente() {
-        return idPaciente;
+    public Paciente getPaciente() {
+        return Paciente;
     }
 
-    public void setIdPaciente(int idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setPaciente(Paciente Paciente) {
+        this.Paciente = Paciente;
     }
 
     public double getPesoInicial() {
@@ -66,16 +66,16 @@ public class Dieta {
         return pesoObjetivo;
     }
 
-    public void setPesoObjetivo(double peroObjetivo) {
-        this.pesoObjetivo = peroObjetivo;
+    public void setPesoObjetivo(double pesoObjetivo) {
+        this.pesoObjetivo = pesoObjetivo;
     }
 
     public LocalDate getFechaInicial() {
         return fechaInicial;
     }
 
-    public void setFechaInicial(LocalDate fechaInicla) {
-        this.fechaInicial = fechaInicla;
+    public void setFechaInicial(LocalDate fechaInicial) {
+        this.fechaInicial = fechaInicial;
     }
 
     public LocalDate getFechaFinal() {
@@ -102,4 +102,5 @@ public class Dieta {
         this.estado = estado;
     }
 
+    
 }
