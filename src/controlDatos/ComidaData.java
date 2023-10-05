@@ -16,11 +16,6 @@ public class ComidaData {
     public ComidaData() {
         conec = Conexion.getConexion();
     }
-//    private String nombre;
-//    private String detalle;
-//    private int calorias;
-//    private int idComida;
-//    private int estado;
 
     public void cargarComida(Comida comida) {
         String sql = "INSERT INTO comida (nombre, detalle, calorias, estado) VALUES (?,?,?,?)";

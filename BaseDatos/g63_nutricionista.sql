@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-10-2023 a las 23:28:00
+-- Tiempo de generación: 06-10-2023 a las 00:40:24
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -45,7 +45,7 @@ CREATE TABLE `comida` (
 
 CREATE TABLE `dieta` (
   `nombre` varchar(75) NOT NULL,
-  `idPaciente` int(11) NOT NULL,
+  `idPaciente` int(11) DEFAULT NULL,
   `pesoInicial` float NOT NULL,
   `pesoObjetivo` float NOT NULL,
   `fechaInicial` date NOT NULL,
