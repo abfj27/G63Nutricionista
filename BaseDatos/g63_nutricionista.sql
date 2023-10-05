@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-10-2023 a las 23:12:37
+-- Tiempo de generación: 05-10-2023 a las 23:28:00
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -37,15 +37,6 @@ CREATE TABLE `comida` (
   `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `comida`
---
-
-INSERT INTO `comida` (`nombre`, `detalle`, `calorias`, `idComida`, `estado`) VALUES
-('Pollo', 'Pollo al horno', 300, 28, 1),
-('Arroz', 'Arroz al vapor', 245, 29, 1),
-('Huevo', 'Huevo frito', 50, 30, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -63,15 +54,6 @@ CREATE TABLE `dieta` (
   `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `dieta`
---
-
-INSERT INTO `dieta` (`nombre`, `idPaciente`, `pesoInicial`, `pesoObjetivo`, `fechaInicial`, `fechaFinal`, `idDieta`, `estado`) VALUES
-('Subir peso paciente007', 28, 60, 80, '2023-10-05', '2023-10-05', 22, 1),
-('Subir peso paciente008', 29, 66.6, 88.8, '2023-10-05', '2023-10-05', 23, 1),
-('Bajar peso paciente009', 30, 120, 90, '2023-10-05', '2023-10-05', 24, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -85,15 +67,6 @@ CREATE TABLE `dietacomida` (
   `idDC` int(11) NOT NULL,
   `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `dietacomida`
---
-
-INSERT INTO `dietacomida` (`idComida`, `idDieta`, `horario`, `idDC`, `estado`) VALUES
-(28, 22, 'ALMUERZO', 19, 1),
-(29, 23, 'ALMUERZO', 20, 1),
-(30, 22, 'DESAYUNO', 21, 0);
 
 -- --------------------------------------------------------
 
@@ -113,15 +86,6 @@ CREATE TABLE `paciente` (
   `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `paciente`
---
-
-INSERT INTO `paciente` (`dni`, `apellido`, `nombre`, `pesoActual`, `domicilio`, `telefono`, `email`, `idPaciente`, `estado`) VALUES
-(1231, 'Bavastro', 'Alesio', 60, 'Avenida Siempre Viva', '+54 1231', 'asd@hotmail.com', 28, 1),
-(1232, 'Kaminski', 'Nicolas', 75, 'Avenida Siempre Viva 69', '+54 1232', 'asd@hotmail.com.nico', 29, 1),
-(1233, 'Perez', 'Maria', 80, 'Avenida Siempre Viva', '+54 1233', 'asd@hotmail.com', 30, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -136,15 +100,6 @@ CREATE TABLE `visita` (
   `idVisita` int(11) NOT NULL,
   `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `visita`
---
-
-INSERT INTO `visita` (`idDieta`, `idPaciente`, `peso`, `fecha`, `idVisita`, `estado`) VALUES
-(22, 28, 60, '2023-10-05', 22, 1),
-(22, 28, 61.5, '2023-10-05', 23, 1),
-(22, 28, 62, '2023-10-05', 24, 0);
 
 --
 -- Índices para tablas volcadas
@@ -195,31 +150,31 @@ ALTER TABLE `visita`
 -- AUTO_INCREMENT de la tabla `comida`
 --
 ALTER TABLE `comida`
-  MODIFY `idComida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idComida` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `dieta`
 --
 ALTER TABLE `dieta`
-  MODIFY `idDieta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idDieta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `dietacomida`
 --
 ALTER TABLE `dietacomida`
-  MODIFY `idDC` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idDC` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `visita`
 --
 ALTER TABLE `visita`
-  MODIFY `idVisita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `idVisita` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
