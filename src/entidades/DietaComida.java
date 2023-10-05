@@ -4,6 +4,7 @@ public class DietaComida {
 
     private int idComida;
     private int idDieta;
+    private Horario horario;
     private int idDC;
     private int estado;
 
@@ -11,15 +12,18 @@ public class DietaComida {
 
     }
 
-    public DietaComida(int idComida, int idDieta, int estado) {
+    public DietaComida(int idComida, int idDieta, Horario horario, int estado) {
         this.idComida = idComida;
         this.idDieta = idDieta;
+        this.horario = horario;
+        this.idDC = idDC;
         this.estado = estado;
     }
 
-    public DietaComida(int idComida, int idDieta, int idDC, int estado) {
+    public DietaComida(int idComida, int idDieta, Horario horario, int idDC, int estado) {
         this.idComida = idComida;
         this.idDieta = idDieta;
+        this.horario = horario;
         this.idDC = idDC;
         this.estado = estado;
     }
@@ -40,6 +44,14 @@ public class DietaComida {
         this.idDieta = idDieta;
     }
 
+    public Horario getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Horario horario) {
+        this.horario = horario;
+    }
+
     public int getIdDC() {
         return idDC;
     }
@@ -55,5 +67,7 @@ public class DietaComida {
     public void setEstado(int estado) {
         this.estado = estado;
     }
+
+   
 
 }

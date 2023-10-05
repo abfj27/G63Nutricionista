@@ -73,8 +73,8 @@ public class PacienteData {
             PreparedStatement ps = conec.prepareStatement(sql);
             ps.setInt(1, paciente.getIdPaciente());
             ps.executeUpdate();
-            //mensaje
             ps.close();
+            //mensaje
         } catch (SQLException ex) {
             Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
         }

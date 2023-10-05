@@ -1,8 +1,10 @@
 package g63nutricionista;
 
+import controlDatos.ComidaData;
 import controlDatos.DietaData;
 import controlDatos.PacienteData;
 import controlDatos.VisitaData;
+import entidades.Comida;
 import entidades.Dieta;
 import entidades.Paciente;
 import entidades.Visita;
@@ -12,7 +14,7 @@ public class Test {
 
     public static void main(String[] args) {
 
-       // // test pacienteData
+        // // test pacienteData
 //        PacienteData pd = new PacienteData();
 //        Paciente pac1 = new Paciente(1231, "Bavastro", "Alesio", 70, "Avenida Siempre Viva", "+54 1231", "asd@hotmail.com", 1);
 //        Paciente pac2 = new Paciente(1232, "Kaminski", "Nicolas", 75.6, "Avenida Siempre Viva", "+54 1232", "asd@hotmail.com", 1);
@@ -27,7 +29,7 @@ public class Test {
 //        Paciente pac4 = pd.buscarPacienteDocumento(1231);
 //        System.out.println(pac4.getApellido() + pac4.getNombre());
 //
-   //     // test dietaData
+        //     // test dietaData
 //        DietaData dd = new DietaData();
 //        Dieta die1 = new Dieta("Subir peso paciente007", 7, 50.5, 85, LocalDate.now(), LocalDate.now(), 1);
 //        Dieta die2 = new Dieta("Subir peso paciente008", 8, 60, 85.6, LocalDate.now(), LocalDate.now(), 1);
@@ -53,8 +55,21 @@ public class Test {
 //        vd.eliminarVisita(vis3);
 //        vis2.setPeso(61.5);
 //        vd.modificarVisita(vis2);
-        
-        
+//
+////          test comidaData
+//        ComidaData cd = new ComidaData();
+//        Comida com1 = new Comida("Pollo", "Pollo al horno", 303, 1);
+//        Comida com2 = new Comida("Arroz", "Arroz al vapor", 250, 1);
+//        Comida com3 = new Comida("Huevo", "Huevo frito", 33, 1);
+//        cd.cargarComida(com1);
+//        cd.cargarComida(com2);
+//        cd.cargarComida(com3);
+//        com2.setIdComida(2);
+//        com3.setIdComida(3);
+//        cd.eliminarComida(com3);
+//        com2.setCalorias(245);
+//        cd.modificarComida(com2);
+
     }
 
 }
