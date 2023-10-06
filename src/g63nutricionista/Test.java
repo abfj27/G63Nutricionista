@@ -18,9 +18,9 @@ public class Test {
     public static void main(String[] args) {
 
 //        PacienteData pd = new PacienteData();
-//        Paciente pac1 = new Paciente(1231, "Bavastro", "Alesio", 60, "Avenida Siempre Viva", "+54 1231", "asd@hotmail.com", 1);
-//        Paciente pac2 = new Paciente(1232, "Kaminski", "Nicolas",75, "Avenida Siempre Viva", "+54 1232", "asd@hotmail.com", 1);
-//        Paciente pac3 = new Paciente(1233, "Perez", "Maria", 80, "Avenida Siempre Viva", "+54 1233", "asd@hotmail.com", 1);
+//        Paciente pac1 = new Paciente(1231, "Bavastro", "Alesio", 60, 1.70, 30, "M",  "Avenida Siempre Viva", "+54 1231", "asd@hotmail.com", 1);
+//        Paciente pac2 = new Paciente(1232, "Kaminski", "Nicolas",75, 1.80, 33, "M", "Avenida Siempre Viva", "+54 1232", "asd@hotmail.com", 1);
+//        Paciente pac3 = new Paciente(1233, "Perez", "Maria", 80, 2, 22, "F", "Avenida Siempre Viva", "+54 1233", "asd@hotmail.com", 1);
 //        ComidaData cd = new ComidaData();
 //        Comida com1 = new Comida("Pollo", "Pollo al horno", 300, 1);
 //        Comida com2 = new Comida("Arroz", "Arroz al vapor", 250, 1);
@@ -37,7 +37,7 @@ public class Test {
 //        DietaComida dc01 = new DietaComida(com1, die1, Horario.ALMUERZO, 1);
 //        DietaComida dc02 = new DietaComida(com2, die2, Horario.CENA, 1);
 //        DietaComida dc03 = new DietaComida(com3, die1, Horario.DESAYUNO, 1);
-//
+////
 //        pd.cargarPaciente(pac1);
 //        pd.cargarPaciente(pac2);
 //        pd.cargarPaciente(pac3);
@@ -53,28 +53,28 @@ public class Test {
 //        dc.cargarDietaComida(dc01);
 //        dc.cargarDietaComida(dc02);
 //        dc.cargarDietaComida(dc03);
-//
+////
 //        pac2.setDomicilio("Avenida Siempre Viva 69");
 //        pac2.setEmail("asd@hotmail.com.nico");
 //        pd.modificarPaciente(pac2);
 //        pd.eliminarPaciente(pac3);
-//
+////
 //        com2.setCalorias(245);
 //        cd.modificarComida(com2);
 //        cd.eliminarComida(com3);
-//
+////
 //        die2.setPesoInicial(66.6);
 //        die2.setPesoObjetivo(88.8);
 //        dd.modificarDieta(die2);
 //        dd.eliminarDieta(die3);
-//
+////
 //        vis2.setPeso(61.5);
 //        vd.modificarVisita(vis2);
 //        vd.eliminarVisita(vis3);
-//        
+////        
 //        dc02.setHorario(Horario.ALMUERZO);
 //        dc.modificarDietaComida(dc02);
 //        dc.eliminarDietaComida(dc03);
-    }
+  }
 
 }
