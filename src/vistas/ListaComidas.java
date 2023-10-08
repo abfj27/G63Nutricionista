@@ -274,21 +274,27 @@ public class ListaComidas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         borrarFila();
         this.estado = 2;
+        Cabecera();
         obtencionDeDatos();
+
     }//GEN-LAST:event_jRbActivosActionPerformed
 
     private void jRbInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRbInactivosActionPerformed
         // TODO add your handling code here:
         borrarFila();
         this.estado = 1;
+        Cabecera();
         obtencionDeDatos();
+
     }//GEN-LAST:event_jRbInactivosActionPerformed
 
     private void jRbTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRbTodosActionPerformed
         // TODO add your handling code here:
         borrarFila();
         this.estado = 0;
+        Cabecera();
         obtencionDeDatos();
+
     }//GEN-LAST:event_jRbTodosActionPerformed
 
     private void jCbFiltradoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbFiltradoActionPerformed
@@ -397,11 +403,20 @@ public class ListaComidas extends javax.swing.JInternalFrame {
     }
 
     private void Cabecera() {
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Detalle");
-        modelo.addColumn("Calorias");
-        modelo.addColumn("Estado");
-        jTComidas.setModel(modelo);
+        modelo.setColumnCount(0);
+        if (estado != 0) {
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Detalle");
+            modelo.addColumn("Calorias");
+            jTComidas.setModel(modelo);
+        } else {
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Detalle");
+            modelo.addColumn("Calorias");
+            modelo.addColumn("Estado");
+            jTComidas.setModel(modelo);
+        }
+
     }
 
     private void obtencionDeDatos() {
@@ -425,7 +440,12 @@ public class ListaComidas extends javax.swing.JInternalFrame {
                 } else {
                     estadoImp = "false";
                 }
-                modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getDetalle(), recorrer.getCalorias(), estadoImp});
+                if (estado == 0) {
+                    modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getDetalle(), recorrer.getCalorias(), estadoImp});
+                } else {
+                    modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getDetalle(), recorrer.getCalorias()});
+                }
+
             }
             if (estado == 2) {
                 jBbaja.setEnabled(true);
