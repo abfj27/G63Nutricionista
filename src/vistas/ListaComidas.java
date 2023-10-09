@@ -8,6 +8,7 @@ package vistas;
 import controlDatos.ComidaData;
 import entidades.Comida;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import stuff.Utileria;
 
@@ -243,7 +244,11 @@ public class ListaComidas extends javax.swing.JInternalFrame {
 
     private void jTbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTbCerrarActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        Object[] op = {"Aceptar", "Cancelar"};
+        int i = JOptionPane.showOptionDialog(this, "Desea cerrar?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
+        if (i == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
     }//GEN-LAST:event_jTbCerrarActionPerformed
 
     private void jTingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTingresoKeyReleased
