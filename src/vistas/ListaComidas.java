@@ -331,14 +331,15 @@ public class ListaComidas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         filaS = jTComidas.getSelectedRow();
         jBmodificar.setEnabled(true);
-        if (jTComidas.getValueAt(filaS, 3) == "true") {
-            jBalta.setEnabled(false);
-            jBbaja.setEnabled(true);
-        } else if (jTComidas.getValueAt(filaS, 3) == "false") {
-            jBalta.setEnabled(true);
-            jBbaja.setEnabled(false);
+        if (estado == 0) {
+            if (jTComidas.getValueAt(filaS, 3) == "true") {
+                jBalta.setEnabled(false);
+                jBbaja.setEnabled(true);
+            } else if (jTComidas.getValueAt(filaS, 3) == "false") {
+                jBalta.setEnabled(true);
+                jBbaja.setEnabled(false);
+            }
         }
-
     }//GEN-LAST:event_jTComidasMouseClicked
 
     private void jBaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaltaActionPerformed

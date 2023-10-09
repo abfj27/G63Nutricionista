@@ -73,7 +73,13 @@ public class ComidaData {
         ArrayList<Comida> comidas = new ArrayList<>();
         Comida comida = null;
         String sql;
-        if (seleccion.equals("nombre")) {
+        if (ingreso.isEmpty()) {
+            if (estado == 1 || estado == 2) {
+                sql = "SELECT* FROM comida WHERE estado=?";
+            } else {
+                sql = "SELECT* FROM comida WHERE estado>?";
+            }
+        } else if (seleccion.equals("nombre")) {
             if (estado == 1 || estado == 2) {
                 sql = "SELECT* FROM comida WHERE nombre like ? and estado=?";
             } else {
@@ -104,11 +110,18 @@ public class ComidaData {
             if (seleccion.equals("detalle")) {
                 ps.setString(1, "%" + ingreso + "%");
             } else if (seleccion.equals("calorias1") || seleccion.equals("calorias2")) {
+                if (ingreso.isEmpty()) {
+                    ingreso = "0";
+                }
                 ps.setInt(1, Integer.valueOf(ingreso));
-            } else {
+            } else if (!ingreso.isEmpty()) {
                 ps.setString(1, ingreso);
             }
-            ps.setInt(2, estado);
+            if (!ingreso.isEmpty()) {
+                ps.setInt(2, estado);
+            } else {
+                ps.setInt(1, estado);
+            }
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 comida = new Comida();
