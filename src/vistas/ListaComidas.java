@@ -7,9 +7,14 @@ package vistas;
 
 import controlDatos.ComidaData;
 import entidades.Comida;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import stuff.Utileria;
 
 /**
@@ -32,6 +37,7 @@ public class ListaComidas extends javax.swing.JInternalFrame {
      */
     public ListaComidas() {
         initComponents();
+        ordenamientoDeTabla();
         cargarComboBox();
         Cabecera();
     }
@@ -200,9 +206,7 @@ public class ListaComidas extends javax.swing.JInternalFrame {
                             .addComponent(jBalta, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jBbaja, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jBbaja, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jBmodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -461,5 +465,22 @@ public class ListaComidas extends javax.swing.JInternalFrame {
                 jBmodificar.setEnabled(true);
             }
         }
+    }
+
+    public void ordenamientoDeTabla() {
+        //ordena la tabla segun donde le de click en la cabecera
+        jTComidas.getTableHeader().addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTComidas.getModel());
+                jTComidas.setRowSorter(sorter);
+                int colum = jTComidas.columnAtPoint(e.getPoint());
+                sorter.toggleSortOrder(colum);
+            }
+        });
+
+        JScrollPane scrollPane = new JScrollPane(jTComidas);
+        getContentPane().add(scrollPane);
     }
 }
