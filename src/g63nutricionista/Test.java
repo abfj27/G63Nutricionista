@@ -10,6 +10,7 @@ import entidades.Dieta;
 import entidades.DietaComida;
 import entidades.Horario;
 import entidades.Paciente;
+import entidades.Porcion;
 import entidades.Visita;
 import java.time.LocalDate;
 
