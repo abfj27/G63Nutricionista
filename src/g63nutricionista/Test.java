@@ -34,9 +34,9 @@ public class Test {
 //        Visita vis2 = new Visita(die1, pac1, 63, LocalDate.now(), 1);
 //        Visita vis3 = new Visita(die1, pac1, 62, LocalDate.now(), 1);
 //        DietaComidaData dc = new DietaComidaData();
-//        DietaComida dc01 = new DietaComida(com1, die1, Horario.ALMUERZO, 1);
-//        DietaComida dc02 = new DietaComida(com2, die2, Horario.CENA, 1);
-//        DietaComida dc03 = new DietaComida(com3, die1, Horario.DESAYUNO, 1);
+//        DietaComida dc01 = new DietaComida(com1, die1, Horario.ALMUERZO, Porcion.MEDIANA, 1);
+//        DietaComida dc02 = new DietaComida(com2, die2, Horario.CENA, Porcion.MEDIANA, 1);
+//        DietaComida dc03 = new DietaComida(com3, die1, Horario.DESAYUNO, Porcion.MEDIANA, 1);
 ////
 //        pd.cargarPaciente(pac1);
 //        pd.cargarPaciente(pac2);
