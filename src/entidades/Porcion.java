@@ -9,6 +9,8 @@ package entidades;
  *
  * @author Equipo
  */
-public class Porcion {
-    
+public enum Porcion {
+    PEQUEÑA,
+    MEDIANA,
+    GRANDE,
 }
