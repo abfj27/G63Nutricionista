@@ -21,7 +21,7 @@ import stuff.Utileria;
  * @author Equipo
  */
 public class ListaComidas extends javax.swing.JInternalFrame {
-
+    private int click = 1;
     private int filaS = -1;
     private int estado;
     private ComidaData cd = new ComidaData();
@@ -471,12 +471,16 @@ public class ListaComidas extends javax.swing.JInternalFrame {
         //ordena la tabla segun donde le de click en la cabecera
         TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTComidas.getModel());
         jTComidas.setRowSorter(sorter);
+        
         jTComidas.getTableHeader().addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                int colum = jTComidas.columnAtPoint(e.getPoint());
-                sorter.toggleSortOrder(colum);
+                if (e.getClickCount() == click) {
+                    int colum = jTComidas.columnAtPoint(e.getPoint());
+                    sorter.toggleSortOrder(colum);
+                    click+=1;
+                }
             }
         });
     }
