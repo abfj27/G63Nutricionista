@@ -19,13 +19,14 @@ public class DietaComidaData {
     }
     
     public void cargarDietaComida(DietaComida dc) {
-        String sql = "INSERT INTO dietacomida (idComida, idDieta, horario, estado) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO dietacomida (idComida, idDieta, horario, porcion, estado) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement ps = conec.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, dc.getComida().getIdComida());
             ps.setInt(2, dc.getDieta().getIdDieta());
             ps.setString(3, String.valueOf(dc.getHorario()));
-            ps.setInt(4, dc.getEstado());
+            ps.setString(4, String.valueOf(dc.getPorcion()));
+            ps.setInt(5, dc.getEstado());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -43,14 +44,15 @@ public class DietaComidaData {
     }
     
     public void modificarDietaComida(DietaComida dc) {
-        String sql = "UPDATE dietacomida SET idComida=?, idDieta=?, horario=?, estado=? WHERE idDC=? ";
+        String sql = "UPDATE dietacomida SET idComida=?, idDieta=?, horario=?, porcion=?, estado=? WHERE idDC=? ";
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
             ps.setInt(1, dc.getComida().getIdComida());
             ps.setInt(2, dc.getDieta().getIdDieta());
             ps.setString(3, String.valueOf(dc.getHorario()));
-            ps.setInt(4, dc.getEstado());
-            ps.setInt(5, dc.getIdDC());
+            ps.setString(4, String.valueOf(dc.getPorcion()));
+            ps.setInt(5, dc.getEstado());
+            ps.setInt(6, dc.getIdDC());
             ps.executeUpdate();
             ps.close();
             //mensaje
