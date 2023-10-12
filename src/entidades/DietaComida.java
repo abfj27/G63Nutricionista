@@ -5,6 +5,7 @@ public class DietaComida {
     private Comida comida;
     private Dieta dieta;
     private Horario horario;
+    private Porcion porcion;
     private int idDC;
     private int estado;
 
