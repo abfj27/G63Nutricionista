@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2023 a las 01:21:35
+-- Tiempo de generación: 13-10-2023 a las 00:47:33
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -64,6 +64,7 @@ CREATE TABLE `dietacomida` (
   `idComida` int(11) NOT NULL,
   `idDieta` int(11) NOT NULL,
   `horario` varchar(50) NOT NULL,
+  `porcion` varchar(50) NOT NULL,
   `idDC` int(11) NOT NULL,
   `estado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
