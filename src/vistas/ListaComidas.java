@@ -11,7 +11,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -37,9 +36,10 @@ public class ListaComidas extends javax.swing.JInternalFrame {
      */
     public ListaComidas() {
         initComponents();
+        Cabecera();
         ordenamientoDeTabla();
         cargarComboBox();
-        Cabecera();
+
     }
 
     /**
@@ -469,12 +469,12 @@ public class ListaComidas extends javax.swing.JInternalFrame {
 
     public void ordenamientoDeTabla() {
         //ordena la tabla segun donde le de click en la cabecera
+        TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTComidas.getModel());
+        jTComidas.setRowSorter(sorter);
         jTComidas.getTableHeader().addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTComidas.getModel());
-                jTComidas.setRowSorter(sorter);
                 int colum = jTComidas.columnAtPoint(e.getPoint());
                 sorter.toggleSortOrder(colum);
             }
