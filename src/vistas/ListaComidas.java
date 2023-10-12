@@ -479,8 +479,5 @@ public class ListaComidas extends javax.swing.JInternalFrame {
                 sorter.toggleSortOrder(colum);
             }
         });
-
-        JScrollPane scrollPane = new JScrollPane(jTComidas);
-        getContentPane().add(scrollPane);
     }
 }
