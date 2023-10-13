@@ -38,8 +38,9 @@ public class ListaComidas extends javax.swing.JInternalFrame {
     public ListaComidas() {
         initComponents();
         this.click = 1;
+        Utileria utileria=new Utileria(click);
         Cabecera();
-        ordenamientoDeTabla();
+        utileria.ordenamientoDeTabla(jTComidas);
         cargarComboBox();
 
     }
@@ -469,21 +470,21 @@ public class ListaComidas extends javax.swing.JInternalFrame {
         }
     }
 
-    public void ordenamientoDeTabla() {
-        //ordena la tabla segun donde le de click en la cabecera
-        TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTComidas.getModel());
-        jTComidas.setRowSorter(sorter);
-
-        jTComidas.getTableHeader().addMouseListener(new MouseAdapter() {
-
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == click) {
-                    int colum = jTComidas.columnAtPoint(e.getPoint());
-                    sorter.toggleSortOrder(colum);
-                    click += 1;
-                }
-            }
-        });
-    }
+//    public void ordenamientoDeTabla() {
+//        //ordena la tabla segun donde le de click en la cabecera
+//        TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTComidas.getModel());
+//        jTComidas.setRowSorter(sorter);
+//
+//        jTComidas.getTableHeader().addMouseListener(new MouseAdapter() {
+//
+//            @Override
+//            public void mouseClicked(MouseEvent e) {
+//                if (e.getClickCount() == e.getClickCount()) {
+//                    int colum = jTComidas.columnAtPoint(e.getPoint());
+//                    sorter.toggleSortOrder(colum);
+//                    click += 1;
+//                }
+//            }
+//        });
+//    }
 }
