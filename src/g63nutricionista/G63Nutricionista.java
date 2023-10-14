@@ -8,7 +8,7 @@ public class G63Nutricionista {
 
     public static void main(String[] args) {
         ComidaData cd=new ComidaData();
-        System.err.println(cd.listaComidas("calorias1", "10", 0));
+        System.out.println(cd.buscarComida("Pollo con arroz",350));
 
 
     }
