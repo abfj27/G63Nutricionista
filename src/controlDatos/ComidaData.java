@@ -20,29 +20,33 @@ public class ComidaData {
     }
 
     public void cargarComida(Comida comida) {
-        String sql = "INSERT INTO comida (nombre, detalle, calorias, estado) VALUES (?,?,?,?)";
-        try {
-            PreparedStatement ps = conec.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, comida.getNombre());
-            ps.setString(2, comida.getDetalle());
-            ps.setInt(3, comida.getCalorias());
-            ps.setInt(4, comida.getEstado());
-            ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                comida.setIdComida(rs.getInt(1));
-                Utileria.mensaje("Comida creada con exito");
+        if (buscarComida(comida.getNombre(), comida.getCalorias()) == null) {
+            String sql = "INSERT INTO comida (nombre, detalle, calorias, estado) VALUES (?,?,?,?)";
+            try {
+                PreparedStatement ps = conec.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, comida.getNombre());
+                ps.setString(2, comida.getDetalle());
+                ps.setInt(3, comida.getCalorias());
+                ps.setInt(4, comida.getEstado());
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    comida.setIdComida(rs.getInt(1));
+                    Utileria.mensaje("Comida creada con exito");
+                }
+                rs.close();
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
             }
-            rs.close();
-            ps.close();
-        } catch (SQLException ex) {
-            if ((buscarComida(comida.getNombre(), comida.getCalorias())).getEstado() == 0 && ex.getErrorCode() == 1062) {
-                comida.setEstado(2);
+        } else {
+            if (buscarComida(comida.getNombre(), comida.getCalorias()).getEstado() == 0) {
+                comida.setIdComida((buscarComida(comida.getNombre(), comida.getCalorias())).getIdComida());
                 modificarComida(comida);
+                Utileria.mensaje("Comida creada con exito");
             } else {
-                Utileria.mensaje("La comida ya existe");
+                Utileria.mensaje("Comida ingresada ya existe y esta siendo utilizada");
             }
-            Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
