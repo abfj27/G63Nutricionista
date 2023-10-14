@@ -375,7 +375,9 @@ public class ListaComidas extends javax.swing.JInternalFrame {
     private void jBnuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoActionPerformed
         // TODO add your handling code here:
         crear_modificar_comida cmc = new crear_modificar_comida(comEnv);
-        cmc.addInternalFrameListener(internalFrameListener);
+        if (filaS != -1) {
+            cmc.addInternalFrameListener(internalFrameListener);
+        }
         getParent().add(cmc);
         cmc.setVisible(true);
     }//GEN-LAST:event_jBnuevoActionPerformed

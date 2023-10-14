@@ -63,7 +63,7 @@ public class ComidaData {
             ps.close();
             //mensaje
         } catch (SQLException ex) {
-            Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
+            Utileria.mensaje("Comida ingresada ya existe y esta siendo utilizada");
         }
     }
 
