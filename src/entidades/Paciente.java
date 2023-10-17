@@ -143,6 +143,11 @@ public class Paciente {
     public void setEstado(int estado) {
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "dni=" + dni + ", apellido=" + apellido + ", nombre=" + nombre + ", pesoActual=" + pesoActual + ", altura=" + altura + ", edad=" + edad + ", genero=" + genero + ", domicilio=" + domicilio + ", telefono=" + telefono + ", email=" + email + ", idPaciente=" + idPaciente + ", estado=" + estado;
+    }
  
     
 

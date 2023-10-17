@@ -307,10 +307,10 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
     private void jTComidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTComidasMouseClicked
         // TODO add your handling code here:
         filaS = jTComidas.getSelectedRow();
-        if(estado!=1){
+        if (estado != 1) {
             jBeliminar.setEnabled(true);
         }
-        
+
         if (estado == 0) {
             if (jTComidas.getValueAt(filaS, 3) == "true" || jTComidas.getValueAt(filaS, 3) == "false") {
                 jBalta_baja.setEnabled(true);
@@ -324,12 +324,15 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
 
     private void jBalta_bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalta_bajaActionPerformed
         // TODO add your handling code here:
+        int[] filasS = jTComidas.getSelectedRows();
         if (filaS != -1) {
-            if (estado == 1 || jTComidas.getValueAt(filaS, 3) == "false" || jTComidas.getValueAt(filaS, 3) == "eliminado") {
-                cd.darAlta(jTComidas.getValueAt(filaS, 0).toString(), Integer.valueOf(jTComidas.getValueAt(filaS, 2).toString()));
-            } else if (jTComidas.getValueAt(filaS, 3) == "true") {
-                cd.darBaja(jTComidas.getValueAt(filaS, 0).toString(), Integer.valueOf(jTComidas.getValueAt(filaS, 2).toString()));
-            } 
+            for (Integer re : filasS) {
+                if (estado == 1 || jTComidas.getValueAt(re, 3) == "false" || jTComidas.getValueAt(re, 3) == "eliminado") {
+                    cd.darAlta(jTComidas.getValueAt(re, 0).toString(), Integer.valueOf(jTComidas.getValueAt(re, 2).toString()));
+                } else if (jTComidas.getValueAt(re, 3) == "true") {
+                    cd.darBaja(jTComidas.getValueAt(re, 0).toString(), Integer.valueOf(jTComidas.getValueAt(re, 2).toString()));
+                }
+            }
             borrarFila();
             obtencionDeDatos();
             filaS = -1;
@@ -340,12 +343,15 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
 
     private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
         // TODO add your handling code here:
-        if(filaS !=-1){
-            cd.eliminar(jTComidas.getValueAt(filaS, 0).toString(), Integer.valueOf(jTComidas.getValueAt(filaS, 2).toString()));
+        int[] filasS = jTComidas.getSelectedRows();
+        if (filaS != -1) {
+            for (Integer re : filasS) {
+                cd.eliminar(jTComidas.getValueAt(re, 0).toString(), Integer.valueOf(jTComidas.getValueAt(re, 2).toString()));
+            }
             borrarFila();
             obtencionDeDatos();
             filaS = -1;
-        }else{
+        } else {
             Utileria.mensaje("Debe seleccionar una fila");
         }
     }//GEN-LAST:event_jBeliminarActionPerformed
