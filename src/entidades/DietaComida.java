@@ -77,7 +77,4 @@ public class DietaComida {
     public void setEstado(int estado) {
         this.estado = estado;
     }
-
-    
-    
 }
