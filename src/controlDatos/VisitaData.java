@@ -18,6 +18,7 @@ public class VisitaData {
         conec = Conexion.getConexion();
     }
 
+
     public void cargarVisita(Visita visita) {
         String sql = "INSERT INTO visita (idDieta, idPaciente, peso, fecha, estado) VALUES (?,?,?,?,?)";
         try {
@@ -56,7 +57,6 @@ public class VisitaData {
         } catch (SQLException ex) {
             Logger.getLogger(VisitaData.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void eliminarVisita(Visita visita) {
@@ -70,7 +70,7 @@ public class VisitaData {
         } catch (SQLException ex) {
             Logger.getLogger(VisitaData.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-    //
-}
+    
+    
+} // Llave final
