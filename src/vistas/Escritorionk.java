@@ -3,15 +3,14 @@ package vistas;
 import javax.swing.JInternalFrame;
 
 /**
- *
- * @author Alesio
+ * @author Nicolas Kaminski
  */
-public class Escritorio extends javax.swing.JFrame {
+public class Escritorionk extends javax.swing.JFrame {
 
     /**
      * Creates new form Escritorio
      */
-    public Escritorio() {
+    public Escritorionk() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -36,10 +35,7 @@ public class Escritorio extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,6 +53,11 @@ public class Escritorio extends javax.swing.JFrame {
         jMenu1.setText("Archivo");
 
         jMenuItem11.setText("Ficha Paciente");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem11);
 
         jMenuItem1.setText("Salir");
@@ -67,6 +68,11 @@ public class Escritorio extends javax.swing.JFrame {
         jMenu2.setText("Nuevo");
 
         jMenuItem2.setText("Paciente");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem2);
 
         jMenuItem3.setText("Comida");
@@ -83,6 +89,11 @@ public class Escritorio extends javax.swing.JFrame {
         jMenu4.setText("Modificar");
 
         jMenuItem5.setText("Paciente");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem5);
 
         jMenuBar1.add(jMenu4);
@@ -93,45 +104,20 @@ public class Escritorio extends javax.swing.JFrame {
         jMenu3.add(jMenuItem7);
 
         jMenuItem8.setText("Lista Comidas");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
         jMenu3.add(jMenuItem8);
 
         jMenuItem9.setText("Lista Dietas");
         jMenu3.add(jMenuItem9);
 
-        jMenuBar1.add(jMenu3);
-
-        jMenu5.setText("Administrativo");
-
-        jMenuItem5.setText("Administracion Comida");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem5);
-
-        jMenuItem10.setText("Administracion Paciente");
+        jMenuItem10.setText("Historial de Visitas");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem10ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem10);
+        jMenu3.add(jMenuItem10);
 
-        jMenuItem12.setText("Administracion Dieta");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
-            }
-        });
-        jMenu5.add(jMenuItem12);
-
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -149,41 +135,25 @@ public class Escritorio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
-        jDpEscritorio.removeAll();
-        jDpEscritorio.repaint();
-        ListaComidas lc = new ListaComidas();
-        lc.setVisible(true);
-        jDpEscritorio.add(lc);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        NuevoPaciente np = new NuevoPaciente();
+        mostrarVista(np);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-        jDpEscritorio.removeAll();
-        jDpEscritorio.repaint();
-        AdministrativoListaComidas alc = new AdministrativoListaComidas();
-        alc.setVisible(true);
-        jDpEscritorio.add(alc);
+        ModificarPaciente mp = new ModificarPaciente();
+        mostrarVista(mp);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        // TODO add your handling code here:
-        jDpEscritorio.removeAll();
-        jDpEscritorio.repaint();
-        AdministrativoPacientes ap = new AdministrativoPacientes();
-        ap.setVisible(true);
-        jDpEscritorio.add(ap);
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        FichaPaciente fp = new FichaPaciente();
+        mostrarVista(fp);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        // TODO add your handling code here:
-        jDpEscritorio.removeAll();
-        jDpEscritorio.repaint();
-        AdministrativoDieta ad = new AdministrativoDieta();
-        ad.setVisible(true);
-        jDpEscritorio.add(ad);
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        HistorialDeVisitas hv = new HistorialDeVisitas();
+        mostrarVista(hv);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,37 +172,35 @@ public class Escritorio extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Escritorionk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Escritorionk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Escritorionk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Escritorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Escritorionk.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Escritorio().setVisible(true);
+                new Escritorionk().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-
-    private javax.swing.JDesktopPane escritorio;
+    public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -242,4 +210,12 @@ public class Escritorio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
-}
+
+    private void mostrarVista(JInternalFrame vista) {
+        escritorio.removeAll();
+        escritorio.repaint();
+        escritorio.add(vista);
+        vista.setVisible(true);
+    }
+
+}// llave final

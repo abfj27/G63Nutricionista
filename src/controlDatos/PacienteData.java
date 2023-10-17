@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.mariadb.jdbc.Statement;
+import stuff.Utileria;
 
 public class PacienteData {
 
@@ -38,13 +39,13 @@ public class PacienteData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 paciente.setIdPaciente(rs.getInt(1));
-                //mensaje
+                Utileria.mensaje("Se cargo el paciente correctamente");
             }
             rs.close();
             ps.close();
         } catch (SQLIntegrityConstraintViolationException ex) {
             Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
-            // mensaje
+            Utileria.mensaje("Ya existe un paciente cargado con ese DNI");
         } catch (SQLException ex) {
             Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,7 +69,7 @@ public class PacienteData {
             ps.setInt(12, paciente.getIdPaciente());
             ps.executeUpdate();
             ps.close();
-            //mensaje
+           Utileria.mensaje("Se modifico el paciente correctamente");
         } catch (SQLException ex) {
             Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
         }

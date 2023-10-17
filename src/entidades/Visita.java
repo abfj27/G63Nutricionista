@@ -12,7 +12,6 @@ public class Visita {
     private int estado;
 
     public Visita() {
-
     }
 
     public Visita(Dieta Dieta, Paciente Paciente, double peso, LocalDate fecha, int estado) {
