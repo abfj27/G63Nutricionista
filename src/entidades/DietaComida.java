@@ -2,8 +2,10 @@ package entidades;
 
 public class DietaComida {
 
-    private int idComida;
-    private int idDieta;
+    private Comida comida;
+    private Dieta dieta;
+    private Horario horario;
+    private Porcion porcion;
     private int idDC;
     private int estado;
 
@@ -11,33 +13,53 @@ public class DietaComida {
 
     }
 
-    public DietaComida(int idComida, int idDieta, int estado) {
-        this.idComida = idComida;
-        this.idDieta = idDieta;
+    public DietaComida(Comida comida, Dieta dieta, Horario horario, Porcion porcion, int estado) {
+        this.comida = comida;
+        this.dieta = dieta;
+        this.horario = horario;
+        this.porcion = porcion;
         this.estado = estado;
     }
 
-    public DietaComida(int idComida, int idDieta, int idDC, int estado) {
-        this.idComida = idComida;
-        this.idDieta = idDieta;
+    public DietaComida(Comida comida, Dieta dieta, Horario horario, Porcion porcion, int idDC, int estado) {
+        this.comida = comida;
+        this.dieta = dieta;
+        this.horario = horario;
+        this.porcion = porcion;
         this.idDC = idDC;
         this.estado = estado;
     }
 
-    public int getIdComida() {
-        return idComida;
+    public Comida getComida() {
+        return comida;
     }
 
-    public void setIdComida(int idComida) {
-        this.idComida = idComida;
+    public void setComida(Comida comida) {
+        this.comida = comida;
     }
 
-    public int getIdDieta() {
-        return idDieta;
+    public Dieta getDieta() {
+        return dieta;
     }
 
-    public void setIdDieta(int idDieta) {
-        this.idDieta = idDieta;
+    public void setDieta(Dieta dieta) {
+        this.dieta = dieta;
+    }
+
+    public Horario getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Horario horario) {
+        this.horario = horario;
+    }
+
+    public Porcion getPorcion() {
+        return porcion;
+    }
+
+    public void setPorcion(Porcion porcion) {
+        this.porcion = porcion;
     }
 
     public int getIdDC() {
@@ -55,5 +77,4 @@ public class DietaComida {
     public void setEstado(int estado) {
         this.estado = estado;
     }
-
 }

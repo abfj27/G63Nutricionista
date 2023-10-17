@@ -5,11 +5,12 @@ import java.time.LocalDate;
 public class Dieta {
 
     private String nombre;
-    private Paciente idPaciente;
+    private Paciente Paciente;
     private double pesoInicial;
     private double pesoObjetivo;
     private LocalDate fechaInicial;
     private LocalDate fechaFinal;
+    private LocalDate fechaUltimaVisita;
     private int idDieta;
     private int estado;
 
@@ -17,23 +18,48 @@ public class Dieta {
 
     }
 
-    public Dieta(String nombre, Paciente idPaciente, double pesoInicial, double peroObjetivo, LocalDate fechaInicla, LocalDate fechaFinal, int estado) {
+
+    public Dieta(String nombre, Paciente Paciente, double pesoInicial, double pesoObjetivo, LocalDate fechaInicial, LocalDate fechaFinal, int idDieta, int estado) {
         this.nombre = nombre;
-        this.idPaciente = idPaciente;
+        this.Paciente = Paciente;
         this.pesoInicial = pesoInicial;
-        this.pesoObjetivo = peroObjetivo;
-        this.fechaInicial = fechaInicla;
+        this.pesoObjetivo = pesoObjetivo;
+        this.fechaInicial = fechaInicial;
+        this.fechaFinal = fechaFinal;
+        this.idDieta = idDieta;
+        this.estado = estado;
+    }
+
+    public Dieta(String nombre, Paciente Paciente, double pesoInicial, double pesoObjetivo, LocalDate fechaInicial, LocalDate fechaFinal, int estado) {
+        this.nombre = nombre;
+        this.Paciente = Paciente;
+        this.pesoInicial = pesoInicial;
+        this.pesoObjetivo = pesoObjetivo;
+        this.fechaInicial = fechaInicial;
         this.fechaFinal = fechaFinal;
         this.estado = estado;
     }
 
-    public Dieta(String nombre, Paciente idPaciente, double pesoInicial, double peroObjetivo, LocalDate fechaInicla, LocalDate fechaFinal, int idDieta, int estado) {
+    public Dieta(String nombre, Paciente Paciente, double pesoInicial, double pesoObjetivo, LocalDate fechaInicial, LocalDate fechaFinal, LocalDate fechaUltimaVisita, int estado) {
         this.nombre = nombre;
-        this.idPaciente = idPaciente;
+        this.Paciente = Paciente;
         this.pesoInicial = pesoInicial;
-        this.pesoObjetivo = peroObjetivo;
-        this.fechaInicial = fechaInicla;
+        this.pesoObjetivo = pesoObjetivo;
+        this.fechaInicial = fechaInicial;
         this.fechaFinal = fechaFinal;
+        this.fechaUltimaVisita = fechaUltimaVisita;
+        this.estado = estado;
+    }
+
+
+    public Dieta(String nombre, Paciente Paciente, double pesoInicial, double pesoObjetivo, LocalDate fechaInicial, LocalDate fechaFinal, LocalDate fechaUltimaVisita, int idDieta, int estado) {
+        this.nombre = nombre;
+        this.Paciente = Paciente;
+        this.pesoInicial = pesoInicial;
+        this.pesoObjetivo = pesoObjetivo;
+        this.fechaInicial = fechaInicial;
+        this.fechaFinal = fechaFinal;
+        this.fechaUltimaVisita = fechaUltimaVisita;
         this.idDieta = idDieta;
         this.estado = estado;
     }
@@ -47,11 +73,13 @@ public class Dieta {
     }
 
     public Paciente getPaciente() {
-        return idPaciente;
+
+        return Paciente;
     }
 
-    public void setPaciente(Paciente idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setPaciente(Paciente Paciente) {
+        this.Paciente = Paciente;
+
     }
 
     public double getPesoInicial() {
@@ -66,16 +94,16 @@ public class Dieta {
         return pesoObjetivo;
     }
 
-    public void setPesoObjetivo(double peroObjetivo) {
-        this.pesoObjetivo = peroObjetivo;
+    public void setPesoObjetivo(double pesoObjetivo) {
+        this.pesoObjetivo = pesoObjetivo;
     }
 
     public LocalDate getFechaInicial() {
         return fechaInicial;
     }
 
-    public void setFechaInicial(LocalDate fechaInicla) {
-        this.fechaInicial = fechaInicla;
+    public void setFechaInicial(LocalDate fechaInicial) {
+        this.fechaInicial = fechaInicial;
     }
 
     public LocalDate getFechaFinal() {
@@ -84,6 +112,14 @@ public class Dieta {
 
     public void setFechaFinal(LocalDate fechaFinal) {
         this.fechaFinal = fechaFinal;
+    }
+
+    public LocalDate getFechaUltimaVisita() {
+        return fechaUltimaVisita;
+    }
+
+    public void setFechaUltimaVisita(LocalDate fechaUltimaVisita) {
+        this.fechaUltimaVisita = fechaUltimaVisita;
     }
 
     public int getIdDieta() {
@@ -102,4 +138,11 @@ public class Dieta {
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return "nombre=" + nombre + ", Paciente=" + Paciente + ", pesoInicial=" + pesoInicial + ", pesoObjetivo=" + pesoObjetivo + ", fechaInicial=" + fechaInicial + ", fechaFinal=" + fechaFinal + ", fechaUltimaVisita=" + fechaUltimaVisita + ", idDieta=" + idDieta + ", estado=" + estado;
+    }
+    
+    
+    
 }

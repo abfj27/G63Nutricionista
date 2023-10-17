@@ -67,4 +67,9 @@ public class Comida {
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return "nombre=" + nombre + ", detalle=" + detalle + ", calorias=" + calorias + ", idComida=" + idComida + ", estado=" + estado;
+    }
+
 }
