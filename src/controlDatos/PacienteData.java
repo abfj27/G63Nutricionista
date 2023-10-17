@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.mariadb.jdbc.Statement;
@@ -149,6 +150,112 @@ public class PacienteData {
             Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
         }
         return pac;
+    }
+
+    public ArrayList<Paciente> AdminPacientes(String seleccion, String ingreso, int estado) {
+        ArrayList<Paciente> pacientes = new ArrayList<>();
+        Paciente paciente = null;
+        String sql;
+        if (ingreso.isEmpty()) {
+            if (estado == 1 || estado == -1) {
+                sql = "SELECT* FROM paciente WHERE estado>=?";
+            } else {
+                sql = "SELECT* FROM paciente WHERE estado=?";
+            }
+        } else if (seleccion.equals("nombre")) {
+            if (estado == 1 || estado == -1) {
+                sql = "SELECT* FROM paciente WHERE nombre like ? and estado>=?";
+            } else {
+                sql = "SELECT* FROM paciente WHERE nombre like ? and estado=?";
+            }
+        } else if (seleccion.equals("apellido")) {
+            if (estado == 1 || estado == -1) {
+                sql = "SELECT* FROM paciente WHERE apellido like ? and estado>=?";
+            } else {
+                sql = "SELECT* FROM paciente WHERE apellido like ? and estado=?";
+            }
+        } else {
+            if (estado == 1 || estado == -1) {
+                sql = "SELECT* FROM paciente WHERE dni = ? and estado>=?";
+            } else {
+                sql = "SELECT* FROM paciente WHERE dni = ? and estado=?";
+            }
+        }
+
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            if (seleccion.equals("nombre") || seleccion.equals("apellido")) {
+                ps.setString(1, ingreso + "%");
+            } else if (seleccion.equals("dni")) {
+                if (ingreso.isEmpty()) {
+                    ingreso = "0";
+                }
+                ps.setInt(1, Integer.valueOf(ingreso));
+            }
+            if (!ingreso.isEmpty()) {
+                ps.setInt(2, estado);
+            } else {
+                ps.setInt(1, estado);
+            }
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                paciente = new Paciente();
+                paciente.setIdPaciente(rs.getInt("idPaciente"));
+                paciente.setDni(rs.getInt("dni"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setApellido(rs.getString("apellido"));
+                paciente.setPesoActual(rs.getFloat("pesoActual"));
+                paciente.setAltura(rs.getFloat("altura"));
+                paciente.setEdad(rs.getInt("edad"));
+                paciente.setGenero(rs.getString("genero"));
+                paciente.setDomicilio(rs.getString("domicilio"));
+                paciente.setTelefono(rs.getString("telefono"));
+                paciente.setEmail(rs.getString("email"));
+                paciente.setEstado(rs.getInt("estado"));
+                pacientes.add(paciente);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pacientes;
+    }
+
+    public void darAlta(int dni) {
+        String sql = "UPDATE paciente SET estado=2 where dni=?";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void darBaja(int dni) {
+        String sql = "UPDATE paciente SET estado=1 where dni=?";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void eliminarPaciAdmin(int dni) {
+        String sql = "UPDATE paciente SET estado=0 where dni=?";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     //
 }

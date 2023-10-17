@@ -83,6 +83,7 @@ public class DietaData {
         }
     }
 
+
     public List<Dieta> listaDietasAll() {
         List<Dieta> lista = new ArrayList<>();
         PacienteData pdata = new PacienteData();

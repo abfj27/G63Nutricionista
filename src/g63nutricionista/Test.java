@@ -18,6 +18,7 @@ public class Test {
 
     public static void main(String[] args) {
 
+
         PacienteData pd = new PacienteData();
         Paciente pac1 = new Paciente(1231, "Bavastro", "Alesio", 60, 1.70, 30, "M",  "Avenida Siempre Viva", "+54 1231", "asd@hotmail.com", 1);
         Paciente pac2 = new Paciente(1232, "Kaminski", "Nicolas",75, 1.80, 33, "M", "Avenida Siempre Viva", "+54 1232", "asd@hotmail.com", 1);
