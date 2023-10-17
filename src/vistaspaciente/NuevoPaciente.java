@@ -1,4 +1,4 @@
-package vistas2;
+package vistaspaciente;
 
 import controlDatos.PacienteData;
 import entidades.Paciente;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistas2;
+package vistasadministracion;
 
 import controlDatos.DietaData;
 import entidades.Dieta;

@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistas2;
+package vistasadministracion;
 
-import controlDatos.ComidaData;
-import entidades.Comida;
+import controlDatos.PacienteData;
+import entidades.Paciente;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,12 +16,13 @@ import stuff.Utileria;
  *
  * @author Equipo
  */
-public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
+public class AdministrativoPacientes extends javax.swing.JInternalFrame {
 
+    private Paciente pacEnv;
     private int click;
     private int filaS = -1;
     private int estado;
-    private ComidaData cd = new ComidaData();
+    private PacienteData pd = new PacienteData();
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
@@ -31,12 +32,12 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
     /**
      * Creates new form ListaComidas
      */
-    public AdministrativoListaComidas() {
+    public AdministrativoPacientes() {
         initComponents();
         this.click = 1;
         Utileria utileria = new Utileria(click);
         Cabecera();
-        utileria.ordenamientoDeTabla(jTComidas);
+        utileria.ordenamientoDeTabla(jTpacientes);
         cargarComboBox();
 
     }
@@ -58,12 +59,13 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
         jRbTodos = new javax.swing.JRadioButton();
         jRbInactivos = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTComidas = new javax.swing.JTable();
+        jTpacientes = new javax.swing.JTable();
         jTbCerrar = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jBalta_baja = new javax.swing.JButton();
         jBeliminar = new javax.swing.JButton();
+        jBver = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(700, 500));
 
@@ -106,7 +108,7 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
             }
         });
 
-        jTComidas.setModel(new javax.swing.table.DefaultTableModel(
+        jTpacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -117,12 +119,12 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTComidas.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTpacientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTComidasMouseClicked(evt);
+                jTpacientesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTComidas);
+        jScrollPane1.setViewportView(jTpacientes);
 
         jTbCerrar.setText("Cerrar");
         jTbCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +150,14 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
         jBeliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBeliminarActionPerformed(evt);
+            }
+        });
+
+        jBver.setText("Ver");
+        jBver.setEnabled(false);
+        jBver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBverActionPerformed(evt);
             }
         });
 
@@ -186,6 +196,8 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
                         .addComponent(jBalta_baja, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
                         .addComponent(jBeliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(122, 122, 122)
+                        .addComponent(jBver, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTbCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(35, Short.MAX_VALUE))
@@ -212,7 +224,8 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTbCerrar)
                     .addComponent(jBeliminar)
-                    .addComponent(jBalta_baja))
+                    .addComponent(jBalta_baja)
+                    .addComponent(jBver))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -256,6 +269,7 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         borrarFila();
         this.estado = 2;
+        this.filaS = -1;
         Cabecera();
         obtencionDeDatos();
 
@@ -265,6 +279,7 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         borrarFila();
         this.estado = 1;
+        this.filaS = -1;
         Cabecera();
         obtencionDeDatos();
 
@@ -274,6 +289,7 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         borrarFila();
         this.estado = 0;
+        this.filaS = -1;
         Cabecera();
         obtencionDeDatos();
 
@@ -304,33 +320,35 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jCbFiltradoActionPerformed
 
-    private void jTComidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTComidasMouseClicked
+    private void jTpacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTpacientesMouseClicked
         // TODO add your handling code here:
-        filaS = jTComidas.getSelectedRow();
+        filaS = jTpacientes.getSelectedRow();
         if (estado != 1) {
             jBeliminar.setEnabled(true);
+            jBver.setEnabled(true);
         }
 
         if (estado == 0) {
-            if (jTComidas.getValueAt(filaS, 3) == "true" || jTComidas.getValueAt(filaS, 3) == "false") {
+            if (jTpacientes.getValueAt(filaS, 4) == "true" || jTpacientes.getValueAt(filaS, 4) == "false") {
                 jBalta_baja.setEnabled(true);
                 jBeliminar.setEnabled(true);
-            } else if (jTComidas.getValueAt(filaS, 3) == "eliminado") {
+            } else if (jTpacientes.getValueAt(filaS, 4) == "eliminado") {
                 jBalta_baja.setEnabled(true);
                 jBeliminar.setEnabled(false);
             }
         }
-    }//GEN-LAST:event_jTComidasMouseClicked
+    }//GEN-LAST:event_jTpacientesMouseClicked
 
     private void jBalta_bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalta_bajaActionPerformed
         // TODO add your handling code here:
-        int[] filasS = jTComidas.getSelectedRows();
+        int[] filasS = jTpacientes.getSelectedRows();
+
         if (filaS != -1) {
             for (Integer re : filasS) {
-                if (estado == 1 || jTComidas.getValueAt(re, 3) == "false" || jTComidas.getValueAt(re, 3) == "eliminado") {
-                    cd.darAlta(jTComidas.getValueAt(re, 0).toString(), Integer.valueOf(jTComidas.getValueAt(re, 2).toString()));
-                } else if (jTComidas.getValueAt(re, 3) == "true") {
-                    cd.darBaja(jTComidas.getValueAt(re, 0).toString(), Integer.valueOf(jTComidas.getValueAt(re, 2).toString()));
+                if (estado == 1 || jTpacientes.getValueAt(re, 4) == "false" || jTpacientes.getValueAt(re, 4) == "eliminado") {
+                    pd.darAlta(Integer.valueOf(jTpacientes.getValueAt(re, 2).toString()));
+                } else if (jTpacientes.getValueAt(re, 4) == "true") {
+                    pd.darBaja(Integer.valueOf(jTpacientes.getValueAt(re, 2).toString()));
                 }
             }
             borrarFila();
@@ -343,10 +361,10 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
 
     private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
         // TODO add your handling code here:
-        int[] filasS = jTComidas.getSelectedRows();
+        int[] filasS = jTpacientes.getSelectedRows();
         if (filaS != -1) {
             for (Integer re : filasS) {
-                cd.eliminar(jTComidas.getValueAt(re, 0).toString(), Integer.valueOf(jTComidas.getValueAt(re, 2).toString()));
+                pd.eliminarPaciAdmin(Integer.valueOf(jTpacientes.getValueAt(re, 2).toString()));
             }
             borrarFila();
             obtencionDeDatos();
@@ -356,11 +374,24 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBeliminarActionPerformed
 
+    private void jBverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBverActionPerformed
+        // TODO add your handling code here:
+        if (filaS != -1) {
+            pacEnv = pd.buscarPacienteDocumento(Integer.valueOf(jTpacientes.getValueAt(filaS, 2).toString()));
+            DatosPaciente dp = new DatosPaciente(pacEnv);
+            getParent().add(dp);
+            dp.setVisible(true);
+        } else {
+            Utileria.mensaje("Debe seleccionar una fila");
+        }
+    }//GEN-LAST:event_jBverActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBalta_baja;
     private javax.swing.JButton jBeliminar;
+    private javax.swing.JButton jBver;
     private javax.swing.JComboBox<String> jCbFiltrado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -369,16 +400,15 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRbInactivos;
     private javax.swing.JRadioButton jRbTodos;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTComidas;
     private javax.swing.JToggleButton jTbCerrar;
     private javax.swing.JTextField jTingreso;
+    private javax.swing.JTable jTpacientes;
     // End of variables declaration//GEN-END:variables
 
     private void cargarComboBox() {
         jCbFiltrado.addItem("nombre");
-        jCbFiltrado.addItem("detalle");
-        jCbFiltrado.addItem("calorias mayor a");
-        jCbFiltrado.addItem("calorias menor a");
+        jCbFiltrado.addItem("apellido");
+        jCbFiltrado.addItem("dni");
     }
 
     private void borrarFila() {
@@ -392,15 +422,17 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
         modelo.setColumnCount(0);
         if (estado == 1) {
             modelo.addColumn("Nombre");
-            modelo.addColumn("Detalle");
-            modelo.addColumn("Calorias");
-            jTComidas.setModel(modelo);
+            modelo.addColumn("Apellido");
+            modelo.addColumn("DNI");
+            modelo.addColumn("Sexo");
+            jTpacientes.setModel(modelo);
         } else {
             modelo.addColumn("Nombre");
-            modelo.addColumn("Detalle");
-            modelo.addColumn("Calorias");
+            modelo.addColumn("Apellido");
+            modelo.addColumn("DNI");
+            modelo.addColumn("Sexo");
             modelo.addColumn("Estado");
-            jTComidas.setModel(modelo);
+            jTpacientes.setModel(modelo);
         }
 
     }
@@ -410,16 +442,11 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
         jBalta_baja.setEnabled(false);
         jBeliminar.setEnabled(false);
         String seleccion = jCbFiltrado.getSelectedItem().toString();
-        if (seleccion.equals("calorias mayor a")) {
-            seleccion = "calorias1";
-        } else if (seleccion.equals("calorias menor a")) {
-            seleccion = "calorias2";
-        }
 
         String ingreso = jTingreso.getText();
-        ArrayList<Comida> comidas = cd.AdminListaComidas(seleccion, ingreso, (estado - 1));
-        if (!comidas.isEmpty()) {
-            for (Comida recorrer : comidas) {
+        ArrayList<Paciente> pacientes = pd.AdminPacientes(seleccion, ingreso, (estado - 1));
+        if (!pacientes.isEmpty()) {
+            for (Paciente recorrer : pacientes) {
                 if (recorrer.getEstado() == 2) {
                     estadoImp = "true";
                 } else if (recorrer.getEstado() == 1) {
@@ -428,9 +455,9 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
                     estadoImp = "eliminado";
                 }
                 if (estado != 1) {
-                    modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getDetalle(), recorrer.getCalorias(), estadoImp});
+                    modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getApellido(), recorrer.getDni(), recorrer.getGenero(), estadoImp});
                 } else {
-                    modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getDetalle(), recorrer.getCalorias()});
+                    modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getApellido(), recorrer.getDni(), recorrer.getGenero()});
                 }
 
             }

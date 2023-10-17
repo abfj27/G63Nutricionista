@@ -1,5 +1,9 @@
 package vistas2;
 
+import vistasadministracion.AdministrativoDieta;
+import vistasadministracion.AdministrativoListaComidas;
+import vistasadministracion.AdministrativoPacientes;
+import vistascomida.ListaComidas;
 import javax.swing.JInternalFrame;
 
 public class Escritorio extends javax.swing.JFrame {

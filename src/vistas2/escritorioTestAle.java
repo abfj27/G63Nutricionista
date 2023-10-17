@@ -1,5 +1,8 @@
-package ramaale;
+package vistas2;
 
+import vistasdieta.NuevaDietaVen;
+import vistasdieta.DetallesDieta;
+import vistasdieta.ListaDietaVen;
 import entidades.Dieta;
 import entidades.Paciente;
 import java.time.LocalDate;

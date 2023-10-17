@@ -1,4 +1,4 @@
-package vistas2;
+package vistaspaciente;
 
 import controlDatos.PacienteData;
 import controlDatos.VisitaData;
@@ -7,6 +7,7 @@ import entidades.Visita;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import stuff.Utileria;
+import vistas2.Escritorionk;
 
 /**
  *

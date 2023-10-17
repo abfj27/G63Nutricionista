@@ -1,5 +1,9 @@
 package vistas2;
 
+import vistaspaciente.FichaPaciente;
+import vistaspaciente.HistorialDeVisitas;
+import vistaspaciente.ModificarPaciente;
+import vistaspaciente.NuevoPaciente;
 import javax.swing.JInternalFrame;
 
 /**

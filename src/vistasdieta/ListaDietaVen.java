@@ -1,10 +1,11 @@
-package ramaale;
+package vistasdieta;
 
 import controlDatos.DietaData;
 import entidades.Dieta;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import vistas2.escritorioTestAle;
 import stuff.Utileria;
 
 public class ListaDietaVen extends javax.swing.JInternalFrame {

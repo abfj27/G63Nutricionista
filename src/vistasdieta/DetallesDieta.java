@@ -1,4 +1,4 @@
-package ramaale;
+package vistasdieta;
 
 import controlDatos.DietaData;
 import controlDatos.PacienteData;
