@@ -18,6 +18,7 @@ public class Dieta {
 
     }
 
+
     public Dieta(String nombre, Paciente Paciente, double pesoInicial, double pesoObjetivo, LocalDate fechaInicial, LocalDate fechaFinal, int idDieta, int estado) {
         this.nombre = nombre;
         this.Paciente = Paciente;
@@ -50,6 +51,7 @@ public class Dieta {
         this.estado = estado;
     }
 
+
     public Dieta(String nombre, Paciente Paciente, double pesoInicial, double pesoObjetivo, LocalDate fechaInicial, LocalDate fechaFinal, LocalDate fechaUltimaVisita, int idDieta, int estado) {
         this.nombre = nombre;
         this.Paciente = Paciente;
@@ -71,11 +73,13 @@ public class Dieta {
     }
 
     public Paciente getPaciente() {
+
         return Paciente;
     }
 
     public void setPaciente(Paciente Paciente) {
         this.Paciente = Paciente;
+
     }
 
     public double getPesoInicial() {

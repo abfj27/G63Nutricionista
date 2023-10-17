@@ -38,7 +38,7 @@ public class DietaData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 dieta.setIdDieta(rs.getInt(1));
-                //mensaje
+                Utileria.mensaje("Dieta cargada satisfactoriamente...");
             }
             rs.close();
             ps.close();
@@ -64,7 +64,7 @@ public class DietaData {
             ps.setInt(8, dieta.getIdDieta());
             ps.executeUpdate();
             ps.close();
-            //mensaje
+            Utileria.mensaje("Dieta modificada satisfactoriamente...");
         } catch (SQLException ex) {
             Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -98,8 +98,8 @@ public class DietaData {
                 dieta.setPaciente(paciente);
                 dieta.setPesoInicial(rs.getDouble(3));
                 dieta.setPesoObjetivo(rs.getDouble(4));
-                dieta.setFechaInicial(Utileria.convertirLocalDate(rs.getDate(5)));
-                dieta.setFechaFinal(Utileria.convertirLocalDate(rs.getDate(6)));
+                dieta.setFechaInicial(rs.getDate(5).toLocalDate());
+                dieta.setFechaFinal(rs.getDate(6).toLocalDate());
                 dieta.setIdDieta(rs.getInt(7));
                 dieta.setEstado(rs.getInt(8));
                 lista.add(dieta);
@@ -127,8 +127,8 @@ public class DietaData {
                 dieta.setPaciente(paciente);
                 dieta.setPesoInicial(rs.getDouble(3));
                 dieta.setPesoObjetivo(rs.getDouble(4));
-                dieta.setFechaInicial(Utileria.convertirLocalDate(rs.getDate(5)));
-                dieta.setFechaFinal(Utileria.convertirLocalDate(rs.getDate(6)));
+                dieta.setFechaInicial(rs.getDate(5).toLocalDate());
+                dieta.setFechaFinal(rs.getDate(6).toLocalDate());
                 dieta.setIdDieta(rs.getInt(7));
                 dieta.setEstado(rs.getInt(8));
                 lista.add(dieta);
@@ -156,8 +156,8 @@ public class DietaData {
                 dieta.setPaciente(paciente);
                 dieta.setPesoInicial(rs.getDouble(3));
                 dieta.setPesoObjetivo(rs.getDouble(4));
-                dieta.setFechaInicial(Utileria.convertirLocalDate(rs.getDate(5)));
-                dieta.setFechaFinal(Utileria.convertirLocalDate(rs.getDate(6)));
+                dieta.setFechaInicial(rs.getDate(5).toLocalDate());
+                dieta.setFechaFinal(rs.getDate(6).toLocalDate());
                 dieta.setIdDieta(rs.getInt(7));
                 dieta.setEstado(rs.getInt(8));
                 lista.add(dieta);
@@ -246,12 +246,14 @@ public class DietaData {
                 dieta.setFechaUltimaVisita(rs.getDate("max(v.fecha)").toLocalDate());
                 dieta.setEstado(rs.getInt("d.estado"));
                 dietas.add(dieta);
+
             }
             rs.close();
             ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return dietas;
     }
 
@@ -288,6 +290,7 @@ public Dieta AdminBuscar(int dni) {
                 dieta.setFechaFinal(rs.getDate("d.fechaFinal").toLocalDate());
                 dieta.setFechaUltimaVisita(rs.getDate("max(v.fecha)").toLocalDate());
                 dieta.setEstado(rs.getInt("d.estado"));
+
             }
             rs.close();
             ps.close();
@@ -333,5 +336,6 @@ public void adminEliminar(int dni) {
             Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     //
 }
