@@ -5,8 +5,9 @@ import entidades.Dieta;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import vistas2.escritorioTestAle;
+
 import stuff.Utileria;
+import vistas01.Escritorio0;
 
 public class ListaDietaVen extends javax.swing.JInternalFrame {
 
@@ -163,7 +164,7 @@ public class ListaDietaVen extends javax.swing.JInternalFrame {
 //        DietaData ddata = new DietaData();
         Dieta dieta = new Dieta();
         NuevaDietaVen ven = new NuevaDietaVen(dieta);
-        escritorioTestAle.escritorioAl.add(ven);
+        Escritorio0.escritorio.add(ven);
         ven.toFront();
         ven.setVisible(true);
     }//GEN-LAST:event_jbNuevaDietaActionPerformed
@@ -173,7 +174,7 @@ public class ListaDietaVen extends javax.swing.JInternalFrame {
             DietaData ddata = new DietaData();
             Dieta dieta = ddata.buscarDietaXid((int) tableDieta.getValueAt(tableDieta.getSelectedRow(), 0));
             NuevaDietaVen ven = new NuevaDietaVen(dieta);
-            escritorioTestAle.escritorioAl.add(ven);
+            Escritorio0.escritorio.add(ven);
             ven.toFront();
             ven.setVisible(true);
         } else {
@@ -187,7 +188,7 @@ public class ListaDietaVen extends javax.swing.JInternalFrame {
             DietaData ddata = new DietaData();
             Dieta dieta = ddata.buscarDietaXid((int) tableDieta.getValueAt(tableDieta.getSelectedRow(), 0));
             DetallesDieta ven = new DetallesDieta(dieta);
-            escritorioTestAle.escritorioAl.add(ven);
+            Escritorio0.escritorio.add(ven);
             ven.toFront();
             ven.setVisible(true);
         } else {

@@ -7,7 +7,8 @@ import entidades.Visita;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import stuff.Utileria;
-import vistas2.Escritorionk;
+import vistas01.Escritorio0;
+
 
 /**
  *
@@ -339,7 +340,7 @@ public class FichaPaciente extends javax.swing.JInternalFrame {
         if (!jtBuscarDocumento.getText().isEmpty()) {
             int documento = Integer.parseInt(jtBuscarDocumento.getText());
             ModificarPaciente mpVista = new ModificarPaciente(documento);
-            Escritorionk.escritorio.add(mpVista);
+            Escritorio0.escritorio.add(mpVista);
             mpVista.toFront();
             mpVista.setVisible(true);
         } else {
@@ -351,7 +352,7 @@ public class FichaPaciente extends javax.swing.JInternalFrame {
         if (!jtBuscarDocumento.getText().isEmpty()) {
             int documento = Integer.parseInt(jtBuscarDocumento.getText());
             HistorialDeVisitas hVista = new HistorialDeVisitas(documento);
-            Escritorionk.escritorio.add(hVista);
+            Escritorio0.escritorio.add(hVista);
             hVista.toFront();
             hVista.setVisible(true);
         } else {

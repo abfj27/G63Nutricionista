@@ -47,7 +47,7 @@ public class Escritorio0 extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 606, Short.MAX_VALUE)
+            .addGap(0, 706, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Gestion Dieta");
@@ -230,7 +230,8 @@ public class Escritorio0 extends javax.swing.JFrame {
     }//GEN-LAST:event_jmModificarPacienteActionPerformed
 
     private void jmNuevaComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmNuevaComidaActionPerformed
-        crear_modificar_comida ven = new crear_modificar_comida(new Comida());
+       Comida com = null;
+        crear_modificar_comida ven = new crear_modificar_comida(com);
         escritorio.removeAll();
         escritorio.repaint();
         ven.setVisible(true);
@@ -322,7 +323,7 @@ public class Escritorio0 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane escritorio;
+    public static javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
