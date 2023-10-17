@@ -90,7 +90,7 @@
             <Property name="text" type="java.lang.String" value="Administrativo"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem13">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Administracion Comida"/>
               </Properties>
@@ -152,7 +152,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-
     <Container class="javax.swing.JDesktopPane" name="escritorio">
 
       <Layout>
