@@ -170,6 +170,93 @@ public class DietaData {
         return lista;
     }
 
+        public List<Dieta> listaDietas2(String string, int num) {
+        List<Dieta> lista = new ArrayList<>();
+        PacienteData pdata = new PacienteData();
+        String sql = crearString1(string, num);
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Dieta dieta = new Dieta();
+                Paciente paciente = new Paciente();
+                dieta.setNombre(rs.getString(1));
+                paciente = pdata.buscarPacienteCodigo(rs.getInt(2));
+                dieta.setPaciente(paciente);
+                dieta.setPesoInicial(rs.getDouble(3));
+                dieta.setPesoObjetivo(rs.getDouble(4));
+                dieta.setFechaInicial(rs.getDate(5).toLocalDate());
+                dieta.setFechaFinal(rs.getDate(6).toLocalDate());
+                dieta.setIdDieta(rs.getInt(7));
+                dieta.setEstado(rs.getInt(8));
+                lista.add(dieta);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
+
+    private String crearString1(String string, int num) {
+        String sql = "";
+        switch (num) {
+            case 0: //Todas
+                sql = "SELECT dieta.*, paciente.apellido, paciente.nombre\n"
+                        + "FROM dieta JOIN paciente ON(paciente.idPaciente=dieta.idPaciente)\n"
+                        + "WHERE dieta.estado >= 2";
+                break;
+            case 1: //Nombre Dieta
+                sql = "SELECT dieta.*, paciente.apellido, paciente.nombre\n"
+                        + "FROM dieta JOIN paciente ON(paciente.idPaciente=dieta.idPaciente)\n"
+                        + "WHERE dieta.estado >= 2 AND dieta.nombre LIKE '" + string + "%'";
+                break;
+            case 2: //Nombre Paciente
+                sql = "SELECT dieta.*, paciente.apellido, paciente.nombre\n"
+                        + "FROM dieta JOIN paciente ON(paciente.idPaciente=dieta.idPaciente)\n"
+                        + "WHERE dieta.estado >= 2 AND paciente.nombre LIKE '" + string + "%'";
+                break;
+            case 3: //Apellido Paciente
+                sql = "SELECT dieta.*, paciente.apellido, paciente.nombre\n"
+                        + "FROM dieta JOIN paciente ON(paciente.idPaciente=dieta.idPaciente)\n"
+                        + "WHERE dieta.estado >= 2 AND paciente.apellido LIKE '" + string + "%'";
+                break;
+        }
+        return sql;
+    }
+
+    public Dieta buscarDietaXid(int id) {
+        Dieta dieta = new Dieta();
+        PacienteData pdata = new PacienteData();
+        String sql = "SELECT nombre, idPaciente, pesoInicial, pesoObjetivo, fechaInicial , fechaFinal, idDieta, estado FROM dieta WHERE idDieta = ?";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                Paciente paciente = new Paciente();
+                paciente = pdata.buscarPacienteCodigo(rs.getInt("idPaciente"));
+                dieta.setNombre(rs.getString("nombre"));
+                dieta.setPaciente(paciente);
+                dieta.setPesoInicial(rs.getDouble("pesoInicial"));
+                dieta.setPesoObjetivo(rs.getDouble("pesoObjetivo"));
+                dieta.setFechaInicial(rs.getDate("fechaInicial").toLocalDate());
+                dieta.setFechaFinal(rs.getDate("fechaFinal").toLocalDate());
+                dieta.setIdDieta(rs.getInt("idDieta"));
+                dieta.setEstado(rs.getInt("estado"));
+            } else {
+                // mensaje
+                System.out.println("elol");
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return dieta;
+    }
+    
     //
     //
     //
@@ -257,8 +344,7 @@ public class DietaData {
         return dietas;
     }
 
-
-public Dieta AdminBuscar(int dni) {
+    public Dieta AdminBuscar(int dni) {
         Dieta dieta = null;
         Paciente paciente = null;
         String sql = "SELECT *,max(v.fecha) FROM dieta d join paciente p on (d.idPaciente=p.idPaciente) JOIN visita v on(d.idDieta=v.idDieta) WHERE d.idPaciente in(SELECT idPaciente from paciente where dni=?)";
@@ -300,8 +386,7 @@ public Dieta AdminBuscar(int dni) {
         return dieta;
     }
 
-
-public void adminEliminar(int dni) {
+    public void adminEliminar(int dni) {
         String sql = "UPDATE `dieta` SET estado=0 WHERE idPaciente = (SELECT idPaciente from paciente where dni=?)";
         try {
             PreparedStatement ps = conec.prepareStatement(sql);

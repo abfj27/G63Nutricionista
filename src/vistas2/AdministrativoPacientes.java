@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vistas;
+package vistas2;
 
-import controlDatos.DietaData;
-import entidades.Dieta;
+import controlDatos.PacienteData;
+import entidades.Paciente;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,13 +16,13 @@ import stuff.Utileria;
  *
  * @author Equipo
  */
-public class AdministrativoDieta extends javax.swing.JInternalFrame {
+public class AdministrativoPacientes extends javax.swing.JInternalFrame {
 
-    private Dieta dietEnv;
+    private Paciente pacEnv;
     private int click;
     private int filaS = -1;
     private int estado;
-    private DietaData dd = new DietaData();
+    private PacienteData pd = new PacienteData();
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
@@ -32,7 +32,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
     /**
      * Creates new form ListaComidas
      */
-    public AdministrativoDieta() {
+    public AdministrativoPacientes() {
         initComponents();
         this.click = 1;
         Utileria utileria = new Utileria(click);
@@ -67,7 +67,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         jBeliminar = new javax.swing.JButton();
         jBver = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(770, 500));
+        setPreferredSize(new java.awt.Dimension(700, 500));
 
         jTingreso.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -170,7 +170,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
@@ -180,7 +180,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                                 .addComponent(jTingreso, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -190,7 +190,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
                                 .addComponent(jCbFiltrado, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jRbInactivos)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
                                 .addComponent(jRbTodos))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jBalta_baja, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,7 +200,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
                         .addComponent(jBver, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTbCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,6 +312,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
                     }
                     obtencionDeDatos();
                 }
+
             }
         } catch (NumberFormatException e) {
             return;
@@ -328,10 +329,10 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         }
 
         if (estado == 0) {
-            if (jTpacientes.getValueAt(filaS, 6) == "true" || jTpacientes.getValueAt(filaS, 6) == "false") {
+            if (jTpacientes.getValueAt(filaS, 4) == "true" || jTpacientes.getValueAt(filaS, 4) == "false") {
                 jBalta_baja.setEnabled(true);
                 jBeliminar.setEnabled(true);
-            } else if (jTpacientes.getValueAt(filaS, 6) == "eliminado") {
+            } else if (jTpacientes.getValueAt(filaS, 4) == "eliminado") {
                 jBalta_baja.setEnabled(true);
                 jBeliminar.setEnabled(false);
             }
@@ -341,12 +342,13 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
     private void jBalta_bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalta_bajaActionPerformed
         // TODO add your handling code here:
         int[] filasS = jTpacientes.getSelectedRows();
+
         if (filaS != -1) {
             for (Integer re : filasS) {
-                if (estado == 1 || jTpacientes.getValueAt(re, 6) == "false" || jTpacientes.getValueAt(re, 6) == "eliminado") {
-                    dd.adminDarAlta(Integer.valueOf(jTpacientes.getValueAt(re, 2).toString()));
-                } else if (jTpacientes.getValueAt(re, 6) == "true") {
-                    dd.adminDarBaja(Integer.valueOf(jTpacientes.getValueAt(re, 2).toString()));
+                if (estado == 1 || jTpacientes.getValueAt(re, 4) == "false" || jTpacientes.getValueAt(re, 4) == "eliminado") {
+                    pd.darAlta(Integer.valueOf(jTpacientes.getValueAt(re, 2).toString()));
+                } else if (jTpacientes.getValueAt(re, 4) == "true") {
+                    pd.darBaja(Integer.valueOf(jTpacientes.getValueAt(re, 2).toString()));
                 }
             }
             borrarFila();
@@ -362,7 +364,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         int[] filasS = jTpacientes.getSelectedRows();
         if (filaS != -1) {
             for (Integer re : filasS) {
-                dd.adminEliminar(Integer.valueOf(jTpacientes.getValueAt(re, 2).toString()));
+                pd.eliminarPaciAdmin(Integer.valueOf(jTpacientes.getValueAt(re, 2).toString()));
             }
             borrarFila();
             obtencionDeDatos();
@@ -375,10 +377,10 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
     private void jBverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBverActionPerformed
         // TODO add your handling code here:
         if (filaS != -1) {
-            dietEnv = dd.AdminBuscar(Integer.valueOf(jTpacientes.getValueAt(filaS, 2).toString()));
-//            DatosPaciente dp = new DatosPaciente(dietEnv);
-//            getParent().add(dp);
-//            dp.setVisible(true);
+            pacEnv = pd.buscarPacienteDocumento(Integer.valueOf(jTpacientes.getValueAt(filaS, 2).toString()));
+            DatosPaciente dp = new DatosPaciente(pacEnv);
+            getParent().add(dp);
+            dp.setVisible(true);
         } else {
             Utileria.mensaje("Debe seleccionar una fila");
         }
@@ -404,9 +406,9 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarComboBox() {
-        jCbFiltrado.addItem("nombre dieta");
-        jCbFiltrado.addItem("nombre paciente");
-        jCbFiltrado.addItem("dni paciente");
+        jCbFiltrado.addItem("nombre");
+        jCbFiltrado.addItem("apellido");
+        jCbFiltrado.addItem("dni");
     }
 
     private void borrarFila() {
@@ -419,20 +421,16 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
     private void Cabecera() {
         modelo.setColumnCount(0);
         if (estado == 1) {
-            modelo.addColumn("Nombre Dieta");
-            modelo.addColumn("Nombre Paciente");
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Apellido");
             modelo.addColumn("DNI");
-            modelo.addColumn("Ultima Visita");
-            modelo.addColumn("Fecha Inicial");
-            modelo.addColumn("Fecha Final");
+            modelo.addColumn("Sexo");
             jTpacientes.setModel(modelo);
         } else {
-            modelo.addColumn("Nombre Dieta");
-            modelo.addColumn("Nombre Paciente");
+            modelo.addColumn("Nombre");
+            modelo.addColumn("Apellido");
             modelo.addColumn("DNI");
-            modelo.addColumn("Ultima Visita");
-            modelo.addColumn("Fecha Inicial");
-            modelo.addColumn("Fecha Final");
+            modelo.addColumn("Sexo");
             modelo.addColumn("Estado");
             jTpacientes.setModel(modelo);
         }
@@ -446,9 +444,9 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         String seleccion = jCbFiltrado.getSelectedItem().toString();
 
         String ingreso = jTingreso.getText();
-        ArrayList<Dieta> dietas = dd.adminDieta(seleccion, ingreso, (estado - 1));
-        if (!dietas.isEmpty()) {
-            for (Dieta recorrer : dietas) {
+        ArrayList<Paciente> pacientes = pd.AdminPacientes(seleccion, ingreso, (estado - 1));
+        if (!pacientes.isEmpty()) {
+            for (Paciente recorrer : pacientes) {
                 if (recorrer.getEstado() == 2) {
                     estadoImp = "true";
                 } else if (recorrer.getEstado() == 1) {
@@ -457,9 +455,9 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
                     estadoImp = "eliminado";
                 }
                 if (estado != 1) {
-                    modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getPaciente().getNombre(), recorrer.getPaciente().getDni(), recorrer.getFechaUltimaVisita(), recorrer.getFechaInicial(), recorrer.getFechaFinal(), estadoImp});
+                    modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getApellido(), recorrer.getDni(), recorrer.getGenero(), estadoImp});
                 } else {
-                    modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getPaciente().getNombre(), recorrer.getPaciente().getDni(), recorrer.getFechaUltimaVisita(), recorrer.getFechaInicial(), recorrer.getFechaFinal()});
+                    modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getApellido(), recorrer.getDni(), recorrer.getGenero()});
                 }
 
             }

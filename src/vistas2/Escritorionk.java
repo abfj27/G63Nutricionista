@@ -1,4 +1,4 @@
-package vistas;
+package vistas2;
 
 import javax.swing.JInternalFrame;
 

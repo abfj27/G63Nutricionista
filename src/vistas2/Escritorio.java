@@ -1,4 +1,4 @@
-package vistas;
+package vistas2;
 
 import javax.swing.JInternalFrame;
 
@@ -30,7 +30,7 @@ public class Escritorio extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
 
@@ -100,13 +100,13 @@ public class Escritorio extends javax.swing.JFrame {
 
         jMenu5.setText("Administrativo");
 
-        jMenuItem5.setText("Administracion Comida");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem13.setText("Administracion Comida");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem5);
+        jMenu5.add(jMenuItem13);
 
         jMenuItem10.setText("Administracion Paciente");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +210,6 @@ public class Escritorio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -222,6 +221,7 @@ public class Escritorio extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
