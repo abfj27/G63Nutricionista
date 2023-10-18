@@ -165,7 +165,7 @@ public class Escritorio extends javax.swing.JFrame {
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        AdministrativoPacientes ap = new AdministrativoPacientes();
+        AdministrativoPacientes ap = new AdministrativoPacientes(0);
         ap.setVisible(true);
         escritorio.add(ap);
     }//GEN-LAST:event_jMenuItem10ActionPerformed

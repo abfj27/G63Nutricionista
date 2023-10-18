@@ -7,13 +7,21 @@ import entidades.Paciente;
 import javax.swing.JOptionPane;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
 import stuff.Utileria;
+import vistasadministracion.AdministrativoPacientes;
+import vistas01.Escritorio0;
 
 public class NuevaDietaVen extends javax.swing.JInternalFrame {
 
+    private InternalFrameListener internalFrameListener;
+    private static int dni;
     private Dieta dietaV;
 
     public NuevaDietaVen(Dieta dieta) {
+        detectorCerradoVentada();
         initComponents();
         this.dietaV = dieta;
         prepararVentana(dieta);
@@ -196,17 +204,21 @@ public class NuevaDietaVen extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbCerrarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        PacienteData pdata = new PacienteData();
-        try {
-            pdata.buscarPacienteDocumento(Integer.parseInt(jtDocumento.getText()));
-            // usar un atributo Paciente en la vista y asignar lo que devuelve el metodo al atributo?
-        } catch (NullPointerException ex) {
-            Utileria.mensaje("Debe ingresar un numero de documento para buscar");
-        } catch (NumberFormatException ex) {
-            Utileria.mensaje("El campo de documento solo puede contener numeros");
-        } catch (Exception ex) {
-            Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        PacienteData pdata = new PacienteData();
+//        try {
+//            pdata.buscarPacienteDocumento(Integer.parseInt(jtDocumento.getText()));
+//            // usar un atributo Paciente en la vista y asignar lo que devuelve el metodo al atributo?
+//        } catch (NullPointerException ex) {
+//            Utileria.mensaje("Debe ingresar un numero de documento para buscar");
+//        } catch (NumberFormatException ex) {
+//            Utileria.mensaje("El campo de documento solo puede contener numeros");
+//        } catch (Exception ex) {
+//            Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        AdministrativoPacientes ap = new AdministrativoPacientes(1);
+        ap.addInternalFrameListener(internalFrameListener);
+        Escritorio0.escritorio.add(ap);
+        ap.setVisible(true);
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jradialModificableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jradialModificableActionPerformed
@@ -314,6 +326,21 @@ public class NuevaDietaVen extends javax.swing.JInternalFrame {
             jdFInicial.setDate(Utileria.convertirDate(p.getFechaInicial()));
             jdFFinal.setDate(Utileria.convertirDate(p.getFechaFinal()));
         }
+    }
+
+    public static void recibir(int num) {
+        dni = num;
+    }
+
+    private void detectorCerradoVentada() {
+        internalFrameListener = new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+                // This code will be executed when the second JInternalFrame is closed
+                int dni2 = dni;
+                jtDocumento.setText(String.valueOf(dni2));
+            }
+        };
     }
     //
 } // LLAVE FINAL
