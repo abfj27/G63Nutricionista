@@ -7,10 +7,15 @@ package vistasadministracion;
 
 import controlDatos.DietaData;
 import entidades.Dieta;
+import java.awt.Component;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import stuff.Utileria;
 import vistas01.Escritorio0;
 import vistasdieta.DetallesDieta;
@@ -424,7 +429,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         modelo.setColumnCount(0);
         if (estado == 1) {
             modelo.addColumn("Nombre Dieta");
-            modelo.addColumn("Nombre Paciente");
+            modelo.addColumn("Paciente");
             modelo.addColumn("DNI");
             modelo.addColumn("Ultima Visita");
             modelo.addColumn("Fecha Inicial");
@@ -432,7 +437,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
             jTpacientes.setModel(modelo);
         } else {
             modelo.addColumn("Nombre Dieta");
-            modelo.addColumn("Nombre Paciente");
+            modelo.addColumn("Paciente");
             modelo.addColumn("DNI");
             modelo.addColumn("Ultima Visita");
             modelo.addColumn("Fecha Inicial");
@@ -440,7 +445,6 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
             modelo.addColumn("Estado");
             jTpacientes.setModel(modelo);
         }
-
     }
 
     private void obtencionDeDatos() {
@@ -465,7 +469,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
                 } else {
                     modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getPaciente().getNombre(), recorrer.getPaciente().getDni(), recorrer.getFechaUltimaVisita(), recorrer.getFechaInicial(), recorrer.getFechaFinal()});
                 }
-
+                ajustarTabla(jTpacientes);
             }
             if (estado == 2) {
                 jBalta_baja.setEnabled(true);
@@ -477,21 +481,26 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         }
     }
 
-//    public void ordenamientoDeTabla() {
-//        //ordena la tabla segun donde le de click en la cabecera
-//        TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTComidas.getModel());
-//        jTComidas.setRowSorter(sorter);
-//
-//        jTComidas.getTableHeader().addMouseListener(new MouseAdapter() {
-//
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                if (e.getClickCount() == e.getClickCount()) {
-//                    int colum = jTComidas.columnAtPoint(e.getPoint());
-//                    sorter.toggleSortOrder(colum);
-//                    click += 1;
-//                }
-//            }
-//        });
-//    }
+    public static void ajustarTabla(JTable tabla) {
+        Enumeration<TableColumn> columna = tabla.getColumnModel().getColumns();
+
+        while (columna.hasMoreElements()) {
+            ajustarColumnas(columna.nextElement(), tabla);
+        }
+    }
+
+    private static void ajustarColumnas(TableColumn columna, JTable tabla) {
+        int max = 0;
+
+        TableCellRenderer render = tabla.getTableHeader().getDefaultRenderer();
+        Component cabeza = render.getTableCellRendererComponent(tabla, columna.getHeaderValue(), false, false, 0, 0);
+        max = Math.max(max, cabeza.getPreferredSize().width);
+
+        for (int fila = 0; fila < tabla.getRowCount(); fila++) {
+            TableCellRenderer render2 = tabla.getCellRenderer(fila, columna.getModelIndex());
+            Component celda = render2.getTableCellRendererComponent(tabla, tabla.getValueAt(fila, columna.getModelIndex()), false, false, fila, columna.getModelIndex());
+            max = Math.max(max, celda.getPreferredSize().width);
+        }
+        columna.setPreferredWidth(max);
+    }
 }
