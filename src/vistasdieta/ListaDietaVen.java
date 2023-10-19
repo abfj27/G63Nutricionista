@@ -4,10 +4,13 @@ import controlDatos.DietaData;
 import entidades.Dieta;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import javax.swing.table.DefaultTableModel;
-
 import stuff.Utileria;
 import vistas01.Escritorio0;
+import vistas2.ModificarComidaEnDieta;
+import static vistas2.escritorioTestAle.escritorioAl;
 
 public class ListaDietaVen extends javax.swing.JInternalFrame {
 
@@ -85,6 +88,11 @@ public class ListaDietaVen extends javax.swing.JInternalFrame {
         });
 
         jbEditar.setText("Editar Dieta/Comida");
+        jbEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbEditarActionPerformed(evt);
+            }
+        });
 
         jbDetalle.setText("Ver Detalle");
         jbDetalle.addActionListener(new java.awt.event.ActionListener() {
@@ -224,6 +232,21 @@ public class ListaDietaVen extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jtxtKeyReleased
 
+    private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
+        if (tableDieta.getSelectedRow() >= 0) {
+            DietaData ddata = new DietaData();
+            Dieta dieta = ddata.buscarDietaXid((int) tableDieta.getValueAt(tableDieta.getSelectedRow(), 0));
+            ModificarComidaEnDieta ven = new ModificarComidaEnDieta(dieta);
+            Escritorio0.escritorio.removeAll();
+            Escritorio0.escritorio.repaint();
+            ven.setVisible(true);
+            Escritorio0.escritorio.add(ven);
+            Escritorio0.escritorio.moveToFront(ven);
+        } else {
+            Utileria.mensaje("Debe seleccionar una fila de la tabla");
+        }
+    }//GEN-LAST:event_jbEditarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbCerrar;
@@ -269,13 +292,6 @@ public class ListaDietaVen extends javax.swing.JInternalFrame {
         }
     }
 
-//    private void cargarCombo() {
-//        jcBox.addItem("Todas");
-//        jcBox.addItem("Nombre Dieta");
-//        jcBox.addItem("Nombre Paciente");
-//        jcBox.addItem("Apellido Paciente");
-//
-//        jcBox.setSelectedIndex(-1);
-//    }
+    
 //
 } // llave final

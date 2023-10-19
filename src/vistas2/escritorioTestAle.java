@@ -21,6 +21,7 @@ public class escritorioTestAle extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         escritorioAl = new javax.swing.JDesktopPane();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,6 +57,13 @@ public class escritorioTestAle extends javax.swing.JFrame {
             .addGap(0, 586, Short.MAX_VALUE)
         );
 
+        jButton4.setText("jButton4");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -67,7 +75,9 @@ public class escritorioTestAle extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
-                .addContainerGap(481, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addContainerGap(386, Short.MAX_VALUE))
             .addComponent(escritorioAl)
         );
         layout.setVerticalGroup(
@@ -77,7 +87,8 @@ public class escritorioTestAle extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(escritorioAl))
         );
@@ -86,7 +97,7 @@ public class escritorioTestAle extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         Paciente paciente = new Paciente();
+        Paciente paciente = new Paciente();
         paciente.setDni(6969);
         paciente.setApellido("Bavastro");
         paciente.setNombre("Alesio");
@@ -123,6 +134,16 @@ public class escritorioTestAle extends javax.swing.JFrame {
         escritorioAl.add(ven);
         escritorioAl.moveToFront(ven);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        ModificarComidaEnDieta ven = new ModificarComidaEnDieta();
+        escritorioAl.removeAll();
+        escritorioAl.repaint();
+        ven.setVisible(true);
+        escritorioAl.add(ven);
+        escritorioAl.moveToFront(ven);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -161,5 +182,6 @@ public class escritorioTestAle extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     // End of variables declaration//GEN-END:variables
 }
