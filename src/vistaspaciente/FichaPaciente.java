@@ -11,6 +11,8 @@ import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import stuff.Utileria;
 import vistas01.Escritorio0;
+import vistasdieta.DetallesDieta;
+import vistasdieta.NuevaDietaVen;
 
 /**
  *
@@ -391,7 +393,7 @@ public class FichaPaciente extends javax.swing.JInternalFrame {
                     vic.setFecha(fechaActual);
                     vic.setPeso(peso);
                     vic.setEstado(2);
-                    if (dieta != null && (dieta.getFechaFinal().compareTo(LocalDate.now()) > 0)) {
+                    if (dieta != null && (dieta.getFechaFinal().compareTo(LocalDate.now()) >= 0)) {
                         vdata.cargarVisita(vic);
                     } else {
                         vdata.cargarVisita2(vic);
@@ -412,7 +414,32 @@ public class FichaPaciente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDietaActionPerformed
-        // TODO add your handling code here:
+        if (!jtBuscarDocumento.getText().isEmpty()) {
+            int documento = Integer.parseInt(jtBuscarDocumento.getText());
+            PacienteData pdata = new PacienteData();
+            DietaData dd = new DietaData();
+            Paciente pac = pdata.buscarPacienteDocumento(documento);
+            if (pac != null) {
+                Dieta dieta = dd.BuscarXDniYFechaFinal(pac.getDni());
+                if (dieta != null && dieta.getFechaFinal().compareTo(LocalDate.now()) >= 0) {
+                    DetallesDieta ddVista = new DetallesDieta(dieta);
+                    Escritorio0.escritorio.add(ddVista);
+                    ddVista.toFront();
+                    ddVista.setVisible(true);
+                } else {
+                    Object[] op = {"Aceptar", "Cancelar"};
+                    int i = JOptionPane.showOptionDialog(this, "Desea Crear dieta?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
+                    if (i == JOptionPane.YES_OPTION) {
+                        NuevaDietaVen ndvVista = new NuevaDietaVen(pac.getDni());
+                        Escritorio0.escritorio.add(ndvVista);
+                        ndvVista.toFront();
+                        ndvVista.setVisible(true);
+                    }
+                }
+            }
+        } else {
+            Utileria.mensaje("Debe buscar un paciente primero");
+        }
     }//GEN-LAST:event_jbDietaActionPerformed
 
 

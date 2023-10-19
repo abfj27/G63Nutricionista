@@ -142,7 +142,7 @@ public class PacienteData {
                 pac.setAltura(rs.getDouble("altura"));
                 pac.setGenero(rs.getString("genero"));
             } else {
-                //mensaje
+                Utileria.mensaje("No se encontro paciente");
             }
             rs.close();
             ps.close();
