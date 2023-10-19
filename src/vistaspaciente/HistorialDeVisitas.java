@@ -200,7 +200,6 @@ public class HistorialDeVisitas extends javax.swing.JInternalFrame {
         modelo.addColumn("DIETA");
         modelo.addColumn("ESTADO");
         jtHistorial.setModel(modelo);
-         System.out.println("Cabecera de la tabla armada.");
     }
 
         private void borrarFilas() {
@@ -222,6 +221,7 @@ public class HistorialDeVisitas extends javax.swing.JInternalFrame {
                 visita.getDieta().getEstado()
             });
         }
+        Utileria.ajustarTabla(jtHistorial);
     }
     
     
