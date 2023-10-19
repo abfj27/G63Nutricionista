@@ -6,6 +6,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.mariadb.jdbc.Statement;
@@ -72,5 +74,29 @@ public class VisitaData {
         }
     }
     
+    public List<Visita> obtenerHistorial(int idPaciente) {
+        List<Visita> historial = new ArrayList<>();
+        String sql = "SELECT * FROM visita WHERE idPaciente=?";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+           ps.setInt(1, idPaciente);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Visita visita = new Visita();
+                visita.setIdVisita(rs.getInt("idVisita"));
+                visita.setPaciente(new PacienteData().buscarPacienteCodigo(rs.getInt("idPaciente")));
+                visita.setDieta(new DietaData().buscarDietaCodigo(rs.getInt("idDieta")));
+                visita.setPeso(rs.getDouble("peso"));
+                visita.setFecha(rs.getDate("fecha").toLocalDate());
+                visita.setEstado(rs.getInt("estado"));
+                historial.add(visita);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(VisitaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return historial;
+    }
     
 } // Llave final

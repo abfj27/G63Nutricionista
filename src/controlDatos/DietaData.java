@@ -422,5 +422,30 @@ public class DietaData {
         }
     }
 
+    public Dieta buscarDietaCodigo(int idDieta) {
+    Dieta dieta = null;
+    String sql = "SELECT * FROM dieta WHERE idDieta=?";
+    try {
+        PreparedStatement ps = conec.prepareStatement(sql);
+        ps.setInt(1, idDieta);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            dieta = new Dieta();
+            dieta.setNombre(rs.getString("nombre"));
+            dieta.setPaciente(new PacienteData().buscarPacienteCodigo(rs.getInt("idPaciente")));
+            dieta.setPesoInicial(rs.getDouble("pesoInicial"));
+            dieta.setPesoObjetivo(rs.getDouble("pesoObjetivo"));
+            dieta.setFechaInicial(rs.getDate("fechaInicial").toLocalDate());
+            dieta.setFechaFinal(rs.getDate("fechaFinal").toLocalDate());
+            dieta.setIdDieta(rs.getInt("idDieta"));
+            dieta.setEstado(rs.getInt("estado"));
+        }
+        rs.close();
+        ps.close();
+    } catch (SQLException ex) {
+        Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return dieta;
+}
     //
 }
