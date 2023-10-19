@@ -7,10 +7,13 @@ package vistasadministracion;
 
 import controlDatos.DietaData;
 import entidades.Dieta;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import stuff.Utileria;
+import vistas01.Escritorio0;
+import vistasdieta.DetallesDieta;
 
 /**
  *
@@ -375,10 +378,11 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
     private void jBverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBverActionPerformed
         // TODO add your handling code here:
         if (filaS != -1) {
-            dietEnv = dd.AdminBuscar(Integer.valueOf(jTpacientes.getValueAt(filaS, 2).toString()));
-//            DatosPaciente dp = new DatosPaciente(dietEnv);
-//            getParent().add(dp);
-//            dp.setVisible(true);
+            dietEnv = dd.AdminBuscarXDniYFechas(Integer.valueOf(jTpacientes.getValueAt(filaS, 2).toString()), LocalDate.parse(String.valueOf(jTpacientes.getValueAt(filaS, 4))), LocalDate.parse(String.valueOf(jTpacientes.getValueAt(filaS, 5))));
+            DetallesDieta dd = new DetallesDieta(dietEnv);
+            Escritorio0.escritorio.add(dd);
+            dd.toFront();
+            dd.setVisible(true);
         } else {
             Utileria.mensaje("Debe seleccionar una fila");
         }
