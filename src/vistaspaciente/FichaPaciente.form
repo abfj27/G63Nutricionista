@@ -61,12 +61,12 @@
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jlDireccion" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Component id="jlApellido" alignment="0" pref="185" max="32767" attributes="0"/>
                                           <Component id="jtBuscarDocumento" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jlNombre" alignment="0" max="32767" attributes="0"/>
                                       </Group>
+                                      <Component id="jlDireccion" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
