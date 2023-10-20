@@ -377,6 +377,9 @@
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="jDateVisita">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MMM-dd"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel22">
       <Properties>
@@ -411,6 +414,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="VER DIETA"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbDietaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbCerrar">
       <Properties>

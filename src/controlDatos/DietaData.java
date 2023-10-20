@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -170,7 +171,7 @@ public class DietaData {
         return lista;
     }
 
-        public List<Dieta> listaDietas2(String string, int num) {
+    public List<Dieta> listaDietas2(String string, int num) {
         List<Dieta> lista = new ArrayList<>();
         PacienteData pdata = new PacienteData();
         String sql = crearString1(string, num);
@@ -256,7 +257,34 @@ public class DietaData {
         }
         return dieta;
     }
-    
+
+    public Dieta dietaFechaFinalMax(int dni) {
+        Dieta dietaFechaMax = null;
+        String sql = "SELECT d.* FROM dieta d where d.estado=2 and d.fechaFinal=(SELECT max(fechaFinal) from dieta where (idPaciente=d.idPaciente)) and d.idPaciente=(SELECT idPaciente from paciente WHERE dni=?)";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                PacienteData pd = new PacienteData();
+                dietaFechaMax = new Dieta();
+                dietaFechaMax.setNombre(rs.getString("nombre"));
+                dietaFechaMax.setPaciente(pd.buscarPacienteDocumento(dni));
+                dietaFechaMax.setPesoInicial(rs.getFloat("pesoInicial"));
+                dietaFechaMax.setPesoObjetivo(rs.getFloat("pesoObjetivo"));
+                dietaFechaMax.setFechaInicial(rs.getDate("fechaInicial").toLocalDate());
+                dietaFechaMax.setFechaFinal(rs.getDate("fechaFinal").toLocalDate());
+                dietaFechaMax.setIdDieta(rs.getInt("idDieta"));
+                dietaFechaMax.setEstado(rs.getInt("estado"));
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return dietaFechaMax;
+    }
+
     //
     //
     //
@@ -377,6 +405,64 @@ public class DietaData {
                 dieta.setFechaUltimaVisita(rs.getDate("max(v.fecha)").toLocalDate());
                 dieta.setEstado(rs.getInt("d.estado"));
 
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return dieta;
+    }
+
+    public Dieta AdminBuscarXDniYFechas(int dni, LocalDate fechaInicial, LocalDate fechaFinal) {
+        Dieta dieta = null;
+        Paciente paciente = null;
+        String sql = "SELECT* from dieta where idPaciente=(SELECT idPaciente from paciente where dni=? and fechaInicial=? and fechaFinal=?)";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ps.setDate(2, Date.valueOf(fechaInicial));
+            ps.setDate(3, Date.valueOf(fechaFinal));
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                PacienteData pd = new PacienteData();
+                paciente = pd.buscarPacienteDocumento(dni);
+                dieta = new Dieta();
+                dieta.setNombre(rs.getString("nombre"));
+                dieta.setPaciente(paciente);
+                dieta.setPesoInicial(rs.getFloat("pesoInicial"));
+                dieta.setPesoObjetivo(rs.getFloat("pesoObjetivo"));
+                dieta.setFechaInicial(rs.getDate("fechaInicial").toLocalDate());
+                dieta.setFechaFinal(rs.getDate("fechaFinal").toLocalDate());
+                dieta.setEstado(rs.getInt("estado"));
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return dieta;
+    }
+    
+    public Dieta BuscarXDniYFechaFinal(int dni) {
+        Dieta dieta = null;
+        Paciente paciente = null;
+        String sql = "SELECT d.* FROM dieta d WHERE d.estado=2 and d.idPaciente=(SELECT idPaciente from paciente where dni=?) and d.fechaFinal=(SELECT MAX(dieta.fechaFinal) from dieta where idPaciente=d.idPaciente)";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                PacienteData pd = new PacienteData();
+                paciente = pd.buscarPacienteDocumento(dni);
+                dieta = new Dieta();
+                dieta.setNombre(rs.getString("nombre"));
+                dieta.setPaciente(paciente);
+                dieta.setPesoInicial(rs.getFloat("pesoInicial"));
+                dieta.setPesoObjetivo(rs.getFloat("pesoObjetivo"));
+                dieta.setFechaInicial(rs.getDate("fechaInicial").toLocalDate());
+                dieta.setFechaFinal(rs.getDate("fechaFinal").toLocalDate());
+                dieta.setEstado(rs.getInt("estado"));
             }
             rs.close();
             ps.close();

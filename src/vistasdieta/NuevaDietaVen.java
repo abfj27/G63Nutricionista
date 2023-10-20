@@ -28,6 +28,14 @@ public class NuevaDietaVen extends javax.swing.JInternalFrame {
 
     }
 
+    public NuevaDietaVen(int dni) {
+        detectorCerradoVentada();
+        initComponents();
+        jtDocumento.setText(String.valueOf(dni));
+        jtDocumento.setEditable(false);
+        jbBuscar.setEnabled(false);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

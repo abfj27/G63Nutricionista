@@ -69,7 +69,7 @@ public class PacienteData {
             ps.setInt(12, paciente.getIdPaciente());
             ps.executeUpdate();
             ps.close();
-            Utileria.mensaje("Se modifico el paciente correctamente");
+//            Utileria.mensaje("Se modifico el paciente correctamente");
         } catch (SQLException ex) {
             Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -142,7 +142,7 @@ public class PacienteData {
                 pac.setAltura(rs.getDouble("altura"));
                 pac.setGenero(rs.getString("genero"));
             } else {
-                //mensaje
+                Utileria.mensaje("No se encontro paciente");
             }
             rs.close();
             ps.close();

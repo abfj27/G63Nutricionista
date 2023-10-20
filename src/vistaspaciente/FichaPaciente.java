@@ -1,14 +1,18 @@
 package vistaspaciente;
 
+import controlDatos.DietaData;
 import controlDatos.PacienteData;
 import controlDatos.VisitaData;
+import entidades.Dieta;
 import entidades.Paciente;
 import entidades.Visita;
+import java.sql.Date;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import stuff.Utileria;
 import vistas01.Escritorio0;
-
+import vistasdieta.DetallesDieta;
+import vistasdieta.NuevaDietaVen;
 
 /**
  *
@@ -139,6 +143,8 @@ public class FichaPaciente extends javax.swing.JInternalFrame {
         jLabel21.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel21.setText("Fecha:");
 
+        jDateVisita.setDateFormatString("yyyy-MMM-dd");
+
         jLabel22.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel22.setText("Peso:");
 
@@ -154,6 +160,11 @@ public class FichaPaciente extends javax.swing.JInternalFrame {
 
         jbDieta.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jbDieta.setText("VER DIETA");
+        jbDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDietaActionPerformed(evt);
+            }
+        });
 
         jbCerrar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jbCerrar.setText("CERRAR");
@@ -326,6 +337,8 @@ public class FichaPaciente extends javax.swing.JInternalFrame {
                 jlMail.setText(pac.getEmail());
                 jlAltura.setText(String.valueOf(pac.getAltura()));
                 jlPeso.setText(String.valueOf(pac.getPesoActual()));
+                LocalDate fechaActual = LocalDate.now();
+                jDateVisita.setDate(Date.valueOf(fechaActual.toString()));
             } catch (NumberFormatException e) {
                 Utileria.mensaje("Solo puede ingresar numeros en documento");
             } catch (NullPointerException e) {
@@ -366,18 +379,29 @@ public class FichaPaciente extends javax.swing.JInternalFrame {
             try {
                 int documento = Integer.parseInt(jtBuscarDocumento.getText());
                 PacienteData pdata = new PacienteData();
+                DietaData dd = new DietaData();
+                VisitaData vdata = new VisitaData();
                 Paciente pac = pdata.buscarPacienteDocumento(documento);
+
                 if (pac != null) {
-                    LocalDate fechaActual = LocalDate.now();
                     double peso = Double.parseDouble(jlPeso.getText());
                     Visita vic = new Visita(); // FALTA VER COMO AGREGAR LO DE DIETA    <<<<<<<<<<<<<<<<<<<<<<<
-                    VisitaData vdata = new VisitaData();
-                    vic.setDieta(null);
+                    Dieta dieta = dd.dietaFechaFinalMax(pac.getDni());
+                    vic.setDieta(dieta);
                     vic.setPaciente(pac);
+                    LocalDate fechaActual = Utileria.convertirLocalDate(jDateVisita.getDate());
                     vic.setFecha(fechaActual);
-                    vic.setPeso(peso);                    
-                    vdata.cargarVisita(vic);
+                    vic.setPeso(peso);
+                    vic.setEstado(2);
+                    if (dieta != null && (dieta.getFechaFinal().compareTo(LocalDate.now()) >= 0)) {
+                        vdata.cargarVisita(vic);
+                    } else {
+                        vdata.cargarVisita2(vic);
+                    }
                     Utileria.mensaje("Visita guardada exitosamente");
+                    pac.setPesoActual(Double.parseDouble(jtPeso.getText()));
+                    pdata.modificarPaciente(pac);
+                    limpiarCeldas2();
                 } else {
                     Utileria.mensaje("No se encontró el paciente con el documento proporcionado");
                 }
@@ -387,8 +411,36 @@ public class FichaPaciente extends javax.swing.JInternalFrame {
         } else {
             Utileria.mensaje("Debe buscar un paciente primero");
         }
-
     }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDietaActionPerformed
+        if (!jtBuscarDocumento.getText().isEmpty()) {
+            int documento = Integer.parseInt(jtBuscarDocumento.getText());
+            PacienteData pdata = new PacienteData();
+            DietaData dd = new DietaData();
+            Paciente pac = pdata.buscarPacienteDocumento(documento);
+            if (pac != null) {
+                Dieta dieta = dd.BuscarXDniYFechaFinal(pac.getDni());
+                if (dieta != null && dieta.getFechaFinal().compareTo(LocalDate.now()) >= 0) {
+                    DetallesDieta ddVista = new DetallesDieta(dieta);
+                    Escritorio0.escritorio.add(ddVista);
+                    ddVista.toFront();
+                    ddVista.setVisible(true);
+                } else {
+                    Object[] op = {"Aceptar", "Cancelar"};
+                    int i = JOptionPane.showOptionDialog(this, "Desea Crear dieta?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
+                    if (i == JOptionPane.YES_OPTION) {
+                        NuevaDietaVen ndvVista = new NuevaDietaVen(pac.getDni());
+                        Escritorio0.escritorio.add(ndvVista);
+                        ndvVista.toFront();
+                        ndvVista.setVisible(true);
+                    }
+                }
+            }
+        } else {
+            Utileria.mensaje("Debe buscar un paciente primero");
+        }
+    }//GEN-LAST:event_jbDietaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -435,6 +487,20 @@ public class FichaPaciente extends javax.swing.JInternalFrame {
         jlAltura.setText("");
         jlPeso.setText("");
         jtBuscarDocumento.setText("");
+    }
+
+    private void limpiarCeldas2() {
+        jlApellido.setText("Apellido Paciente");
+        jlNombre.setText("Nombre Paciente");
+        jlGenero.setText("M/F");
+        jlTelefono.setText("Teléfono Paciente");
+        jlDireccion.setText("Dirección Paciente");
+        jlMail.setText("e-mail Paciente");
+        jlAltura.setText("00.0");
+        jlPeso.setText("00.0");
+        jtBuscarDocumento.setText("");
+        jDateVisita.setDate(null);
+        jtPeso.setText("");
     }
 
 } // LLAVE FINAL

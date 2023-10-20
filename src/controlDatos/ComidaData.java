@@ -285,4 +285,27 @@ public class ComidaData {
         return comida;
     }
 
+    public Comida buscarComida(int idComida) {
+        Comida comida = null;
+        String sql = "SELECT * FROM comida WHERE idComida = ?";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, idComida);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                comida = new Comida();
+                comida.setIdComida(rs.getInt("idComida"));
+                comida.setNombre(rs.getString("nombre"));
+                comida.setDetalle(rs.getString("detalle"));
+                comida.setCalorias(rs.getInt("calorias"));
+                comida.setEstado(rs.getInt("estado"));
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return comida;
+    }
+
 }
