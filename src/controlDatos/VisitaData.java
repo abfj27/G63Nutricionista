@@ -1,5 +1,6 @@
 package controlDatos;
 
+import entidades.Dieta;
 import entidades.Visita;
 import java.sql.Connection;
 import java.sql.Date;
@@ -96,19 +97,22 @@ public class VisitaData {
         }
     }
 
-    
     public List<Visita> obtenerHistorial(int idPaciente) {
         List<Visita> historial = new ArrayList<>();
         String sql = "SELECT * FROM visita WHERE idPaciente=?";
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
-           ps.setInt(1, idPaciente);
+            ps.setInt(1, idPaciente);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Visita visita = new Visita();
                 visita.setIdVisita(rs.getInt("idVisita"));
                 visita.setPaciente(new PacienteData().buscarPacienteCodigo(rs.getInt("idPaciente")));
-                visita.setDieta(new DietaData().buscarDietaCodigo(rs.getInt("idDieta")));
+                if (rs.getInt("idDieta") == 0) {
+                    visita.setDieta(new Dieta());
+                } else {
+                    visita.setDieta(new DietaData().buscarDietaCodigo(rs.getInt("idDieta")));
+                }
                 visita.setPeso(rs.getDouble("peso"));
                 visita.setFecha(rs.getDate("fecha").toLocalDate());
                 visita.setEstado(rs.getInt("estado"));
@@ -121,6 +125,5 @@ public class VisitaData {
         }
         return historial;
     }
-    
 
 } // Llave final

@@ -189,7 +189,8 @@ public class HistorialDeVisitas extends javax.swing.JInternalFrame {
                 Utileria.mensaje("No se encontró el paciente con el DNI proporcionado");
             }
         } catch (NullPointerException e) {
-            Utileria.mensaje("Error al cargar los datos del paciente");
+           // Utileria.mensaje("Error al cargar los datos del paciente");
+            System.out.println(e);
         }
     }
 
@@ -197,7 +198,6 @@ public class HistorialDeVisitas extends javax.swing.JInternalFrame {
         modelo.addColumn("FECHA");
         modelo.addColumn("PESO");
         modelo.addColumn("DIETA");
-        modelo.addColumn("ESTADO");
         jtHistorial.setModel(modelo);
     }
 
@@ -213,13 +213,19 @@ public class HistorialDeVisitas extends javax.swing.JInternalFrame {
         VisitaData vdata = new VisitaData();
         List<Visita> historial = vdata.obtenerHistorial(idPaciente);
         for (Visita visita : historial) {
-            modelo.addRow(new Object[]{
-                visita.getFecha(),
-                visita.getPeso(),
-                visita.getDieta().getNombre(),
-                visita.getDieta().getEstado(),
-                visita.getIdVisita()
-            });
+            if (visita.getDieta().getIdDieta()==0) {
+                modelo.addRow(new Object[]{
+                    visita.getFecha(),
+                    visita.getPeso(),
+                    "",
+                });
+            } else {
+                modelo.addRow(new Object[]{
+                    visita.getFecha(),
+                    visita.getPeso(),
+                    visita.getDieta().getNombre(),
+                });
+            }
         }
         Utileria.ajustarTabla(jtHistorial);
     }
