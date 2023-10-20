@@ -10,14 +10,13 @@ import javax.swing.table.DefaultTableModel;
 import stuff.Utileria;
 
 public class HistorialDeVisitas extends javax.swing.JInternalFrame {
-    
-        private DefaultTableModel modelo = new DefaultTableModel() {
+
+    private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
         }
     };
 
-        
     public HistorialDeVisitas() {
         initComponents();
         armarCabecera();
@@ -27,6 +26,7 @@ public class HistorialDeVisitas extends javax.swing.JInternalFrame {
         initComponents();
         armarCabecera();
         cargarDatos(documento);
+        //System.out.println(jtHistorial.getValueAt(0, 4));
     }
 
     @SuppressWarnings("unchecked")
@@ -193,7 +193,6 @@ public class HistorialDeVisitas extends javax.swing.JInternalFrame {
         }
     }
 
-
     private void armarCabecera() {
         modelo.addColumn("FECHA");
         modelo.addColumn("PESO");
@@ -202,7 +201,7 @@ public class HistorialDeVisitas extends javax.swing.JInternalFrame {
         jtHistorial.setModel(modelo);
     }
 
-        private void borrarFilas() {
+    private void borrarFilas() {
         int f = jtHistorial.getRowCount() - 1;
         for (; f >= 0; f--) {
             modelo.removeRow(f);
@@ -218,12 +217,11 @@ public class HistorialDeVisitas extends javax.swing.JInternalFrame {
                 visita.getFecha(),
                 visita.getPeso(),
                 visita.getDieta().getNombre(),
-                visita.getDieta().getEstado()
+                visita.getDieta().getEstado(),
+                visita.getIdVisita()
             });
         }
         Utileria.ajustarTabla(jtHistorial);
     }
-    
-    
-    
+
 } // Llave final

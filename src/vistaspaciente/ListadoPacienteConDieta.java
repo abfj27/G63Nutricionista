@@ -170,6 +170,8 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbCerrarActionPerformed
 
 
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -188,12 +190,11 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void armarCabecera() {
-        modelo.addColumn("NOMBRE");
-        modelo.addColumn("APELLIDO");
+        modelo.addColumn("PACIENTE");
         modelo.addColumn("PESO INICIAL");
         modelo.addColumn("PESO FINAL");
-        modelo.addColumn("PESO INICIAL");
-        modelo.addColumn("PESO FINAL");
+        modelo.addColumn("FECHA INICIAL");
+        modelo.addColumn("FECHA FINAL");
         jtListado.setModel(modelo);
     }
 
