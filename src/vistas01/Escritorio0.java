@@ -26,6 +26,7 @@ public class Escritorio0 extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jmNuevoPaciente = new javax.swing.JMenuItem();
         jmListaPacientes = new javax.swing.JMenuItem();
+        jmPacientesDieta = new javax.swing.JMenuItem();
         jmFichaPaciente = new javax.swing.JMenuItem();
         jmModificarPaciente = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -87,6 +88,14 @@ public class Escritorio0 extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jmListaPacientes);
+
+        jmPacientesDieta.setText("Pacientes con Dieta");
+        jmPacientesDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmPacientesDietaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmPacientesDieta);
 
         jmFichaPaciente.setText("Ficha Paciente");
         jmFichaPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -207,9 +216,14 @@ public class Escritorio0 extends javax.swing.JFrame {
         escritorio.moveToFront(ven);
     }//GEN-LAST:event_jmNuevoPacienteActionPerformed
 
-    private void jmListaPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListaPacientesActionPerformed
-        //falta vista
-    }//GEN-LAST:event_jmListaPacientesActionPerformed
+    private void jmPacientesDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPacientesDietaActionPerformed
+        ListadoPacienteConDieta ven = new ListadoPacienteConDieta();
+        escritorio.removeAll();
+        escritorio.repaint();
+        ven.setVisible(true);
+        escritorio.add(ven);
+        escritorio.moveToFront(ven);
+    }//GEN-LAST:event_jmPacientesDietaActionPerformed
 
     private void jmFichaPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFichaPacienteActionPerformed
         FichaPaciente ven = new FichaPaciente();
@@ -230,7 +244,7 @@ public class Escritorio0 extends javax.swing.JFrame {
     }//GEN-LAST:event_jmModificarPacienteActionPerformed
 
     private void jmNuevaComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmNuevaComidaActionPerformed
-       Comida com = null;
+        Comida com = null;
         crear_modificar_comida ven = new crear_modificar_comida(com);
         escritorio.removeAll();
         escritorio.repaint();
@@ -249,7 +263,7 @@ public class Escritorio0 extends javax.swing.JFrame {
     }//GEN-LAST:event_jmListaComidasActionPerformed
 
     private void jmAdmComidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAdmComidasActionPerformed
-       AdministrativoListaComidas ven = new AdministrativoListaComidas();
+        AdministrativoListaComidas ven = new AdministrativoListaComidas();
         escritorio.removeAll();
         escritorio.repaint();
         ven.setVisible(true);
@@ -276,7 +290,7 @@ public class Escritorio0 extends javax.swing.JFrame {
     }//GEN-LAST:event_jmAdmDietasActionPerformed
 
     private void jmbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmbSalirActionPerformed
-         int option = JOptionPane.showConfirmDialog(
+        int option = JOptionPane.showConfirmDialog(
                 this,
                 "¿Estás seguro de que quieres cerrar la aplicación?",
                 "Confirmación de cierre",
@@ -286,6 +300,14 @@ public class Escritorio0 extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_jmbSalirActionPerformed
+
+    private void jmListaPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListaPacientesActionPerformed
+        AdministrativoPacientes ven = new AdministrativoPacientes(1);
+        escritorio.removeAll();
+        escritorio.repaint();
+        ven.setVisible(true);
+        escritorio.add(ven);
+        escritorio.moveToFront(ven);    }//GEN-LAST:event_jmListaPacientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -340,6 +362,7 @@ public class Escritorio0 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmNuevaComida;
     private javax.swing.JMenuItem jmNuevaDieta;
     private javax.swing.JMenuItem jmNuevoPaciente;
+    private javax.swing.JMenuItem jmPacientesDieta;
     private javax.swing.JMenu jmbSalir;
     // End of variables declaration//GEN-END:variables
 }

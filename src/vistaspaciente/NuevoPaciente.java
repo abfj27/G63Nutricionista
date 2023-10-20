@@ -69,6 +69,11 @@ public class NuevoPaciente extends javax.swing.JInternalFrame {
         jLabel5.setText("Teléfono");
 
         jtTelefono.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtTelefonoKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel6.setText("Dirección");
@@ -240,7 +245,7 @@ public class NuevoPaciente extends javax.swing.JInternalFrame {
                 } else {
                     pac.setPesoActual(0);
                 }
-                pac.setEstado(1);
+                pac.setEstado(2);
                 pdata.cargarPaciente(pac);
                 limpiarCeldas();
             } catch (NumberFormatException e) {
@@ -252,12 +257,22 @@ public class NuevoPaciente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbCargarActionPerformed
 
+    private void jtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTelefonoKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+            Utileria.mensaje("Solo se permite numeros enteros");
+        }
+    }//GEN-LAST:event_jtTelefonoKeyTyped
+
     private void jbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarActionPerformed
         Object[] op = {"Aceptar", "Cancelar"};
         int i = JOptionPane.showOptionDialog(this, "Desea cerrar?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
         if (i == JOptionPane.YES_OPTION) {
-            this.dispose();    }//GEN-LAST:event_jbCerrarActionPerformed
-    }
+            this.dispose();
+        }
+    }//GEN-LAST:event_jbCerrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

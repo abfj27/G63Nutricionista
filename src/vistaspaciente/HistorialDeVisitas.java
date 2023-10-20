@@ -189,8 +189,7 @@ public class HistorialDeVisitas extends javax.swing.JInternalFrame {
                 Utileria.mensaje("No se encontró el paciente con el DNI proporcionado");
             }
         } catch (NullPointerException e) {
-           // Utileria.mensaje("Error al cargar los datos del paciente");
-            System.out.println(e);
+           Utileria.mensaje("Error al cargar los datos del paciente");
         }
     }
 

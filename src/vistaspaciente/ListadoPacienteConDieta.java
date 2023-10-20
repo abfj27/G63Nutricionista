@@ -1,6 +1,5 @@
 package vistaspaciente;
 
-
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,13 +13,14 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
 
     public ListadoPacienteConDieta() {
         initComponents();
+        armarCabecera();
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel3 = new javax.swing.JLabel();
         jtFiltro = new javax.swing.JTextField();
         jcSeleccion = new javax.swing.JComboBox<>();
@@ -49,15 +49,19 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel4.setText("Seleccione el filtro a usar:");
 
+        buttonGroup1.add(jrCompleta);
         jrCompleta.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jrCompleta.setText("Completa");
 
+        buttonGroup1.add(jrIncompleta);
         jrIncompleta.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jrIncompleta.setText("Incompleta");
 
+        buttonGroup1.add(jrTodos);
         jrTodos.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jrTodos.setText("Todos");
 
+        buttonGroup1.add(jrCurso);
         jrCurso.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jrCurso.setText("En curso");
 
@@ -170,9 +174,8 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbCerrarActionPerformed
 
 
-
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -195,7 +198,16 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
         modelo.addColumn("PESO FINAL");
         modelo.addColumn("FECHA INICIAL");
         modelo.addColumn("FECHA FINAL");
+        modelo.addColumn("DNI");
+        modelo.addColumn("idPaciente");
+        modelo.addColumn("idDieta");
         jtListado.setModel(modelo);
+        jtListado.getColumnModel().getColumn(5).setMinWidth(0);
+        jtListado.getColumnModel().getColumn(5).setMaxWidth(0);
+        jtListado.getColumnModel().getColumn(6).setMinWidth(0);
+        jtListado.getColumnModel().getColumn(6).setMaxWidth(0);
+        jtListado.getColumnModel().getColumn(7).setMinWidth(0);
+        jtListado.getColumnModel().getColumn(7).setMaxWidth(0);
     }
 
     private void borrarFilas() {
