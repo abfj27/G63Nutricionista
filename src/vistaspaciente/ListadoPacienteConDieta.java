@@ -1,5 +1,11 @@
 package vistaspaciente;
 
+import controlDatos.DietaData;
+import entidades.Dieta;
+import entidades.Paciente;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,6 +20,7 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
     public ListadoPacienteConDieta() {
         initComponents();
         armarCabecera();
+        actualizarTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -217,4 +224,121 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
         }
     }
 
-}
+    private void actualizarTabla() {
+        borrarFilas();
+        DietaData vdata = new DietaData();
+        List<Dieta> dietas = vdata.listaDietasAll();
+        for (Dieta dieta : dietas) {
+            Paciente paciente = dieta.getPaciente();
+            modelo.addRow(new Object[]{
+                paciente.getNombre() + " " + paciente.getApellido(),
+                dieta.getPesoInicial(),
+                dieta.getPesoObjetivo(),
+                dieta.getFechaFinal(),
+                dieta.getFechaFinal(),});
+        }
+        jtListado.setModel(modelo);
+    }
+
+    private void filtrarTabla() {
+        String filtroSeleccion = jcSeleccion.getSelectedItem().toString();
+        String filtroTexto = jtFiltro.getText().trim().toLowerCase();
+        if (jrCompleta.isSelected()) {
+            filtrarDietasCompletas(filtroSeleccion, filtroTexto);
+        } else if (jrIncompleta.isSelected()) {
+            filtrarDietasIncompletas(filtroSeleccion, filtroTexto);
+        } else if (jrCurso.isSelected()) {
+            filtrarDietasEnCurso(filtroSeleccion, filtroTexto);
+        } else if (jrTodos.isSelected()) {
+            actualizarTabla();
+        }
+    }
+
+    /* DIETA COMPLETA: 
+    paciente llego al peso final en la fecha establecida como fecha final. Y, a la fecha actual, el paciente tiene un peso menor o igual al peso final
+        pesoActual <= pesoFinal && fechaActual <= fechaFinal
+     */
+    private void filtrarDietasCompletas(String filtroSeleccion, String filtroTexto) {
+        borrarFilas();
+        List<Dieta> dietasCompletas = obtenerDietasCompletas();
+        agregarDietasATabla(dietasCompletas);
+    }
+
+    private List<Dieta> obtenerDietasCompletas() {
+        List<Dieta> dietasCompletas = new ArrayList<>();
+        LocalDate fechaActual = LocalDate.now();
+        DietaData vdata = new DietaData();
+        List<Dieta> dietas = vdata.listaDietasAll();
+        for (Dieta dieta : dietas) {
+            if (dieta.getPaciente().getPesoActual() <= dieta.getPesoObjetivo()
+                    && fechaActual.isAfter(dieta.getFechaFinal())) {
+                dietasCompletas.add(dieta);
+            }
+        }
+        return dietasCompletas;
+    }
+
+    /* DIETA INCOMPLETA: 
+    Paciente tiene un peso actual mayor al peso final y la fecha actual es igual o mayor a la fecha final
+    pesoActual > pesoFinal && fechaActual >= fechaFinal
+     */
+    private void filtrarDietasIncompletas(String filtroSeleccion, String filtroTexto) {
+        borrarFilas();
+        List<Dieta> dietasIncompletas = obtenerDietasIncompletas();
+        agregarDietasATabla(dietasIncompletas);
+    }
+
+    private List<Dieta> obtenerDietasIncompletas() {
+        List<Dieta> dietasIncompletas = new ArrayList<>();
+        LocalDate fechaActual = LocalDate.now();
+        DietaData vdata = new DietaData();
+        List<Dieta> dietas = vdata.listaDietasAll();
+        for (Dieta dieta : dietas) {
+            if (dieta.getPaciente().getPesoActual() > dieta.getPesoObjetivo()
+                    && (fechaActual.isEqual(dieta.getFechaFinal()) || fechaActual.isAfter(dieta.getFechaFinal()))) {
+                dietasIncompletas.add(dieta);
+            }
+        }
+
+        return dietasIncompletas;
+    }
+
+    /* DIETA CURSO: 
+    Paciente tiene una dieta en curso. Y, la fecha actual es menor a la fecha final
+    fechaActual < fechaFinal
+     */
+    private void filtrarDietasEnCurso(String filtroSeleccion, String filtroTexto) {
+        borrarFilas();
+        List<Dieta> dietasEnCurso = obtenerDietasEnCurso();
+        agregarDietasATabla(dietasEnCurso);
+    }
+
+    private List<Dieta> obtenerDietasEnCurso() {
+        List<Dieta> dietasEnCurso = new ArrayList<>();
+        LocalDate fechaActual = LocalDate.now();
+        DietaData vdata = new DietaData();
+        List<Dieta> dietas = vdata.listaDietasAll();
+        for (Dieta dieta : dietas) {
+            if (fechaActual.isBefore(dieta.getFechaFinal())) {
+                dietasEnCurso.add(dieta);
+            }
+        }
+
+        return dietasEnCurso;
+    }
+
+    private void agregarDietasATabla(List<Dieta> dietas) {
+        for (Dieta dieta : dietas) {
+            Paciente paciente = dieta.getPaciente();
+            modelo.addRow(new Object[]{
+                paciente.getNombre() + " " + paciente.getApellido(),
+                dieta.getPesoInicial(),
+                dieta.getPesoObjetivo(),
+                dieta.getFechaInicial(),
+                dieta.getFechaFinal(),});
+        }
+        jtListado.setModel(modelo);
+    }
+
+}   //LLAVE FINAL
+
