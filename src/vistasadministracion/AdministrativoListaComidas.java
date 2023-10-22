@@ -283,20 +283,23 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         borrarFila();
         try {
-            if (jCbFiltrado.getSelectedIndex() == 0) {
-                borrarFila();
-            } else {
-                if (jRbActivos.isSelected() || jRbInactivos.isSelected() || jRbTodos.isSelected()) {
-                    if (jRbActivos.isSelected()) {
-                        this.estado = 2;
-                    } else if (jRbInactivos.isSelected()) {
-                        this.estado = 1;
-                    } else {
-                        this.estado = 0;
-                    }
-                    obtencionDeDatos();
+            if (jRbActivos.isSelected() || jRbInactivos.isSelected() || jRbTodos.isSelected()) {
+                if (jRbActivos.isSelected()) {
+                    this.estado = 2;
+                } else if (jRbInactivos.isSelected()) {
+                    this.estado = 1;
+                } else {
+                    this.estado = 0;
                 }
-
+            }
+            if (jCbFiltrado.getSelectedIndex() != 0 && !jRbActivos.isSelected() && !jRbInactivos.isSelected()) {
+                jRbTodos.setSelected(true);
+            }
+            obtencionDeDatos();
+            if (jCbFiltrado.getSelectedIndex() == 0) {
+                buttonGroup1.clearSelection();
+                jTingreso.setText("");
+                borrarFila();
             }
         } catch (NumberFormatException e) {
             return;

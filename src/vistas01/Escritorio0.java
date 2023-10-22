@@ -302,7 +302,7 @@ public class Escritorio0 extends javax.swing.JFrame {
     }//GEN-LAST:event_jmbSalirActionPerformed
 
     private void jmListaPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListaPacientesActionPerformed
-        AdministrativoPacientes ven = new AdministrativoPacientes(1);
+        AdministrativoPacientes ven = new AdministrativoPacientes(2);
         escritorio.removeAll();
         escritorio.repaint();
         ven.setVisible(true);

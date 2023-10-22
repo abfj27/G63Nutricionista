@@ -45,7 +45,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         this.click = 1;
         Utileria utileria = new Utileria(click);
         Cabecera();
-        utileria.ordenamientoDeTabla(jTpacientes);
+        utileria.ordenamientoDeTabla(jTdietas);
         cargarComboBox();
 
     }
@@ -67,7 +67,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         jRbTodos = new javax.swing.JRadioButton();
         jRbInactivos = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTpacientes = new javax.swing.JTable();
+        jTdietas = new javax.swing.JTable();
         jTbCerrar = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -116,7 +116,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
             }
         });
 
-        jTpacientes.setModel(new javax.swing.table.DefaultTableModel(
+        jTdietas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -127,12 +127,12 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTpacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTdietas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTpacientesMouseClicked(evt);
+                jTdietasMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTpacientes);
+        jScrollPane1.setViewportView(jTdietas);
 
         jTbCerrar.setText("Cerrar");
         jTbCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -307,19 +307,24 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         borrarFila();
         try {
-            if (jCbFiltrado.getSelectedIndex() == 0) {
-                borrarFila();
-            } else {
-                if (jRbActivos.isSelected() || jRbInactivos.isSelected() || jRbTodos.isSelected()) {
-                    if (jRbActivos.isSelected()) {
-                        this.estado = 2;
-                    } else if (jRbInactivos.isSelected()) {
-                        this.estado = 1;
-                    } else {
-                        this.estado = 0;
-                    }
-                    obtencionDeDatos();
+
+            if (jRbActivos.isSelected() || jRbInactivos.isSelected() || jRbTodos.isSelected()) {
+                if (jRbActivos.isSelected()) {
+                    this.estado = 2;
+                } else if (jRbInactivos.isSelected()) {
+                    this.estado = 1;
+                } else {
+                    this.estado = 0;
                 }
+            }
+            if (jCbFiltrado.getSelectedIndex() != 0 && !jRbActivos.isSelected() && !jRbInactivos.isSelected()) {
+                jRbTodos.setSelected(true);
+            }
+            obtencionDeDatos();
+            if (jCbFiltrado.getSelectedIndex() == 0) {
+                buttonGroup1.clearSelection();
+                jTingreso.setText("");
+                borrarFila();
             }
         } catch (NumberFormatException e) {
             return;
@@ -327,34 +332,34 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jCbFiltradoActionPerformed
 
-    private void jTpacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTpacientesMouseClicked
+    private void jTdietasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTdietasMouseClicked
         // TODO add your handling code here:
-        filaS = jTpacientes.getSelectedRow();
+        filaS = jTdietas.getSelectedRow();
         if (estado != 1) {
             jBeliminar.setEnabled(true);
             jBver.setEnabled(true);
         }
 
         if (estado == 0) {
-            if (jTpacientes.getValueAt(filaS, 6) == "true" || jTpacientes.getValueAt(filaS, 6) == "false") {
+            if (jTdietas.getValueAt(filaS, 6) == "true" || jTdietas.getValueAt(filaS, 6) == "false") {
                 jBalta_baja.setEnabled(true);
                 jBeliminar.setEnabled(true);
-            } else if (jTpacientes.getValueAt(filaS, 6) == "eliminado") {
+            } else if (jTdietas.getValueAt(filaS, 6) == "eliminado") {
                 jBalta_baja.setEnabled(true);
                 jBeliminar.setEnabled(false);
             }
         }
-    }//GEN-LAST:event_jTpacientesMouseClicked
+    }//GEN-LAST:event_jTdietasMouseClicked
 
     private void jBalta_bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalta_bajaActionPerformed
         // TODO add your handling code here:
-        int[] filasS = jTpacientes.getSelectedRows();
+        int[] filasS = jTdietas.getSelectedRows();
         if (filaS != -1) {
             for (Integer re : filasS) {
-                if (estado == 1 || jTpacientes.getValueAt(re, 6) == "false" || jTpacientes.getValueAt(re, 6) == "eliminado") {
-                    dd.adminDarAlta(Integer.valueOf(jTpacientes.getValueAt(re, 2).toString()));
-                } else if (jTpacientes.getValueAt(re, 6) == "true") {
-                    dd.adminDarBaja(Integer.valueOf(jTpacientes.getValueAt(re, 2).toString()));
+                if (estado == 1 || jTdietas.getValueAt(re, 6) == "false" || jTdietas.getValueAt(re, 6) == "eliminado") {
+                    dd.adminDarAlta(Integer.valueOf(jTdietas.getValueAt(re, 2).toString()));
+                } else if (jTdietas.getValueAt(re, 6) == "true") {
+                    dd.adminDarBaja(Integer.valueOf(jTdietas.getValueAt(re, 2).toString()));
                 }
             }
             borrarFila();
@@ -367,10 +372,10 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
 
     private void jBeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBeliminarActionPerformed
         // TODO add your handling code here:
-        int[] filasS = jTpacientes.getSelectedRows();
+        int[] filasS = jTdietas.getSelectedRows();
         if (filaS != -1) {
             for (Integer re : filasS) {
-                dd.adminEliminar(Integer.valueOf(jTpacientes.getValueAt(re, 2).toString()));
+                dd.adminEliminar(Integer.valueOf(jTdietas.getValueAt(re, 2).toString()));
             }
             borrarFila();
             obtencionDeDatos();
@@ -383,7 +388,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
     private void jBverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBverActionPerformed
         // TODO add your handling code here:
         if (filaS != -1) {
-            dietEnv = dd.AdminBuscarXDniYFechas(Integer.valueOf(jTpacientes.getValueAt(filaS, 2).toString()), LocalDate.parse(String.valueOf(jTpacientes.getValueAt(filaS, 4))), LocalDate.parse(String.valueOf(jTpacientes.getValueAt(filaS, 5))));
+            dietEnv = dd.AdminBuscarXDniYFechas(Integer.valueOf(jTdietas.getValueAt(filaS, 2).toString()), LocalDate.parse(String.valueOf(jTdietas.getValueAt(filaS, 4))), LocalDate.parse(String.valueOf(jTdietas.getValueAt(filaS, 5))));
             DetallesDieta dd = new DetallesDieta(dietEnv);
             Escritorio0.escritorio.add(dd);
             dd.toFront();
@@ -408,8 +413,8 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRbTodos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jTbCerrar;
+    private javax.swing.JTable jTdietas;
     private javax.swing.JTextField jTingreso;
-    private javax.swing.JTable jTpacientes;
     // End of variables declaration//GEN-END:variables
 
     private void cargarComboBox() {
@@ -434,7 +439,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
             modelo.addColumn("Ultima Visita");
             modelo.addColumn("Fecha Inicial");
             modelo.addColumn("Fecha Final");
-            jTpacientes.setModel(modelo);
+            jTdietas.setModel(modelo);
         } else {
             modelo.addColumn("Nombre Dieta");
             modelo.addColumn("Paciente");
@@ -443,7 +448,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
             modelo.addColumn("Fecha Inicial");
             modelo.addColumn("Fecha Final");
             modelo.addColumn("Estado");
-            jTpacientes.setModel(modelo);
+            jTdietas.setModel(modelo);
         }
     }
 
@@ -469,7 +474,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
                 } else {
                     modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getPaciente().getNombre(), recorrer.getPaciente().getDni(), recorrer.getFechaUltimaVisita(), recorrer.getFechaInicial(), recorrer.getFechaFinal()});
                 }
-                ajustarTabla(jTpacientes);
+                ajustarTabla(jTdietas);
             }
             if (estado == 2) {
                 jBalta_baja.setEnabled(true);

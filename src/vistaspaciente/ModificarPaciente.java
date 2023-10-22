@@ -11,15 +11,23 @@ import stuff.Utileria;
  */
 public class ModificarPaciente extends javax.swing.JInternalFrame {
 
+    private int num;
+
     public ModificarPaciente() {
         initComponents();
     }
 
-        public ModificarPaciente(int documento) {
+    public ModificarPaciente(int documento) {
         initComponents();
         cargarDatos(documento);
     }
-        
+
+    public ModificarPaciente(int documento, int num) {
+        this.num = num;
+        initComponents();
+        cargarDatos(documento);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -274,7 +282,13 @@ public class ModificarPaciente extends javax.swing.JInternalFrame {
                 } else {
                     pac.setAltura(0);
                 }
+
                 pdata.modificarPaciente(pac);
+
+                if (this.num == 1) {
+                    this.dispose();
+                }
+
                 limpiarCeldas();
             } catch (NumberFormatException e) {
                 Utileria.mensaje("Solo puede ingresar numeros en documento");
@@ -379,35 +393,33 @@ public class ModificarPaciente extends javax.swing.JInternalFrame {
         jtBuscarDocumento.setText("");
     }
 
-     private void cargarDatos(int documento) {
-    PacienteData pdata = new PacienteData();
-    try {
-        Paciente pac = pdata.buscarPacienteDocumento(documento);
-        if (pac != null) {
-            jtBuscarDocumento.setText(String.valueOf(pac.getDni()));
-            jtNombre.setText(pac.getNombre());
-            jtApellido.setText(pac.getApellido());
-            jtDocumento.setText(String.valueOf(pac.getDni()));
-            if ("F".equals(pac.getGenero())) {
-                jrFemenino.setSelected(true);
-            } else if ("M".equals(pac.getGenero())) {
-                jrMasculino.setSelected(true);
+    private void cargarDatos(int documento) {
+        PacienteData pdata = new PacienteData();
+        try {
+            Paciente pac = pdata.buscarPacienteDocumento(documento);
+            if (pac != null) {
+                jtBuscarDocumento.setText(String.valueOf(pac.getDni()));
+                jtNombre.setText(pac.getNombre());
+                jtApellido.setText(pac.getApellido());
+                jtDocumento.setText(String.valueOf(pac.getDni()));
+                if ("F".equals(pac.getGenero())) {
+                    jrFemenino.setSelected(true);
+                } else if ("M".equals(pac.getGenero())) {
+                    jrMasculino.setSelected(true);
+                }
+                jtEdad.setText(String.valueOf(pac.getEdad()));
+                jtTelefono.setText(pac.getTelefono());
+                jtDireccion.setText(pac.getDomicilio());
+                jtMail.setText(pac.getEmail());
+                jtAltura.setText(String.valueOf(pac.getAltura()));
+            } else {
+                Utileria.mensaje("No se encontró el paciente con el DNI proporcionado");
             }
-            jtEdad.setText(String.valueOf(pac.getEdad()));
-            jtTelefono.setText(pac.getTelefono());
-            jtDireccion.setText(pac.getDomicilio());
-            jtMail.setText(pac.getEmail());
-            jtAltura.setText(String.valueOf(pac.getAltura()));
-        } else {
-            Utileria.mensaje("No se encontró el paciente con el DNI proporcionado");
+        } catch (NumberFormatException e) {
+            Utileria.mensaje("Solo puede ingresar números en documento");
+        } catch (NullPointerException e) {
+            Utileria.mensaje("Error al cargar los datos del paciente");
         }
-    } catch (NumberFormatException e) {
-        Utileria.mensaje("Solo puede ingresar números en documento");
-    } catch (NullPointerException e) {
-        Utileria.mensaje("Error al cargar los datos del paciente");
     }
-}
 
-     
-     
 }// Llave FINAL

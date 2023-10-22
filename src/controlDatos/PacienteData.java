@@ -153,127 +153,126 @@ public class PacienteData {
     }
 
     public ArrayList<Paciente> AdminPacientes(String seleccion, String ingreso, int estado) {
-        ArrayList<Paciente> pacientes = new ArrayList<>();
-        Paciente paciente = null;
-        String sql;
-        if (ingreso.isEmpty()) {
-            if (estado == 1 || estado == -1) {
-                sql = "SELECT* FROM paciente WHERE estado>=?";
-            } else {
-                sql = "SELECT* FROM paciente WHERE estado=?";
-            }
-        } else if (seleccion.equals("nombre")) {
-            if (estado == 1 || estado == -1) {
-                sql = "SELECT* FROM paciente WHERE nombre like ? and estado>=?";
-            } else {
-                sql = "SELECT* FROM paciente WHERE nombre like ? and estado=?";
-            }
-        } else if (seleccion.equals("apellido")) {
-            if (estado == 1 || estado == -1) {
-                sql = "SELECT* FROM paciente WHERE apellido like ? and estado>=?";
-            } else {
-                sql = "SELECT* FROM paciente WHERE apellido like ? and estado=?";
-            }
-        } else {
-            if (estado == 1 || estado == -1) {
-                sql = "SELECT* FROM paciente WHERE dni = ? and estado>=?";
-            } else {
-                sql = "SELECT* FROM paciente WHERE dni = ? and estado=?";
-            }
-        }
-
-        try {
-            PreparedStatement ps = conec.prepareStatement(sql);
-            if (seleccion.equals("nombre") || seleccion.equals("apellido")) {
-                ps.setString(1, ingreso + "%");
-            } else if (seleccion.equals("dni")) {
-                if (ingreso.isEmpty()) {
-                    ingreso = "0";
+        if (!seleccion.equals("Seleccionar")) {
+            ArrayList<Paciente> pacientes = new ArrayList<>();
+            Paciente paciente = null;
+            String sql;
+            if (ingreso.isEmpty() || (ingreso.isEmpty() && seleccion.equals("dni"))) {
+                if (estado == 1 || estado == -1) {
+                    sql = "SELECT* FROM paciente WHERE estado>=?";
+                } else {
+                    sql = "SELECT* FROM paciente WHERE estado=?";
                 }
-                ps.setInt(1, Integer.valueOf(ingreso));
-            }
-            if (!ingreso.isEmpty()) {
-                ps.setInt(2, estado);
+            } else if (seleccion.equals("nombre")) {
+                if (estado == 1 || estado == -1) {
+                    sql = "SELECT* FROM paciente WHERE nombre like ? and estado>=?";
+                } else {
+                    sql = "SELECT* FROM paciente WHERE nombre like ? and estado=?";
+                }
+            } else if (seleccion.equals("apellido")) {
+                if (estado == 1 || estado == -1) {
+                    sql = "SELECT* FROM paciente WHERE apellido like ? and estado>=?";
+                } else {
+                    sql = "SELECT* FROM paciente WHERE apellido like ? and estado=?";
+                }
             } else {
-                ps.setInt(1, estado);
+                if (estado == 1 || estado == -1) {
+                    sql = "SELECT* FROM paciente WHERE dni = ? and estado>=?";
+                } else {
+                    sql = "SELECT* FROM paciente WHERE dni = ? and estado=?";
+                }
             }
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                paciente = new Paciente();
-                paciente.setIdPaciente(rs.getInt("idPaciente"));
-                paciente.setDni(rs.getInt("dni"));
-                paciente.setNombre(rs.getString("nombre"));
-                paciente.setApellido(rs.getString("apellido"));
-                paciente.setPesoActual(rs.getFloat("pesoActual"));
-                paciente.setAltura(rs.getFloat("altura"));
-                paciente.setEdad(rs.getInt("edad"));
-                paciente.setGenero(rs.getString("genero"));
-                paciente.setDomicilio(rs.getString("domicilio"));
-                paciente.setTelefono(rs.getString("telefono"));
-                paciente.setEmail(rs.getString("email"));
-                paciente.setEstado(rs.getInt("estado"));
-                pacientes.add(paciente);
+            try {
+                PreparedStatement ps = conec.prepareStatement(sql);
+
+                if (!ingreso.isEmpty()) {
+                    if (!seleccion.equals("dni")) {
+                        ps.setString(1, ingreso + "%");
+                    } else {
+                        ps.setInt(1, Integer.valueOf(ingreso));
+                    }
+                    ps.setInt(2, estado);
+                } else {
+                    ps.setInt(1, estado);
+                }
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    paciente = new Paciente();
+                    paciente.setIdPaciente(rs.getInt("idPaciente"));
+                    paciente.setDni(rs.getInt("dni"));
+                    paciente.setNombre(rs.getString("nombre"));
+                    paciente.setApellido(rs.getString("apellido"));
+                    paciente.setPesoActual(rs.getFloat("pesoActual"));
+                    paciente.setAltura(rs.getFloat("altura"));
+                    paciente.setEdad(rs.getInt("edad"));
+                    paciente.setGenero(rs.getString("genero"));
+                    paciente.setDomicilio(rs.getString("domicilio"));
+                    paciente.setTelefono(rs.getString("telefono"));
+                    paciente.setEmail(rs.getString("email"));
+                    paciente.setEstado(rs.getInt("estado"));
+                    pacientes.add(paciente);
+                }
+                rs.close();
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
             }
-            rs.close();
-            ps.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
+            return pacientes;
+        } else {
+            return new ArrayList<>();
         }
-        return pacientes;
     }
 
     public ArrayList<Paciente> ListaPacientes(String seleccion, String ingreso, int estado) {
-        ArrayList<Paciente> pacientes = new ArrayList<>();
-        Paciente paciente = null;
-        String sql;
-        if (ingreso.isEmpty()) {
-            sql = "SELECT* FROM paciente WHERE estado=?";
-        } else if (seleccion.equals("nombre")) {
-            sql = "SELECT* FROM paciente WHERE nombre like ? and estado=?";
-        } else if (seleccion.equals("apellido")) {
-            sql = "SELECT* FROM paciente WHERE apellido like ? and estado=?";
-        } else {
-            sql = "SELECT* FROM paciente WHERE dni = ? and estado=?";
-        }
-
-        try {
-            PreparedStatement ps = conec.prepareStatement(sql);
-            if (seleccion.equals("nombre") || seleccion.equals("apellido")) {
-                ps.setString(1, ingreso + "%");
-            } else if (seleccion.equals("dni")) {
-                if (ingreso.isEmpty()) {
-                    ingreso = "0";
-                }
-                ps.setInt(1, Integer.valueOf(ingreso));
-            }
-            if (!ingreso.isEmpty()) {
-                ps.setInt(2, estado);
+        if (!seleccion.equals("Seleccionar")) {
+            ArrayList<Paciente> pacientes = new ArrayList<>();
+            Paciente paciente = null;
+            String sql;
+            if (ingreso.isEmpty() || (ingreso.isEmpty() && seleccion.equals("dni"))) {
+                sql = "SELECT* FROM paciente WHERE estado=2";
+            } else if (seleccion.equals("nombre")) {
+                sql = "SELECT* FROM paciente WHERE nombre like ? and estado=2";
+            } else if (seleccion.equals("apellido")) {
+                sql = "SELECT* FROM paciente WHERE apellido like ? and estado=2";
             } else {
-                ps.setInt(1, estado);
+                sql = "SELECT* FROM paciente WHERE dni = ? and estado=2";
             }
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                paciente = new Paciente();
-                paciente.setIdPaciente(rs.getInt("idPaciente"));
-                paciente.setDni(rs.getInt("dni"));
-                paciente.setNombre(rs.getString("nombre"));
-                paciente.setApellido(rs.getString("apellido"));
-                paciente.setPesoActual(rs.getFloat("pesoActual"));
-                paciente.setAltura(rs.getFloat("altura"));
-                paciente.setEdad(rs.getInt("edad"));
-                paciente.setGenero(rs.getString("genero"));
-                paciente.setDomicilio(rs.getString("domicilio"));
-                paciente.setTelefono(rs.getString("telefono"));
-                paciente.setEmail(rs.getString("email"));
-                paciente.setEstado(rs.getInt("estado"));
-                pacientes.add(paciente);
+
+            try {
+                PreparedStatement ps = conec.prepareStatement(sql);
+                if (!ingreso.isEmpty()) {
+                    if (!seleccion.equals("dni")) {
+                        ps.setString(1, ingreso + "%");
+                    } else {
+                        ps.setInt(1, Integer.valueOf(ingreso));
+                    }
+                }
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    paciente = new Paciente();
+                    paciente.setIdPaciente(rs.getInt("idPaciente"));
+                    paciente.setDni(rs.getInt("dni"));
+                    paciente.setNombre(rs.getString("nombre"));
+                    paciente.setApellido(rs.getString("apellido"));
+                    paciente.setPesoActual(rs.getFloat("pesoActual"));
+                    paciente.setAltura(rs.getFloat("altura"));
+                    paciente.setEdad(rs.getInt("edad"));
+                    paciente.setGenero(rs.getString("genero"));
+                    paciente.setDomicilio(rs.getString("domicilio"));
+                    paciente.setTelefono(rs.getString("telefono"));
+                    paciente.setEmail(rs.getString("email"));
+                    paciente.setEstado(rs.getInt("estado"));
+                    pacientes.add(paciente);
+                }
+                rs.close();
+                ps.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
             }
-            rs.close();
-            ps.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
+            return pacientes;
+        } else {
+            return new ArrayList<>();
         }
-        return pacientes;
     }
 
     public void darAlta(int dni) {
@@ -283,8 +282,10 @@ public class PacienteData {
             ps.setInt(1, dni);
             ps.executeUpdate();
             ps.close();
+
         } catch (SQLException ex) {
-            Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ComidaData.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -295,8 +296,10 @@ public class PacienteData {
             ps.setInt(1, dni);
             ps.executeUpdate();
             ps.close();
+
         } catch (SQLException ex) {
-            Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ComidaData.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -307,8 +310,10 @@ public class PacienteData {
             ps.setInt(1, dni);
             ps.executeUpdate();
             ps.close();
+
         } catch (SQLException ex) {
-            Logger.getLogger(ComidaData.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ComidaData.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
     //

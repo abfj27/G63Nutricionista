@@ -9,21 +9,28 @@ import controlDatos.PacienteData;
 import entidades.Paciente;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
 import javax.swing.table.DefaultTableModel;
 import stuff.Utileria;
+import vistas01.Escritorio0;
 import vistasdieta.NuevaDietaVen;
+import vistaspaciente.ModificarPaciente;
 
 /**
  *
  * @author Equipo
  */
 public class AdministrativoPacientes extends javax.swing.JInternalFrame {
-
+    
     private int num;
     private Paciente pacEnv;
     private int click;
     private int filaS = -1;
     private int estado;
+    private InternalFrameListener internalFrameListener;
     private PacienteData pd = new PacienteData();
     private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
@@ -38,8 +45,21 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
         initComponents();
         if (num == 1) {
             this.num = num;
+            jTpacientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             jBalta_baja.setSize(109, 32);
             jBalta_baja.setText("Seleccion paciente");
+            jRbActivos.setSelected(true);
+            jRbActivos.setVisible(false);
+            estado = 2;
+            jBver.setVisible(false);
+            jBeliminar.setVisible(false);
+            jRbInactivos.setVisible(false);
+            jRbTodos.setVisible(false);
+        } else if (num == 2) {
+            detectorCerradoVentada();
+            this.num = num;
+            jTpacientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            jBalta_baja.setText("Modificar");
             jRbActivos.setSelected(true);
             jRbActivos.setVisible(false);
             estado = 2;
@@ -53,7 +73,7 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
         Cabecera();
         utileria.ordenamientoDeTabla(jTpacientes);
         cargarComboBox();
-
+        
     }
 
     /**
@@ -348,20 +368,23 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         borrarFila();
         try {
-            if (jCbFiltrado.getSelectedIndex() == 0) {
-                borrarFila();
-            } else {
-                if (jRbActivos.isSelected() || jRbInactivos.isSelected() || jRbTodos.isSelected()) {
-                    if (jRbActivos.isSelected()) {
-                        this.estado = 2;
-                    } else if (jRbInactivos.isSelected()) {
-                        this.estado = 1;
-                    } else {
-                        this.estado = 0;
-                    }
-                    obtencionDeDatos();
+            if (jRbActivos.isSelected() || jRbInactivos.isSelected() || jRbTodos.isSelected()) {
+                if (jRbActivos.isSelected()) {
+                    this.estado = 2;
+                } else if (jRbInactivos.isSelected()) {
+                    this.estado = 1;
+                } else {
+                    this.estado = 0;
                 }
-
+            }
+            if (jCbFiltrado.getSelectedIndex() != 0 && num == 0 && !jRbActivos.isSelected() && !jRbInactivos.isSelected()) {
+                jRbTodos.setSelected(true);
+            }
+            obtencionDeDatos();
+            if (jCbFiltrado.getSelectedIndex() == 0 && num == 0) {
+                buttonGroup1.clearSelection();
+                jTingreso.setText("");
+                borrarFila();
             }
         } catch (NumberFormatException e) {
             return;
@@ -376,7 +399,7 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
             jBeliminar.setEnabled(true);
             jBver.setEnabled(true);
         }
-
+        
         if (estado == 0) {
             if (jTpacientes.getValueAt(filaS, 4) == "true" || jTpacientes.getValueAt(filaS, 4) == "false") {
                 jBalta_baja.setEnabled(true);
@@ -403,6 +426,17 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
                 borrarFila();
                 obtencionDeDatos();
                 filaS = -1;
+            } else {
+                Utileria.mensaje("Debe seleccionar una fila");
+            }
+        } else if (jBalta_baja.getText().equals("Modificar")) {
+            if (filaS != -1) {
+                int dni = pd.buscarPacienteDocumento(Integer.valueOf(jTpacientes.getValueAt(filaS, 2).toString())).getDni();
+                ModificarPaciente ven = new ModificarPaciente(dni, 1);
+                ven.addInternalFrameListener(internalFrameListener);
+                Escritorio0.escritorio.add(ven);
+                ven.toFront();
+                ven.setVisible(true);
             } else {
                 Utileria.mensaje("Debe seleccionar una fila");
             }
@@ -468,17 +502,17 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
         jCbFiltrado.addItem("apellido");
         jCbFiltrado.addItem("dni");
     }
-
+    
     private void borrarFila() {
         int filas = modelo.getRowCount() - 1;
         for (int i = filas; i >= 0; i--) {
             modelo.removeRow(i);
         }
     }
-
+    
     private void Cabecera() {
         modelo.setColumnCount(0);
-        if (estado == 1 || (estado == 2 && num == 1)) {
+        if (estado == 1 || (estado == 2 && num >= 1)) {
             modelo.addColumn("Nombre");
             modelo.addColumn("Apellido");
             modelo.addColumn("DNI");
@@ -492,17 +526,17 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
             modelo.addColumn("Estado");
             jTpacientes.setModel(modelo);
         }
-
+        
     }
-
+    
     private void obtencionDeDatos() {
         String estadoImp;
         jBalta_baja.setEnabled(false);
         jBeliminar.setEnabled(false);
         String seleccion = jCbFiltrado.getSelectedItem().toString();
         String ingreso = jTingreso.getText();
-        ArrayList<Paciente> pacientes;
-        if (num == 1) {
+        ArrayList<Paciente> pacientes = new ArrayList<>();
+        if (num >= 1) {
             pacientes = pd.ListaPacientes(seleccion, ingreso, estado);
         } else {
             pacientes = pd.AdminPacientes(seleccion, ingreso, (estado - 1));
@@ -516,12 +550,13 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
                 } else {
                     estadoImp = "eliminado";
                 }
-                if (estado != 1) {
-                    modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getApellido(), recorrer.getDni(), recorrer.getGenero(), estadoImp});
-                } else {
+                if (estado == 1 || num >= 1) {
                     modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getApellido(), recorrer.getDni(), recorrer.getGenero()});
+                } else {
+                    modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getApellido(), recorrer.getDni(), recorrer.getGenero(), estadoImp});
+                    
                 }
-
+                
             }
             if (estado == 2) {
                 jBalta_baja.setEnabled(true);
@@ -532,22 +567,16 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
             }
         }
     }
-
-//    public void ordenamientoDeTabla() {
-//        //ordena la tabla segun donde le de click en la cabecera
-//        TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTComidas.getModel());
-//        jTComidas.setRowSorter(sorter);
-//
-//        jTComidas.getTableHeader().addMouseListener(new MouseAdapter() {
-//
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                if (e.getClickCount() == e.getClickCount()) {
-//                    int colum = jTComidas.columnAtPoint(e.getPoint());
-//                    sorter.toggleSortOrder(colum);
-//                    click += 1;
-//                }
-//            }
-//        });
-//    }
+    
+    private void detectorCerradoVentada() {
+        internalFrameListener = new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+                // This code will be executed when the second JInternalFrame is closed
+                borrarFila();
+                obtencionDeDatos();
+                filaS = -1;
+            }
+        };
+    }
 }
