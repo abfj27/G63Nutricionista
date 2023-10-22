@@ -24,6 +24,11 @@ public class FichaPaciente extends javax.swing.JInternalFrame {
         initComponents();
     }
 
+    public FichaPaciente(int dni) {
+        initComponents();
+        cargarDatos(dni);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -501,6 +506,26 @@ public class FichaPaciente extends javax.swing.JInternalFrame {
         jtBuscarDocumento.setText("");
         jDateVisita.setDate(null);
         jtPeso.setText("");
+    }
+
+    private void cargarDatos(int documento) {
+        PacienteData pdata = new PacienteData();
+        try {
+            Paciente pac = pdata.buscarPacienteDocumento(documento);
+            jtBuscarDocumento.setText(String.valueOf(pac.getDni()));
+            jlNombre.setText(pac.getNombre());
+            jlApellido.setText(pac.getApellido());
+            jlGenero.setText(pac.getGenero());
+            jlTelefono.setText(pac.getTelefono());
+            jlDireccion.setText(pac.getDomicilio());
+            jlMail.setText(pac.getEmail());
+            jlAltura.setText(String.valueOf(pac.getAltura()));
+            jlPeso.setText(String.valueOf(pac.getPesoActual()));
+            LocalDate fechaActual = LocalDate.now();
+            jDateVisita.setDate(Date.valueOf(fechaActual.toString()));
+        } catch (NullPointerException e) {
+            Utileria.mensaje("Error al cargar los datos del paciente");
+        }
     }
 
 } // LLAVE FINAL

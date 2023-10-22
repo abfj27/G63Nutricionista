@@ -217,6 +217,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="VER FICHA"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbFichaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbCerrar">
       <Properties>
@@ -236,6 +239,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="MODIFICAR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbModificarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>

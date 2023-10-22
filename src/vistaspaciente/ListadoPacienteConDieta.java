@@ -1,6 +1,7 @@
 package vistaspaciente;
 
 import controlDatos.DietaData;
+import controlDatos.PacienteData;
 import entidades.Dieta;
 import entidades.Paciente;
 import java.time.LocalDate;
@@ -8,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import stuff.Utileria;
+import vistas01.Escritorio0;
 
 public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
 
@@ -87,6 +90,11 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
 
         jbFicha.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jbFicha.setText("VER FICHA");
+        jbFicha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbFichaActionPerformed(evt);
+            }
+        });
 
         jbCerrar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jbCerrar.setText("CERRAR");
@@ -98,6 +106,11 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
 
         jbModificar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jbModificar.setText("MODIFICAR");
+        jbModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbModificarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setText("PACIENTES CON DIETAS");
@@ -180,6 +193,33 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbCerrarActionPerformed
 
+    private void jbFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFichaActionPerformed
+        if (jtListado.getSelectedRow() >= 0) {
+            PacienteData pdata = new PacienteData();
+            Paciente pac = pdata.buscarPacienteDocumento((int) jtListado.getValueAt(jtListado.getSelectedRow(), 5));
+            System.out.println(pac);
+            FichaPaciente fpVista = new FichaPaciente(pac.getDni());
+            Escritorio0.escritorio.add(fpVista);
+            fpVista.toFront();
+            fpVista.setVisible(true);
+        } else {
+            Utileria.mensaje("Debe seleccionar una fila de la tabla");
+        }    }//GEN-LAST:event_jbFichaActionPerformed
+
+    private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
+        if (jtListado.getSelectedRow() >= 0) {
+            PacienteData pdata = new PacienteData();
+            Paciente pac = pdata.buscarPacienteDocumento((int) jtListado.getValueAt(jtListado.getSelectedRow(), 5));
+            System.out.println(pac);
+            ModificarPaciente mpVista = new ModificarPaciente(pac.getDni());
+            Escritorio0.escritorio.add(mpVista);
+            mpVista.toFront();
+            mpVista.setVisible(true);
+        } else {
+            Utileria.mensaje("Debe seleccionar una fila de la tabla");
+        }
+    }//GEN-LAST:event_jbModificarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -209,8 +249,8 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
         modelo.addColumn("idPaciente");
         modelo.addColumn("idDieta");
         jtListado.setModel(modelo);
-        jtListado.getColumnModel().getColumn(5).setMinWidth(0);
-        jtListado.getColumnModel().getColumn(5).setMaxWidth(0);
+//        jtListado.getColumnModel().getColumn(5).setMinWidth(0);
+//        jtListado.getColumnModel().getColumn(5).setMaxWidth(0);
         jtListado.getColumnModel().getColumn(6).setMinWidth(0);
         jtListado.getColumnModel().getColumn(6).setMaxWidth(0);
         jtListado.getColumnModel().getColumn(7).setMinWidth(0);
@@ -235,7 +275,8 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
                 dieta.getPesoInicial(),
                 dieta.getPesoObjetivo(),
                 dieta.getFechaFinal(),
-                dieta.getFechaFinal(),});
+                dieta.getFechaFinal(),
+                paciente.getDni()});
         }
         jtListado.setModel(modelo);
     }
