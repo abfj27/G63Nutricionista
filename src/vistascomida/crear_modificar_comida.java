@@ -19,6 +19,7 @@ import stuff.Utileria;
 public class crear_modificar_comida extends javax.swing.JInternalFrame {
 
     private ComidaData cd = new ComidaData();
+    private int estadoReciv;
 
     /**
      * Creates new form crear_modificar_comida
@@ -29,6 +30,7 @@ public class crear_modificar_comida extends javax.swing.JInternalFrame {
             jLtitulo.setText("Crear Comida");
             jBguardar.setText("Guardar");
         } else {
+            estadoReciv = comida.getEstado();
             jLid.setText(String.valueOf(comida.getIdComida()));
             jTnombre.setText(comida.getNombre());
             jTdetalle.setText(comida.getDetalle());
@@ -177,7 +179,11 @@ public class crear_modificar_comida extends javax.swing.JInternalFrame {
         comida.setNombre(jTnombre.getText());
         comida.setDetalle(jTdetalle.getText());
         comida.setCalorias(Integer.valueOf(jTcalorias.getText()));
-        comida.setEstado(2);
+        if (jBguardar.getText() == "Modificar") {
+            comida.setEstado(estadoReciv);
+        } else {
+            comida.setEstado(2);
+        }
         if (jBguardar.getText().equals("Guardar")) {
             cd.cargarComida(comida);
         } else {

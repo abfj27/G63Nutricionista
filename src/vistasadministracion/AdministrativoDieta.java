@@ -357,9 +357,9 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         if (filaS != -1) {
             for (Integer re : filasS) {
                 if (estado == 1 || jTdietas.getValueAt(re, 6) == "false" || jTdietas.getValueAt(re, 6) == "eliminado") {
-                    dd.adminDarAlta(Integer.valueOf(jTdietas.getValueAt(re, 2).toString()));
+                    dd.adminDarAlta(Integer.valueOf(jTdietas.getValueAt(re, 2).toString()), LocalDate.parse(jTdietas.getValueAt(re, 4).toString()), LocalDate.parse(jTdietas.getValueAt(re, 5).toString()));
                 } else if (jTdietas.getValueAt(re, 6) == "true") {
-                    dd.adminDarBaja(Integer.valueOf(jTdietas.getValueAt(re, 2).toString()));
+                    dd.adminDarBaja(Integer.valueOf(jTdietas.getValueAt(re, 2).toString()), LocalDate.parse(jTdietas.getValueAt(re, 4).toString()), LocalDate.parse(jTdietas.getValueAt(re, 5).toString()));
                 }
             }
             borrarFila();
@@ -375,7 +375,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         int[] filasS = jTdietas.getSelectedRows();
         if (filaS != -1) {
             for (Integer re : filasS) {
-                dd.adminEliminar(Integer.valueOf(jTdietas.getValueAt(re, 2).toString()));
+                dd.adminEliminar(Integer.valueOf(jTdietas.getValueAt(re, 2).toString()), LocalDate.parse(jTdietas.getValueAt(re, 4).toString()), LocalDate.parse(jTdietas.getValueAt(re, 5).toString()));
             }
             borrarFila();
             obtencionDeDatos();

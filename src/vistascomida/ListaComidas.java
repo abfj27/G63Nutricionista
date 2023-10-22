@@ -9,6 +9,7 @@ import controlDatos.ComidaData;
 import entidades.Comida;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
@@ -34,8 +35,9 @@ public class ListaComidas extends javax.swing.JInternalFrame {
     };
 
     public ListaComidas() {
-        detectorCerradoVentada();
         initComponents();
+        detectorCerradoVentada();
+        jTComidas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.click = 1;
         Utileria utileria = new Utileria(click);
         Cabecera();
@@ -311,20 +313,23 @@ public class ListaComidas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         borrarFila();
         try {
-            if (jCbFiltrado.getSelectedIndex() == 0) {
-                borrarFila();
-            } else {
-                if (jRbActivos.isSelected() || jRbInactivos.isSelected() || jRbTodos.isSelected()) {
-                    if (jRbActivos.isSelected()) {
-                        this.estado = 2;
-                    } else if (jRbInactivos.isSelected()) {
-                        this.estado = 1;
-                    } else {
-                        this.estado = 0;
-                    }
-                    obtencionDeDatos();
+            if (jRbActivos.isSelected() || jRbInactivos.isSelected() || jRbTodos.isSelected()) {
+                if (jRbActivos.isSelected()) {
+                    this.estado = 2;
+                } else if (jRbInactivos.isSelected()) {
+                    this.estado = 1;
+                } else {
+                    this.estado = 0;
                 }
-
+            }
+            if (jCbFiltrado.getSelectedIndex() != 0 && !jRbActivos.isSelected() && !jRbInactivos.isSelected()) {
+                jRbTodos.setSelected(true);
+            }
+            obtencionDeDatos();
+            if (jCbFiltrado.getSelectedIndex() == 0) {
+                buttonGroup1.clearSelection();
+                jTingreso.setText("");
+                borrarFila();
             }
         } catch (NumberFormatException e) {
             return;
