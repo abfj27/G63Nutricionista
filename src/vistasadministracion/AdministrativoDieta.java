@@ -68,12 +68,12 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         jRbInactivos = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTdietas = new javax.swing.JTable();
-        jTbCerrar = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jBalta_baja = new javax.swing.JButton();
         jBeliminar = new javax.swing.JButton();
         jBver = new javax.swing.JButton();
+        jBcerrar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(770, 500));
 
@@ -134,13 +134,6 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTdietas);
 
-        jTbCerrar.setText("Cerrar");
-        jTbCerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTbCerrarActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Seleccionar filtrado:");
 
         jLabel3.setText("Ingrese que buscar:");
@@ -166,6 +159,13 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         jBver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBverActionPerformed(evt);
+            }
+        });
+
+        jBcerrar.setText("Cerrar");
+        jBcerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBcerrarActionPerformed(evt);
             }
         });
 
@@ -203,7 +203,7 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
                         .addGap(122, 122, 122)
                         .addComponent(jBver, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTbCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jBcerrar)))
                 .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addGap(262, 262, 262)
@@ -230,24 +230,15 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTbCerrar)
                     .addComponent(jBeliminar)
                     .addComponent(jBalta_baja)
-                    .addComponent(jBver))
+                    .addComponent(jBver)
+                    .addComponent(jBcerrar))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTbCerrarActionPerformed
-        // TODO add your handling code here:
-        Object[] op = {"Aceptar", "Cancelar"};
-        int i = JOptionPane.showOptionDialog(this, "Desea cerrar?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
-        if (i == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_jTbCerrarActionPerformed
 
     private void jTingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTingresoKeyReleased
         // TODO add your handling code here:
@@ -398,10 +389,20 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBverActionPerformed
 
+    private void jBcerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcerrarActionPerformed
+        // TODO add your handling code here:
+        Object[] op = {"Aceptar", "Cancelar"};
+        int i = JOptionPane.showOptionDialog(this, "Desea cerrar?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
+        if (i == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_jBcerrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBalta_baja;
+    private javax.swing.JButton jBcerrar;
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBver;
     private javax.swing.JComboBox<String> jCbFiltrado;
@@ -412,7 +413,6 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRbInactivos;
     private javax.swing.JRadioButton jRbTodos;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jTbCerrar;
     private javax.swing.JTable jTdietas;
     private javax.swing.JTextField jTingreso;
     // End of variables declaration//GEN-END:variables

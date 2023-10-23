@@ -24,7 +24,7 @@ import vistaspaciente.ModificarPaciente;
  * @author Equipo
  */
 public class AdministrativoPacientes extends javax.swing.JInternalFrame {
-    
+
     private int num;
     private Paciente pacEnv;
     private int click;
@@ -73,7 +73,7 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
         Cabecera();
         utileria.ordenamientoDeTabla(jTpacientes);
         cargarComboBox();
-        
+
     }
 
     /**
@@ -95,12 +95,12 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
         jRbInactivos = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTpacientes = new javax.swing.JTable();
-        jTbCerrar = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jBalta_baja = new javax.swing.JButton();
         jBeliminar = new javax.swing.JButton();
         jBver = new javax.swing.JButton();
+        jBcerrar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(700, 500));
         getContentPane().setLayout(new java.awt.GridBagLayout());
@@ -219,20 +219,6 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(18, 34, 0, 35);
         getContentPane().add(jScrollPane1, gridBagConstraints);
 
-        jTbCerrar.setText("Cerrar");
-        jTbCerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTbCerrarActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 16;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.ipadx = 16;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(68, 102, 30, 35);
-        getContentPane().add(jTbCerrar, gridBagConstraints);
-
         jLabel2.setText("Seleccionar filtrado:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
@@ -298,17 +284,21 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
         gridBagConstraints.insets = new java.awt.Insets(68, 46, 30, 0);
         getContentPane().add(jBver, gridBagConstraints);
 
+        jBcerrar.setText("Cerrar");
+        jBcerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBcerrarActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 16;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(68, 118, 30, 35);
+        getContentPane().add(jBcerrar, gridBagConstraints);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTbCerrarActionPerformed
-        // TODO add your handling code here:
-        Object[] op = {"Aceptar", "Cancelar"};
-        int i = JOptionPane.showOptionDialog(this, "Desea cerrar?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
-        if (i == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_jTbCerrarActionPerformed
 
     private void jTingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTingresoKeyReleased
         // TODO add your handling code here:
@@ -399,7 +389,7 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
             jBeliminar.setEnabled(true);
             jBver.setEnabled(true);
         }
-        
+
         if (estado == 0) {
             if (jTpacientes.getValueAt(filaS, 4) == "true" || jTpacientes.getValueAt(filaS, 4) == "false") {
                 jBalta_baja.setEnabled(true);
@@ -478,10 +468,20 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBverActionPerformed
 
+    private void jBcerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcerrarActionPerformed
+        // TODO add your handling code here:
+        Object[] op = {"Aceptar", "Cancelar"};
+        int i = JOptionPane.showOptionDialog(this, "Desea cerrar?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
+        if (i == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_jBcerrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBalta_baja;
+    private javax.swing.JButton jBcerrar;
     private javax.swing.JButton jBeliminar;
     private javax.swing.JButton jBver;
     private javax.swing.JComboBox<String> jCbFiltrado;
@@ -492,7 +492,6 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRbInactivos;
     private javax.swing.JRadioButton jRbTodos;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jTbCerrar;
     private javax.swing.JTextField jTingreso;
     private javax.swing.JTable jTpacientes;
     // End of variables declaration//GEN-END:variables
@@ -502,14 +501,14 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
         jCbFiltrado.addItem("apellido");
         jCbFiltrado.addItem("dni");
     }
-    
+
     private void borrarFila() {
         int filas = modelo.getRowCount() - 1;
         for (int i = filas; i >= 0; i--) {
             modelo.removeRow(i);
         }
     }
-    
+
     private void Cabecera() {
         modelo.setColumnCount(0);
         if (estado == 1 || (estado == 2 && num >= 1)) {
@@ -526,9 +525,9 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
             modelo.addColumn("Estado");
             jTpacientes.setModel(modelo);
         }
-        
+
     }
-    
+
     private void obtencionDeDatos() {
         String estadoImp;
         jBalta_baja.setEnabled(false);
@@ -554,9 +553,9 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
                     modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getApellido(), recorrer.getDni(), recorrer.getGenero()});
                 } else {
                     modelo.addRow(new Object[]{recorrer.getNombre(), recorrer.getApellido(), recorrer.getDni(), recorrer.getGenero(), estadoImp});
-                    
+
                 }
-                
+
             }
             if (estado == 2) {
                 jBalta_baja.setEnabled(true);
@@ -567,7 +566,7 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
             }
         }
     }
-    
+
     private void detectorCerradoVentada() {
         internalFrameListener = new InternalFrameAdapter() {
             @Override

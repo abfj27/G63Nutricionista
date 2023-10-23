@@ -63,13 +63,13 @@ public class ListaComidas extends javax.swing.JInternalFrame {
         jRbInactivos = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTComidas = new javax.swing.JTable();
-        jTbCerrar = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jBalta = new javax.swing.JButton();
         jBmodificar = new javax.swing.JButton();
         jBnuevo = new javax.swing.JButton();
         jBbaja = new javax.swing.JButton();
+        jBcerrar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(700, 500));
 
@@ -130,13 +130,6 @@ public class ListaComidas extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTComidas);
 
-        jTbCerrar.setText("Cerrar");
-        jTbCerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTbCerrarActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Seleccionar filtrado:");
 
         jLabel3.setText("Ingrese que buscar:");
@@ -169,6 +162,13 @@ public class ListaComidas extends javax.swing.JInternalFrame {
         jBbaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBbajaActionPerformed(evt);
+            }
+        });
+
+        jBcerrar.setText("Cerrar");
+        jBcerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBcerrarActionPerformed(evt);
             }
         });
 
@@ -209,11 +209,13 @@ public class ListaComidas extends javax.swing.JInternalFrame {
                             .addComponent(jBalta, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBbaja, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBbaja, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 437, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jBmodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jTbCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jBcerrar)))))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -240,23 +242,14 @@ public class ListaComidas extends javax.swing.JInternalFrame {
                     .addComponent(jBbaja))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTbCerrar)
                     .addComponent(jBnuevo)
-                    .addComponent(jBmodificar))
+                    .addComponent(jBmodificar)
+                    .addComponent(jBcerrar))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTbCerrarActionPerformed
-        // TODO add your handling code here:
-        Object[] op = {"Aceptar", "Cancelar"};
-        int i = JOptionPane.showOptionDialog(this, "Desea cerrar?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
-        if (i == JOptionPane.YES_OPTION) {
-            this.dispose();
-        }
-    }//GEN-LAST:event_jTbCerrarActionPerformed
 
     private void jTingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTingresoKeyReleased
         // TODO add your handling code here:
@@ -399,11 +392,21 @@ public class ListaComidas extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBbajaActionPerformed
 
+    private void jBcerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcerrarActionPerformed
+        // TODO add your handling code here:
+        Object[] op = {"Aceptar", "Cancelar"};
+        int i = JOptionPane.showOptionDialog(this, "Desea cerrar?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
+        if (i == JOptionPane.YES_OPTION) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_jBcerrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jBalta;
     private javax.swing.JButton jBbaja;
+    private javax.swing.JButton jBcerrar;
     private javax.swing.JButton jBmodificar;
     private javax.swing.JButton jBnuevo;
     private javax.swing.JComboBox<String> jCbFiltrado;
@@ -415,7 +418,6 @@ public class ListaComidas extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jRbTodos;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTComidas;
-    private javax.swing.JToggleButton jTbCerrar;
     private javax.swing.JTextField jTingreso;
     // End of variables declaration//GEN-END:variables
 
