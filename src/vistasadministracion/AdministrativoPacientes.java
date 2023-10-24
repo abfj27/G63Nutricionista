@@ -200,8 +200,8 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
             }
         ));
         jTpacientes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTpacientesMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTpacientesMouseReleased(evt);
             }
         });
         jScrollPane1.setViewportView(jTpacientes);
@@ -382,25 +382,6 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jCbFiltradoActionPerformed
 
-    private void jTpacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTpacientesMouseClicked
-        // TODO add your handling code here:
-        filaS = jTpacientes.getSelectedRow();
-        if (estado != 1) {
-            jBeliminar.setEnabled(true);
-            jBver.setEnabled(true);
-        }
-
-        if (estado == 0) {
-            if (jTpacientes.getValueAt(filaS, 4) == "true" || jTpacientes.getValueAt(filaS, 4) == "false") {
-                jBalta_baja.setEnabled(true);
-                jBeliminar.setEnabled(true);
-            } else if (jTpacientes.getValueAt(filaS, 4) == "eliminado") {
-                jBalta_baja.setEnabled(true);
-                jBeliminar.setEnabled(false);
-            }
-        }
-    }//GEN-LAST:event_jTpacientesMouseClicked
-
     private void jBalta_bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalta_bajaActionPerformed
         // TODO add your handling code here:
         int[] filasS = jTpacientes.getSelectedRows();
@@ -476,6 +457,24 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jBcerrarActionPerformed
+
+    private void jTpacientesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTpacientesMouseReleased
+        // TODO add your handling code here:
+        filaS = jTpacientes.getSelectedRow();
+        if (estado != 1) {
+            jBeliminar.setEnabled(true);
+            jBver.setEnabled(true);
+        }
+        if (estado == 0) {
+            if (jTpacientes.getValueAt(filaS, 4) == "true" || jTpacientes.getValueAt(filaS, 4) == "false") {
+                jBalta_baja.setEnabled(true);
+                jBeliminar.setEnabled(true);
+            } else if (jTpacientes.getValueAt(filaS, 4) == "eliminado") {
+                jBalta_baja.setEnabled(true);
+                jBeliminar.setEnabled(false);
+            }
+        }
+    }//GEN-LAST:event_jTpacientesMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
