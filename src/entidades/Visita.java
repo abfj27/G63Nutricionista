@@ -79,5 +79,10 @@ public class Visita {
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return "idDieta=" + Dieta.getIdDieta() + ", id.Paciente=" + Paciente.getIdPaciente() + ", peso=" + peso + ", fecha=" + fecha + ", idVisita=" + idVisita + ", estado=" + estado;
+    }
+
     
 }

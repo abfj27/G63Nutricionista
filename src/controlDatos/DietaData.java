@@ -2,6 +2,7 @@ package controlDatos;
 
 import entidades.Dieta;
 import entidades.Paciente;
+import entidades.Visita;
 import java.util.List;
 import java.sql.Connection;
 import java.sql.Date;
@@ -597,4 +598,101 @@ public class DietaData {
         return sql;
     }
 //
+
+    public List<Dieta> dietasFiltrar(int check, String ingreso) {
+        ArrayList<Dieta> dietas = new ArrayList<>();
+        String sql = "";
+        switch (check) {
+            case 1:
+            case 2:
+                if (ingreso.isEmpty()) {
+                    sql = "Select d.* from dieta d where d.estado=2 and fechaFinal<=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+                } else {
+                    sql = "Select d.* from dieta d where d.idPaciente in (SELECT idPaciente from paciente where apellido like ?) and d.estado=2 and d.fechaFinal<=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+                }
+                break;
+            case 3:
+                if (ingreso.isEmpty()) {
+                    sql = "Select d.* from dieta d where d.estado=2 and fechaFinal>=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+                } else {
+                    sql = "Select d.* from dieta d where d.idPaciente in (SELECT idPaciente from paciente where apellido like ?) and d.estado=2 and d.fechaFinal>=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+                }
+                break;
+            default:
+                if (ingreso.isEmpty()) {
+                    sql = "Select d.* from dieta d where d.estado=2 and d.fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+                } else {
+                    sql = "Select d.* from dieta d where d.idPaciente in (SELECT idPaciente from paciente where apellido like ?) and d.estado=2 and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+                }
+                
+        }
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            if (!ingreso.isEmpty()) {
+                ps.setString(1, ingreso + "%");
+            }
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                PacienteData pd = new PacienteData();
+                Dieta dieta = new Dieta();
+                dieta.setIdDieta(rs.getInt("idDieta"));
+                dieta.setPaciente(pd.buscarPacienteCodigo(rs.getInt("idPaciente")));
+                dieta.setPesoInicial(rs.getFloat("pesoInicial"));
+                dieta.setPesoObjetivo(rs.getFloat("pesoObjetivo"));
+                dieta.setFechaInicial(rs.getDate("fechaInicial").toLocalDate());
+                dieta.setFechaFinal(rs.getDate("fechaFinal").toLocalDate());
+                dieta.setEstado(rs.getInt("estado"));
+                dietas.add(dieta);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+        //verificacion por peso de ultima visita
+        ArrayList<Dieta> dietasVeri = new ArrayList<>();
+
+        for (Dieta re : dietas) {
+            Visita uv = ultimaVisita(re.getPaciente().getIdPaciente());
+            switch (check) {
+                case 1:
+                    if (uv.getPeso() >= re.getPesoObjetivo() - 5 && uv.getPeso() <= re.getPesoObjetivo() + 5) {
+                        dietasVeri.add(re);
+                    }
+                    break;
+                case 2:
+                    if (uv.getPeso() < re.getPesoObjetivo() - 5 || uv.getPeso() > re.getPesoObjetivo() + 5) {
+                        dietasVeri.add(re);
+                    }
+                    break;
+                case 3:
+                default:
+                    dietasVeri.add(re);
+            }
+        }
+        return dietasVeri;
+    }
+
+    private Visita ultimaVisita(int idPaciente) {
+        Visita visita = null;
+        String sql = "SELECT * FROM visita v where v.estado=2 and v.idPaciente=? and v.fecha=(SELECT max(fecha) from visita v2 where v2.idPaciente=v.idPaciente)";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, idPaciente);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                PacienteData pd = new PacienteData();
+                visita = new Visita();
+                visita.setIdVisita(rs.getInt("idVisita"));
+                visita.setDieta(buscarDietaXid(rs.getInt("idDieta")));
+                visita.setPaciente(pd.buscarPacienteCodigo(rs.getInt("idPaciente")));
+                visita.setPeso(rs.getFloat("peso"));
+                visita.setFecha(rs.getDate("fecha").toLocalDate());
+                visita.setEstado(rs.getInt("estado"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return visita;
+    }
 }

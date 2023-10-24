@@ -30,7 +30,7 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
 
         armarCabecera();
         actualizarTabla();
-                Utileria.ajustarTabla(jtListado);
+        Utileria.ajustarTabla(jtListado);
     }
 
     @SuppressWarnings("unchecked")
@@ -210,21 +210,59 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
             Utileria.mensaje("Debe seleccionar una fila de la tabla");
         }    }//GEN-LAST:event_jbFichaActionPerformed
 
+    private void jtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtFiltroKeyReleased
+//        filtrarTabla();
+        borrarFilas();
+        String ingreso = jtFiltro.getText();
+        int check;
+        if (jrCompleta.isSelected()) {
+            check = 1;
+        } else if (jrIncompleta.isSelected()) {
+            check = 2;
+        } else if (jrCurso.isSelected()) {
+            check = 3;
+        } else {
+            check = 4;
+        }
+        prueba(check, ingreso);
+        System.out.println("hola");    }//GEN-LAST:event_jtFiltroKeyReleased
+
     private void jrCompletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrCompletaActionPerformed
-        filtrarTabla();    }//GEN-LAST:event_jrCompletaActionPerformed
+        // TODO add your handling code here:
+        borrarFilas();
+        String ingreso = jtFiltro.getText();
+        int check = 1;
+        prueba(check, ingreso);
+
+//        filtrarTabla();
+    }//GEN-LAST:event_jrCompletaActionPerformed
 
     private void jrIncompletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrIncompletaActionPerformed
-        filtrarTabla();    }//GEN-LAST:event_jrIncompletaActionPerformed
+        // TODO add your handling code here:
+//        filtrarTabla();
+        borrarFilas();
+        String ingreso = jtFiltro.getText();
+        int check = 2;
+        prueba(check, ingreso);
+    }//GEN-LAST:event_jrIncompletaActionPerformed
 
     private void jrCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrCursoActionPerformed
-        filtrarTabla();    }//GEN-LAST:event_jrCursoActionPerformed
+        // TODO add your handling code here:
+//        filtrarTabla();
+        borrarFilas();
+        String ingreso = jtFiltro.getText();
+        int check = 3;
+        prueba(check, ingreso);
+    }//GEN-LAST:event_jrCursoActionPerformed
 
     private void jrTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrTodosActionPerformed
-        filtrarTabla();    }//GEN-LAST:event_jrTodosActionPerformed
-
-    private void jtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtFiltroKeyReleased
-        filtrarTabla();
-        System.out.println("hola");    }//GEN-LAST:event_jtFiltroKeyReleased
+        // TODO add your handling code here:
+//        filtrarTabla();
+        borrarFilas();
+        String ingreso = jtFiltro.getText();
+        int check = 4;
+        prueba(check, ingreso);
+    }//GEN-LAST:event_jrTodosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -271,7 +309,7 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
         borrarFilas();
         List<Dieta> dietas = new ArrayList<>();
         agregarDietasATabla(dietas);
-               Utileria.ajustarTabla(jtListado);
+        Utileria.ajustarTabla(jtListado);
     }
 
     private void filtrarTabla() {
@@ -377,6 +415,16 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
         jtListado.setModel(modelo);
     }
 
-
+    private void prueba(int check, String ingreso) {
+        DietaData dd = new DietaData();
+        ArrayList<Dieta> dietas = new ArrayList<>(dd.dietasFiltrar(check, ingreso));
+        for (Dieta re : dietas) {
+            modelo.addRow(new Object[]{re.getPaciente().getNombre() + " " + re.getPaciente().getApellido(),
+                re.getPesoInicial(),
+                re.getPesoObjetivo(),
+                re.getFechaInicial(),
+                re.getFechaFinal(),});
+        }
+    }
 }   //LLAVE FINAL
 

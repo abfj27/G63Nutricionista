@@ -11,7 +11,7 @@ public class G63Nutricionista {
         DietaData cd = new DietaData();
 //        System.out.println(cd.buscarComida("Pollo con arroz",350));
 //        System.out.println(cd.adminDieta("nombre paciente", "", 0));
-        System.out.println(cd.dietaFechaFinalMax(1233));
+//        System.out.println(cd.ultimaVisita(1));
     }
     
 }
