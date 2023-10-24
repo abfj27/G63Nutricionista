@@ -546,5 +546,55 @@ public class DietaData {
         }
         return dieta;
     }
-    //
+
+    public List<Dieta> pacienteDieta(int check, String apellido) {
+        List<Dieta> lista = new ArrayList<>();
+        PacienteData pdata = new PacienteData();
+        String sql = SQLpacienteDieta(check, apellido);
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Dieta dieta = new Dieta();
+                Paciente paciente = new Paciente();
+                dieta.setNombre(rs.getString(1));
+                paciente = pdata.buscarPacienteCodigo(rs.getInt(2));
+                dieta.setPaciente(paciente);
+                dieta.setPesoInicial(rs.getDouble(3));
+                dieta.setPesoObjetivo(rs.getDouble(4));
+                dieta.setFechaInicial(rs.getDate(5).toLocalDate());
+                dieta.setFechaFinal(rs.getDate(6).toLocalDate());
+                dieta.setIdDieta(rs.getInt(7));
+                dieta.setEstado(rs.getInt(8));
+                lista.add(dieta);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
+
+    private String SQLpacienteDieta(int check, String apellido) {
+        String sql = "";
+        switch (check) {
+            case 1: // completado
+                sql = "SELECT dieta.*, paciente.apellido FROM dieta JOIN paciente ON(paciente.idPaciente=dieta.idPaciente)\n"
+                        + "WHERE dieta.estado >= 1  AND paciente.apellido LIKE '" + apellido + "%' AND fechaFinal <= CURDATE()";
+                break;
+            case 2: // incompleto
+                sql = "SELECT dieta.*, paciente.apellido FROM dieta JOIN paciente ON(paciente.idPaciente=dieta.idPaciente)\n"
+                        + "WHERE dieta.estado >= 1  AND paciente.apellido LIKE '" + apellido + "%' AND fechaFinal <= CURDATE()";
+                break;
+            case 3: // curso
+                sql = "SELECT dieta.*, paciente.apellido FROM dieta JOIN paciente ON(paciente.idPaciente=dieta.idPaciente)\n"
+                        + "WHERE dieta.estado >= 1  AND paciente.apellido LIKE '" + apellido + "%' AND fechaFinal > CURDATE()";
+                break;
+            default:    // todos
+                sql = "SELECT * from dieta WHERE dieta.estado >= 1  AND paciente.apellido LIKE '" + apellido + "%'";
+        }
+        return sql;
+    }
+//
 }
