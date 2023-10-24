@@ -42,6 +42,15 @@ public class DietaData {
                 dieta.setIdDieta(rs.getInt(1));
                 Utileria.mensaje("Dieta cargada satisfactoriamente...");
             }
+            VisitaData vdata = new VisitaData();
+            Visita vis = new Visita();
+            System.out.println(dieta.getIdDieta());
+            vis.setPaciente(dieta.getPaciente());
+            vis.setDieta(dieta);
+            vis.setPeso(dieta.getPesoInicial());
+            vis.setFecha(dieta.getFechaInicial());
+            vis.setEstado(2);
+            vdata.cargarVisita(vis);
             rs.close();
             ps.close();
         } catch (SQLIntegrityConstraintViolationException ex) {
@@ -624,7 +633,7 @@ public class DietaData {
                 } else {
                     sql = "Select d.* from dieta d where d.idPaciente in (SELECT idPaciente from paciente where apellido like ?) and d.estado=2 and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
                 }
-                
+
         }
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
@@ -644,30 +653,34 @@ public class DietaData {
                 dieta.setEstado(rs.getInt("estado"));
                 dietas.add(dieta);
             }
+            rs.close();
+            ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
         //verificacion por peso de ultima visita
         ArrayList<Dieta> dietasVeri = new ArrayList<>();
-
         for (Dieta re : dietas) {
             Visita uv = ultimaVisita(re.getPaciente().getIdPaciente());
-            switch (check) {
-                case 1:
-                    if (uv.getPeso() >= re.getPesoObjetivo() - 5 && uv.getPeso() <= re.getPesoObjetivo() + 5) {
+            try {
+                switch (check) {
+                    case 1:
+                        if (uv.getPeso() >= re.getPesoObjetivo() - 5 && uv.getPeso() <= re.getPesoObjetivo() + 5) {
+                            dietasVeri.add(re);
+                        }
+                        break;
+                    case 2:
+                        if (uv.getPeso() < re.getPesoObjetivo() - 5 || uv.getPeso() > re.getPesoObjetivo() + 5) {
+                            dietasVeri.add(re);
+                        }
+                        break;
+                    case 3:
+                    default:
                         dietasVeri.add(re);
-                    }
-                    break;
-                case 2:
-                    if (uv.getPeso() < re.getPesoObjetivo() - 5 || uv.getPeso() > re.getPesoObjetivo() + 5) {
-                        dietasVeri.add(re);
-                    }
-                    break;
-                case 3:
-                default:
-                    dietasVeri.add(re);
+                }
+            } catch (NullPointerException e) {
+
             }
         }
         return dietasVeri;
@@ -690,6 +703,8 @@ public class DietaData {
                 visita.setFecha(rs.getDate("fecha").toLocalDate());
                 visita.setEstado(rs.getInt("estado"));
             }
+            rs.close();
+            ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
         }
