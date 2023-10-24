@@ -401,7 +401,7 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
                 Utileria.mensaje("Debe seleccionar una fila");
             }
         } else if (jBalta_baja.getText().equals("Modificar")) {
-            if (filaS != -1) {
+            if (filaS != -1) {                
                 int dni = pd.buscarPacienteDocumento(Integer.valueOf(jTpacientes.getValueAt(filaS, 2).toString())).getDni();
                 ModificarPaciente ven = new ModificarPaciente(dni, 1);
                 ven.addInternalFrameListener(internalFrameListener);
@@ -412,8 +412,9 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
                 Utileria.mensaje("Debe seleccionar una fila");
             }
         } else {
-            if (filaS != -1) {
-                int dni = pd.buscarPacienteDocumento(Integer.valueOf(jTpacientes.getValueAt(filaS, 2).toString())).getDni();
+           // if (filaS != -1) {
+                if (jTpacientes.getSelectedRow()>=0){
+                    int dni = pd.buscarPacienteDocumento(Integer.valueOf(jTpacientes.getValueAt(jTpacientes.getSelectedRow(), 2).toString())).getDni();
                 NuevaDietaVen.recibir(dni);
                 this.dispose();
             } else {
