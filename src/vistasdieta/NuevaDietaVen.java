@@ -34,6 +34,9 @@ public class NuevaDietaVen extends javax.swing.JInternalFrame {
         jtDocumento.setText(String.valueOf(dni));
         jtDocumento.setEditable(false);
         jbBuscar.setEnabled(false);
+        Dieta dieta = new Dieta();
+        this.dietaV = dieta;
+        prepararVentana(dieta);
     }
 
     @SuppressWarnings("unchecked")
