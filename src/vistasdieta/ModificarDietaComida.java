@@ -1,4 +1,4 @@
-package vistas2;
+package vistasdieta;
 
 import controlDatos.DietaComidaData;
 import entidades.DietaComida;

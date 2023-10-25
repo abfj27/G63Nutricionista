@@ -9,8 +9,6 @@ import javax.swing.event.InternalFrameEvent;
 import javax.swing.table.DefaultTableModel;
 import stuff.Utileria;
 import vistas01.Escritorio0;
-import vistas2.ModificarComidaEnDieta;
-import static vistas2.escritorioTestAle.escritorioAl;
 
 public class ListaDietaVen extends javax.swing.JInternalFrame {
 
@@ -22,11 +20,8 @@ public class ListaDietaVen extends javax.swing.JInternalFrame {
 
     public ListaDietaVen() {
         initComponents();
-//        cargarCombo();
         armarCabecera();
         jcBox.setSelectedIndex(-1);
-//        DietaData ddata = new DietaData();
-//        actualizarTabla(ddata.listaDietas());
     }
 
     @SuppressWarnings("unchecked")
@@ -169,7 +164,6 @@ public class ListaDietaVen extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbCerrarActionPerformed
 
     private void jbNuevaDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevaDietaActionPerformed
-//        DietaData ddata = new DietaData();
         Dieta dieta = new Dieta();
         NuevaDietaVen ven = new NuevaDietaVen(dieta);
         Escritorio0.escritorio.add(ven);
@@ -188,7 +182,6 @@ public class ListaDietaVen extends javax.swing.JInternalFrame {
         } else {
             Utileria.mensaje("Debe seleccionar una fila de la tabla");
         }
-//        actualizarTabla(ddata.listaDietasEnAlta());
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDetalleActionPerformed
@@ -209,8 +202,6 @@ public class ListaDietaVen extends javax.swing.JInternalFrame {
         if (jcBox.getSelectedIndex() == 0) {
             actualizarTabla(ddata.listaDietasEnAlta());
         } else if (!jtxt.getText().equals("Busqueda")) {
-            System.out.println("filtro: " + jcBox.getSelectedIndex() + ", buscando: " + jtxt.getText());
-            //comando para buscar
             actualizarTabla(ddata.listaDietas2(jtxt.getText(), jcBox.getSelectedIndex()));
         }
     }//GEN-LAST:event_jcBoxActionPerformed
@@ -224,10 +215,8 @@ public class ListaDietaVen extends javax.swing.JInternalFrame {
     private void jtxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtxtKeyReleased
         DietaData ddata = new DietaData();
         if (jcBox.getSelectedIndex() <= 0) {
-            //no pasa nada
+            
         } else {
-            System.out.println("filtro: " + jcBox.getSelectedIndex() + ", buscando: " + jtxt.getText());
-            //comando para buscar
             actualizarTabla(ddata.listaDietas2(jtxt.getText(), jcBox.getSelectedIndex()));
         }
     }//GEN-LAST:event_jtxtKeyReleased
@@ -292,6 +281,5 @@ public class ListaDietaVen extends javax.swing.JInternalFrame {
         }
     }
 
-    
 //
 } // llave final

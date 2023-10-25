@@ -1,5 +1,6 @@
-package vistas2;
+package vistasdieta;
 
+import vistasdieta.ModificarDietaComida;
 import controlDatos.ComidaData;
 import controlDatos.DietaComidaData;
 import controlDatos.DietaData;

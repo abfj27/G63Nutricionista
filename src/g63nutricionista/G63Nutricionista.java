@@ -1,17 +1,13 @@
 package g63nutricionista;
 
-import controlDatos.ComidaData;
-import controlDatos.DietaData;
-import controlDatos.PacienteData;
-import entidades.Paciente;
+import vistas01.Escritorio0;
 
 public class G63Nutricionista {
-    
+
     public static void main(String[] args) {
-        DietaData cd = new DietaData();
-//        System.out.println(cd.buscarComida("Pollo con arroz",350));
-//        System.out.println(cd.adminDieta("nombre paciente", "", 0));
-//        System.out.println(cd.ultimaVisita(1));
-    }
-    
-}
+        Escritorio0 escitorio = new Escritorio0();
+        escitorio.setVisible(true);
+
+    } // llave main
+
+} // llave clase
