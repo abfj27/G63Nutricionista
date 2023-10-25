@@ -293,8 +293,9 @@ public class AdministrativoPacientes extends javax.swing.JInternalFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 16;
         gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(68, 118, 30, 35);
+        gridBagConstraints.insets = new java.awt.Insets(68, 110, 30, 35);
         getContentPane().add(jBcerrar, gridBagConstraints);
 
         pack();

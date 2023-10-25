@@ -263,7 +263,7 @@ public class DetallesDieta extends javax.swing.JInternalFrame {
         if (tableComidas.getSelectedRow() >= 0) {
             // comandos para traer cosas de la comida seleccionada en la tabla
             String nombre = (String) tableComidas.getValueAt(tableComidas.getSelectedRow(), 0);
-            int calorias = (int) tableComidas.getValueAt(tableComidas.getSelectedRow(), 3);
+            int calorias = (int) tableComidas.getValueAt(tableComidas.getSelectedRow(), 1);
             Comida com = cdata.buscarComida(nombre, calorias);
             Utileria.mensaje(com.getDetalle());
         } else {
