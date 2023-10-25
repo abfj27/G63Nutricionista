@@ -201,7 +201,7 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
         if (jtListado.getSelectedRow() >= 0) {
             PacienteData pdata = new PacienteData();
             Paciente pac = pdata.buscarPacienteDocumento((int) jtListado.getValueAt(jtListado.getSelectedRow(), 5));
-            System.out.println(pac);
+//            System.out.println(pac);
             FichaPaciente fpVista = new FichaPaciente(pac.getDni());
             Escritorio0.escritorio.add(fpVista);
             fpVista.toFront();
@@ -423,7 +423,10 @@ public class ListadoPacienteConDieta extends javax.swing.JInternalFrame {
                 re.getPesoInicial(),
                 re.getPesoObjetivo(),
                 re.getFechaInicial(),
-                re.getFechaFinal(),});
+                re.getFechaFinal(),
+                re.getPaciente().getDni(),
+                re.getPaciente().getIdPaciente(),
+                re.getIdDieta()});
         }
     }
 }   //LLAVE FINAL

@@ -688,7 +688,7 @@ public class DietaData {
 
     private Visita ultimaVisita(int idPaciente) {
         Visita visita = null;
-        String sql = "SELECT * FROM visita v where v.estado=2 and v.idPaciente=? and v.fecha=(SELECT max(fecha) from visita v2 where v2.idPaciente=v.idPaciente)";
+        String sql = "SELECT * FROM visita v where v.estado=2 and v.idPaciente=? and v.fecha=(SELECT max(fecha) from visita v2 where v2.idPaciente=v.idPaciente) and v.idVisita=(Select max(v3.idVisita) from visita v3 where v3.idPaciente=v.idPaciente)";
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
             ps.setInt(1, idPaciente);
