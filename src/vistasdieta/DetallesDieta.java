@@ -1,8 +1,12 @@
 package vistasdieta;
 
+import controlDatos.ComidaData;
+import controlDatos.DietaComidaData;
 import controlDatos.DietaData;
 import controlDatos.PacienteData;
+import entidades.Comida;
 import entidades.Dieta;
+import entidades.DietaComida;
 import entidades.Paciente;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
@@ -29,6 +33,15 @@ public class DetallesDieta extends javax.swing.JInternalFrame {
         armarCabecera();
         borrarFilas();
         // Comandos para cargar la trabla
+        DietaComidaData dcd = new DietaComidaData();
+        for (DietaComida dc : dcd.listaComidasEnDieta(dietaV.getIdDieta())) {
+            modelo.addRow(new Object[]{
+                dc.getComida().getNombre(),
+                dc.getHorario(),
+                dc.getPorcion(),
+                dc.getComida().getCalorias()
+            });
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -246,8 +259,13 @@ public class DetallesDieta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbCerrarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ComidaData cdata = new ComidaData();
         if (tableComidas.getSelectedRow() >= 0) {
             // comandos para traer cosas de la comida seleccionada en la tabla
+            String nombre = (String) tableComidas.getValueAt(tableComidas.getSelectedRow(), 0);
+            int calorias = (int) tableComidas.getValueAt(tableComidas.getSelectedRow(), 3);
+            Comida com = cdata.buscarComida(nombre, calorias);
+            Utileria.mensaje(com.getDetalle());
         } else {
             Utileria.mensaje("Debe seleccionar una fila de la tabla");
         }
