@@ -37,9 +37,9 @@ public class DetallesDieta extends javax.swing.JInternalFrame {
         for (DietaComida dc : dcd.listaComidasEnDieta(dietaV.getIdDieta())) {
             modelo.addRow(new Object[]{
                 dc.getComida().getNombre(),
-                dc.getHorario(),
+                dc.getComida().getCalorias(),
                 dc.getPorcion(),
-                dc.getComida().getCalorias()
+                dc.getHorario()
             });
         }
     }
@@ -72,7 +72,7 @@ public class DetallesDieta extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableComidas = new javax.swing.JTable();
         jbCerrar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbDetalle = new javax.swing.JButton();
 
         jLabel1.setText("Nombre Dieta:");
 
@@ -132,10 +132,10 @@ public class DetallesDieta extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Detalle");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbDetalle.setText("Detalle");
+        jbDetalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbDetalleActionPerformed(evt);
             }
         });
 
@@ -192,7 +192,7 @@ public class DetallesDieta extends javax.swing.JInternalFrame {
                                     .addComponent(jSeparator1))))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(jbDetalle)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbCerrar)))
                 .addContainerGap())
@@ -243,7 +243,7 @@ public class DetallesDieta extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCerrar)
-                    .addComponent(jButton2))
+                    .addComponent(jbDetalle))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -258,7 +258,7 @@ public class DetallesDieta extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbCerrarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbDetalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDetalleActionPerformed
         ComidaData cdata = new ComidaData();
         if (tableComidas.getSelectedRow() >= 0) {
             // comandos para traer cosas de la comida seleccionada en la tabla
@@ -269,10 +269,9 @@ public class DetallesDieta extends javax.swing.JInternalFrame {
         } else {
             Utileria.mensaje("Debe seleccionar una fila de la tabla");
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbDetalleActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -287,6 +286,7 @@ public class DetallesDieta extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton jbCerrar;
+    private javax.swing.JButton jbDetalle;
     private javax.swing.JLabel jlApellido;
     private javax.swing.JLabel jlDocumento;
     private javax.swing.JLabel jlFechaFinal;
