@@ -36,7 +36,7 @@ public class Escritorio0 extends javax.swing.JFrame {
         jmAdmComidas = new javax.swing.JMenuItem();
         jmAdmPacientes = new javax.swing.JMenuItem();
         jmAdmDietas = new javax.swing.JMenuItem();
-        jmbSalir = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,13 +163,13 @@ public class Escritorio0 extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jmbSalir.setText("Salir");
-        jmbSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmbSalirActionPerformed(evt);
+        jMenu5.setText("Salir");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
             }
         });
-        jMenuBar1.add(jmbSalir);
+        jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
 
@@ -289,8 +289,16 @@ public class Escritorio0 extends javax.swing.JFrame {
         escritorio.moveToFront(ven);
     }//GEN-LAST:event_jmAdmDietasActionPerformed
 
-    private void jmbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmbSalirActionPerformed
-        int option = JOptionPane.showConfirmDialog(
+    private void jmListaPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListaPacientesActionPerformed
+        AdministrativoPacientes ven = new AdministrativoPacientes(2);
+        escritorio.removeAll();
+        escritorio.repaint();
+        ven.setVisible(true);
+        escritorio.add(ven);
+        escritorio.moveToFront(ven);    }//GEN-LAST:event_jmListaPacientesActionPerformed
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+         int option = JOptionPane.showConfirmDialog(
                 this,
                 "¿Estás seguro de que quieres cerrar la aplicación?",
                 "Confirmación de cierre",
@@ -299,15 +307,7 @@ public class Escritorio0 extends javax.swing.JFrame {
         if (option == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
-    }//GEN-LAST:event_jmbSalirActionPerformed
-
-    private void jmListaPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListaPacientesActionPerformed
-        AdministrativoPacientes ven = new AdministrativoPacientes(2);
-        escritorio.removeAll();
-        escritorio.repaint();
-        ven.setVisible(true);
-        escritorio.add(ven);
-        escritorio.moveToFront(ven);    }//GEN-LAST:event_jmListaPacientesActionPerformed
+    }//GEN-LAST:event_jMenu5MouseClicked
 
     /**
      * @param args the command line arguments
@@ -350,6 +350,7 @@ public class Escritorio0 extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jmAdmComidas;
     private javax.swing.JMenuItem jmAdmDietas;
@@ -363,6 +364,5 @@ public class Escritorio0 extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmNuevaDieta;
     private javax.swing.JMenuItem jmNuevoPaciente;
     private javax.swing.JMenuItem jmPacientesDieta;
-    private javax.swing.JMenu jmbSalir;
     // End of variables declaration//GEN-END:variables
 }
