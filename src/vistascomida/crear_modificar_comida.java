@@ -76,12 +76,6 @@ public class crear_modificar_comida extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Calorias:");
 
-        jTcalorias.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTcaloriasKeyTyped(evt);
-            }
-        });
-
         jBcerrar.setText("Cerrar");
         jBcerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,40 +163,36 @@ public class crear_modificar_comida extends javax.swing.JInternalFrame {
     private void jBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBguardarActionPerformed
         // TODO add your handling code here:
         Comida comida = new Comida();
-        if (jBguardar.getText() == "Modificar") {
-            comida.setIdComida(Integer.valueOf(jLid.getText()));
-        }
-        if (jTnombre.getText().isEmpty() || jTdetalle.getText().isEmpty() || jTcalorias.getText().isEmpty()) {
-            Utileria.mensaje("No se permite campos vacios");
-            return;
-        }
-        comida.setNombre(jTnombre.getText());
-        comida.setDetalle(jTdetalle.getText());
-        comida.setCalorias(Integer.valueOf(jTcalorias.getText()));
-        if (jBguardar.getText() == "Modificar") {
-            comida.setEstado(estadoReciv);
-        } else {
-            comida.setEstado(2);
-        }
-        if (jBguardar.getText().equals("Guardar")) {
-            cd.cargarComida(comida);
-        } else {
-            cd.modificarComida(comida);
-        }
-        if (jBguardar.getText().equals("Modificar")) {
-            dispose();
-        }
-        limpiarCampos();
-    }//GEN-LAST:event_jBguardarActionPerformed
+        try {
+            if (jBguardar.getText() == "Modificar") {
+                comida.setIdComida(Integer.valueOf(jLid.getText()));
+            }
+            if (jTnombre.getText().isEmpty() || jTdetalle.getText().isEmpty() || jTcalorias.getText().isEmpty()) {
+                Utileria.mensaje("No se permite campos vacios");
+                return;
+            }
 
-    private void jTcaloriasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTcaloriasKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if (!Character.isDigit(c)) {
-            evt.consume();
-            Utileria.mensaje("Solo se permite numeros enteros");
+            comida.setNombre(jTnombre.getText());
+            comida.setDetalle(jTdetalle.getText());
+            comida.setCalorias(Integer.valueOf(jTcalorias.getText()));
+            if (jBguardar.getText() == "Modificar") {
+                comida.setEstado(estadoReciv);
+            } else {
+                comida.setEstado(2);
+            }
+            if (jBguardar.getText().equals("Guardar")) {
+                cd.cargarComida(comida);
+            } else {
+                cd.modificarComida(comida);
+            }
+            if (jBguardar.getText().equals("Modificar")) {
+                dispose();
+            }
+            limpiarCampos();
+        } catch (NumberFormatException ex) {
+            Utileria.mensaje("En las calorias solo se permiten enteros");
         }
-    }//GEN-LAST:event_jTcaloriasKeyTyped
+    }//GEN-LAST:event_jBguardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
