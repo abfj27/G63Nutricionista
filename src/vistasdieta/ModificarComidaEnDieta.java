@@ -3,7 +3,6 @@ package vistasdieta;
 import vistasdieta.ModificarDietaComida;
 import controlDatos.ComidaData;
 import controlDatos.DietaComidaData;
-import controlDatos.DietaData;
 import entidades.Comida;
 import entidades.Dieta;
 import entidades.DietaComida;
@@ -14,11 +13,9 @@ import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.plaf.basic.BasicListUI;
 import javax.swing.table.DefaultTableModel;
 import stuff.Utileria;
 import vistas01.Escritorio0;
-import vistasdieta.NuevaDietaVen;
 
 public class ModificarComidaEnDieta extends javax.swing.JInternalFrame {
 
@@ -320,27 +317,6 @@ public class ModificarComidaEnDieta extends javax.swing.JInternalFrame {
         }
     }
 
-//    private void cargarTablasD() {
-//        DietaComidaData dcd = new DietaComidaData();
-//        for (DietaComida dc : dcd.listaComidasEnDieta(dietaV.getIdDieta())) {
-//            modeloD.addRow(new Object[]{
-//                dc.getComida().getNombre(),
-//                dc.getHorario(),
-//                dc.getPorcion(),
-//                dc.getComida().getCalorias()
-//            });
-//        }
-//    }
-//
-//    private void cargarTablasC() {
-//        DietaComidaData dcd = new DietaComidaData();
-//        for (Comida comida : dcd.listaComidasNoEnDieta(dietaV.getIdDieta())) {
-//            modeloC.addRow(new Object[]{
-//                comida.getNombre(),
-//                comida.getCalorias()
-//            });
-//        }
-//    }
     private void armarCabecera() {
         modeloC.addColumn("Nombre");
         modeloC.addColumn("Calorias");
@@ -378,24 +354,10 @@ public class ModificarComidaEnDieta extends javax.swing.JInternalFrame {
         }
     }
 
-//    private void borrarFilasD() {
-//        int f = jtComidasEnDieta.getRowCount() - 1;
-//        for (; f >= 0; f--) {
-//            modeloD.removeRow(f);
-//        }
-//    }
-//
-//    private void borrarFilasC() {
-//        int k = jtListaDeComidas.getRowCount() - 1;
-//        for (; k >= 0; k--) {
-//            modeloC.removeRow(k);
-//        }
-//    }
     private void detectorCerradoVentada() {
         internalFrameListener = new InternalFrameAdapter() {
             @Override
             public void internalFrameClosed(InternalFrameEvent e) {
-                // This code will be executed when the second JInternalFrame is closed
                 borrarFilas();
                 cargarTablas();
             }
