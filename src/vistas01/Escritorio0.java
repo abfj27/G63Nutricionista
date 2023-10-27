@@ -1,11 +1,12 @@
 package vistas01;
 
+import vistasdieta.ListaDietaVen;
+import vistasdieta.NuevaDietaVen;
 import entidades.Comida;
 import entidades.Dieta;
 import javax.swing.JOptionPane;
 import vistasadministracion.*;
 import vistascomida.*;
-import vistasdieta.*;
 import vistaspaciente.*;
 
 public class Escritorio0 extends javax.swing.JFrame {
@@ -233,7 +234,7 @@ public class Escritorio0 extends javax.swing.JFrame {
         escritorio.add(ven);
         escritorio.moveToFront(ven);
     }//GEN-LAST:event_jmFichaPacienteActionPerformed
-
+// no tiene boton desde menu
     private void jmModificarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmModificarPacienteActionPerformed
         ModificarPaciente ven = new ModificarPaciente();
         escritorio.removeAll();
@@ -242,7 +243,7 @@ public class Escritorio0 extends javax.swing.JFrame {
         escritorio.add(ven);
         escritorio.moveToFront(ven);
     }//GEN-LAST:event_jmModificarPacienteActionPerformed
-
+// no tiene boton desde menu
     private void jmNuevaComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmNuevaComidaActionPerformed
         Comida com = null;
         crear_modificar_comida ven = new crear_modificar_comida(com);

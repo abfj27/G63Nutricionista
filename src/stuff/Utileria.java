@@ -1,6 +1,7 @@
 package stuff;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.Instant;
@@ -8,6 +9,11 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Enumeration;
+import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
@@ -87,7 +93,24 @@ public class Utileria {
         columna.setPreferredWidth(max);
     }
 
+    public static void centrarInternalFrame(JDesktopPane escritorio, JInternalFrame ventana) {
+        Dimension dts = escritorio.getSize();
+        Dimension fs = ventana.getSize();
+        ventana.setLocation((dts.width - fs.width) / 2, (dts.height - fs.height) / 2);
+        ventana.show();
+    }
     
-    
+     public static void fondo(JDesktopPane escritorio, JInternalFrame ventana, ImageIcon icono) {
+        escritorio.removeAll();
+        escritorio.repaint();
+        ventana.setVisible(true);
+        JLabel fondo = new JLabel(icono);
+        fondo.setBounds(0, 0, icono.getIconWidth(), icono.getIconHeight());
+        escritorio.add(fondo, JLayeredPane.FRAME_CONTENT_LAYER);
+        escritorio.add(ventana);
+        escritorio.moveToFront(ventana);
+        Utileria.centrarInternalFrame(escritorio, ventana);
+    }
+     
     //
 }

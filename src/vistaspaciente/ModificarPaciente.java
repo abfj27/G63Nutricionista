@@ -259,6 +259,39 @@ public class ModificarPaciente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+        if (jtBuscarDocumento.getText().equals("")) {
+            Utileria.mensaje("Debe ingresar un DNI para realizar la busqueda");
+        } else {
+            PacienteData pdata = new PacienteData();
+            Paciente pac = new Paciente();
+            try {
+                int dni = Integer.parseInt(jtBuscarDocumento.getText());
+                pac = pdata.buscarPacienteDocumento(dni);
+                jtNombre.setText(pac.getNombre());
+                jtApellido.setText(pac.getApellido());
+                jtDocumento.setText(String.valueOf(pac.getDni()));
+                if ("F".equals(pac.getGenero())) {
+                    jrFemenino.setSelected(true);
+                } else if ("M".equals(pac.getGenero())) {
+                    jrMasculino.setSelected(true);
+                }
+                jtEdad.setText(String.valueOf(pac.getEdad()));
+                jtTelefono.setText(pac.getTelefono());
+                jtDireccion.setText(pac.getDomicilio());
+                jtMail.setText(pac.getEmail());
+                jtAltura.setText(String.valueOf(pac.getAltura()));
+
+            } catch (NumberFormatException e) {
+                Utileria.mensaje("Solo puede ingresar numeros en documento");
+            } catch (NullPointerException e) {
+                int docu = Integer.parseInt(jtBuscarDocumento.getText());
+                limpiarCeldas();
+                jtBuscarDocumento.setText(docu + "");
+            }
+        }
+    }//GEN-LAST:event_jbBuscarActionPerformed
+
     private void jbCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCargarActionPerformed
         if (jtNombre.getText().equals("") || jtApellido.getText().equals("") || jtDocumento.getText().equals("") || jtEdad.getText().equals("")) {
             Utileria.mensaje("Debe llenar todos los campos");
@@ -306,39 +339,6 @@ public class ModificarPaciente extends javax.swing.JInternalFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jbCerrarActionPerformed
-
-    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-        if (jtBuscarDocumento.getText().equals("")) {
-            Utileria.mensaje("Debe ingresar un DNI para realizar la busqueda");
-        } else {
-            PacienteData pdata = new PacienteData();
-            Paciente pac = new Paciente();
-            try {
-                int dni = Integer.parseInt(jtBuscarDocumento.getText());
-                pac = pdata.buscarPacienteDocumento(dni);
-                jtNombre.setText(pac.getNombre());
-                jtApellido.setText(pac.getApellido());
-                jtDocumento.setText(String.valueOf(pac.getDni()));
-                if ("F".equals(pac.getGenero())) {
-                    jrFemenino.setSelected(true);
-                } else if ("M".equals(pac.getGenero())) {
-                    jrMasculino.setSelected(true);
-                }
-                jtEdad.setText(String.valueOf(pac.getEdad()));
-                jtTelefono.setText(pac.getTelefono());
-                jtDireccion.setText(pac.getDomicilio());
-                jtMail.setText(pac.getEmail());
-                jtAltura.setText(String.valueOf(pac.getAltura()));
-
-            } catch (NumberFormatException e) {
-                Utileria.mensaje("Solo puede ingresar numeros en documento");
-            } catch (NullPointerException e) {
-                int docu = Integer.parseInt(jtBuscarDocumento.getText());
-                limpiarCeldas();
-                jtBuscarDocumento.setText(docu + "");
-            }
-        }
-    }//GEN-LAST:event_jbBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
