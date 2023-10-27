@@ -316,16 +316,16 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTelefonoKeyTyped
-        char c = evt.getKeyChar();
-        if (!Character.isDigit(c)) {
-            if (evt.getKeyChar() == 32) {
-                evt.consume();
-            }
-            if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 126) {
-                evt.consume();
-                Utileria.mensaje("Solo se permite numeros enteros");
-            }
-        }
+//        char c = evt.getKeyChar();
+//        if (!Character.isDigit(c)) {
+//            if (evt.getKeyChar() == 32) {
+//                evt.consume();
+//            }
+//            if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 126) {
+//                evt.consume();
+//                Utileria.mensaje("Solo se permite numeros enteros");
+//            }
+//        }
     }//GEN-LAST:event_jtTelefonoKeyTyped
 
     private void jrCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrCerrarActionPerformed
@@ -344,41 +344,56 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
         } else {
             PacienteData pdata = new PacienteData();
             Paciente pac = new Paciente();
-            try {
-                pac.setNombre(jtNombre.getText());
-                pac.setApellido(jtApellido.getText());
-                pac.setDni(Integer.parseInt(jtDocumento.getText()));
-                pac.setGenero(sexo());
-                pac.setEdad(Integer.parseInt(jtEdad.getText()));
-                pac.setTelefono(jtTelefono.getText());
-                pac.setDomicilio(jtDireccion.getText());
-                pac.setEmail(jtMail.getText());
-                if (!jtAltura.getText().isEmpty()) {
-                    pac.setAltura(Double.parseDouble(jtAltura.getText()));
-                } else {
-                    pac.setAltura(0);
+            if (jtTelefono.getText().length() >= 6) {
+                for (int i = 0; i >= jtTelefono.getText().length(); i++) {
+                    if (jtTelefono.getText().charAt(i) < 48 || jtTelefono.getText().charAt(i) > 57) {
+                        System.out.println(i);
+                        Utileria.mensaje("Solo puede ingresar numeros en telefono");
+                        break;
+                    } else {
+                        try {
+                            pac.setNombre(jtNombre.getText());
+                            pac.setApellido(jtApellido.getText());
+                            pac.setDni(Integer.parseInt(jtDocumento.getText()));
+                            pac.setGenero(sexo());
+                            pac.setEdad(Integer.parseInt(jtEdad.getText()));
+
+                            pac.setTelefono(jtTelefono.getText());
+
+                            pac.setDomicilio(jtDireccion.getText());
+                            pac.setEmail(jtMail.getText());
+//                if (!jtAltura.getText().isEmpty()) {
+                            pac.setAltura(Double.parseDouble(jtAltura.getText()));
+//                } else {
+//                    pac.setAltura(0);
+//                }
+//                if (!jtPeso.getText().isEmpty()) {
+                            pac.setPesoActual(Double.parseDouble(jtPeso.getText()));
+//                } else {
+//                    pac.setPesoActual(0);
+//                }
+                            pac.setEstado(2);
+                            pdata.cargarPaciente(pac);
+                            limpiarCeldas();
+                        } catch (NumberFormatException e) {
+                            System.out.println("prueba1: " + e.getLocalizedMessage().trim());
+                            if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtDocumento.getText() + '"')) {
+                                Utileria.mensaje("Solo puede ingresar numeros en documento");
+                            } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtEdad.getText() + '"')) {
+                                Utileria.mensaje("Solo puede ingresar numeros en edad");
+                            } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtPeso.getText() + '"')) {
+                                Utileria.mensaje("Solo puede ingresar numeros en peso");
+                            } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtAltura.getText() + '"')) {
+                                Utileria.mensaje("Solo puede ingresar numeros enteros o double (es punto y no coma) en altura");
+                            }
+                        } catch (NullPointerException e) {
+                            Utileria.mensaje("Llene todos los campos");
+                        }
+                    }
                 }
-                if (!jtPeso.getText().isEmpty()) {
-                    pac.setPesoActual(Double.parseDouble(jtPeso.getText()));
-                } else {
-                    pac.setPesoActual(0);
-                }
-                pac.setEstado(2);
-                pdata.cargarPaciente(pac);
-                limpiarCeldas();
-            } catch (NumberFormatException e) {
-                System.out.println("prueba1: " + e.getLocalizedMessage().trim());
-                if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtDocumento.getText() + '"')) {
-                    Utileria.mensaje("Solo puede ingresar numeros en documento");
-                } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtEdad.getText() + '"')) {
-                    Utileria.mensaje("Solo puede ingresar numeros en edad");
-                } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtPeso.getText() + '"')) {
-                    Utileria.mensaje("Solo puede ingresar numeros en peso");
-                } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtAltura.getText() + '"')) {
-                    Utileria.mensaje("Solo puede ingresar numeros enteros o double (es punto y no coma) en altura");
-                }
-            } catch (NullPointerException e) {
-                Utileria.mensaje("Llene todos los campos");
+            } else {
+                Utileria.mensaje("Numero de telefono no valido");
+//                    return;
             }
         }
     }//GEN-LAST:event_jrCargarActionPerformed
