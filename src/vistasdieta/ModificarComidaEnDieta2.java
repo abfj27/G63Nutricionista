@@ -282,6 +282,8 @@ public class ModificarComidaEnDieta2 extends javax.swing.JInternalFrame {
             ven.toFront();
             ven.setVisible(true);
             //
+        } else if (jtComidasEnDieta.getSelectedRow() != -1) {
+            jtComidasEnDieta.clearSelection();
         } else {
             Utileria.mensaje("Debe seleccionar una fila de la tabla");
         }
@@ -295,6 +297,8 @@ public class ModificarComidaEnDieta2 extends javax.swing.JInternalFrame {
             int calorias = (int) jtComidasEnDieta.getValueAt(jtComidasEnDieta.getSelectedRow(), 3);
             Comida com = cdata.buscarComida(nombre, calorias);
             dcdata.eliminarDietaComida(dcdata.buscarDC(dietaV.getIdDieta(), com.getIdComida()).getIdDC());
+        } else if (jtListaDeComidas.getSelectedRow() != -1) {
+
         } else {
             Utileria.mensaje("Debe seleccionar una fila de la tabla");
         }
