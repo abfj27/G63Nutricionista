@@ -404,9 +404,7 @@ public class FichaPaciente extends javax.swing.JInternalFrame {
                         vdata.cargarVisita2(vic);
                     }
                     Utileria.mensaje("Visita guardada exitosamente");
-                    Utileria.mensaje(String.valueOf(pac.getPesoActual()));
                     pac.setPesoActual(Double.parseDouble(jtPeso.getText()));
-                    Utileria.mensaje(String.valueOf(pac.getPesoActual()));
                     pdata.modificarPaciente(pac);
                     limpiarCeldas2();
                 } else {

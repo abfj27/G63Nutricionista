@@ -249,8 +249,16 @@ public class NuevoPaciente extends javax.swing.JInternalFrame {
                 pdata.cargarPaciente(pac);
                 limpiarCeldas();
             } catch (NumberFormatException e) {
-                Utileria.mensaje("Solo puede ingresar numeros en documento");
-                System.out.println(e.getMessage());
+                System.out.println("prueba1: " + e.getLocalizedMessage().trim());
+                if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtDocumento.getText() + '"')) {
+                    Utileria.mensaje("Solo puede ingresar numeros en documento");
+                } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtEdad.getText() + '"')) {
+                    Utileria.mensaje("Solo puede ingresar numeros en edad");
+                } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtPeso.getText() + '"')) {
+                    Utileria.mensaje("Solo puede ingresar numeros en peso");
+                } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtAltura.getText() + '"')) {
+                    Utileria.mensaje("Solo puede ingresar numeros enteros o double (es punto y no coma) en altura");
+                }
             } catch (NullPointerException e) {
                 Utileria.mensaje("Llene todos los campos");
             }
@@ -260,8 +268,13 @@ public class NuevoPaciente extends javax.swing.JInternalFrame {
     private void jtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTelefonoKeyTyped
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)) {
-            evt.consume();
-            Utileria.mensaje("Solo se permite numeros enteros");
+            if (evt.getKeyChar() == 32) {
+                evt.consume();
+            }
+            if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 126) {
+                evt.consume();
+                Utileria.mensaje("Solo se permite numeros enteros");
+            }
         }
     }//GEN-LAST:event_jtTelefonoKeyTyped
 

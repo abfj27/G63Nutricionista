@@ -124,6 +124,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTcalorias">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTcaloriasKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBcerrar">
       <Properties>
