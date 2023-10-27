@@ -344,56 +344,59 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
         } else {
             PacienteData pdata = new PacienteData();
             Paciente pac = new Paciente();
+            int aux = 0;
             if (jtTelefono.getText().length() >= 6) {
-                for (int i = 0; i >= jtTelefono.getText().length(); i++) {
+                for (int i = 0; i < jtTelefono.getText().length(); i++) {
+//                    System.out.println(jtTelefono.getText().charAt(i));
                     if (jtTelefono.getText().charAt(i) < 48 || jtTelefono.getText().charAt(i) > 57) {
-                        System.out.println(i);
                         Utileria.mensaje("Solo puede ingresar numeros en telefono");
+                        aux = 0;
                         break;
                     } else {
-                        try {
-                            pac.setNombre(jtNombre.getText());
-                            pac.setApellido(jtApellido.getText());
-                            pac.setDni(Integer.parseInt(jtDocumento.getText()));
-                            pac.setGenero(sexo());
-                            pac.setEdad(Integer.parseInt(jtEdad.getText()));
-
-                            pac.setTelefono(jtTelefono.getText());
-
-                            pac.setDomicilio(jtDireccion.getText());
-                            pac.setEmail(jtMail.getText());
-//                if (!jtAltura.getText().isEmpty()) {
-                            pac.setAltura(Double.parseDouble(jtAltura.getText()));
-//                } else {
-//                    pac.setAltura(0);
-//                }
-//                if (!jtPeso.getText().isEmpty()) {
-                            pac.setPesoActual(Double.parseDouble(jtPeso.getText()));
-//                } else {
-//                    pac.setPesoActual(0);
-//                }
-                            pac.setEstado(2);
-                            pdata.cargarPaciente(pac);
-                            limpiarCeldas();
-                        } catch (NumberFormatException e) {
-                            System.out.println("prueba1: " + e.getLocalizedMessage().trim());
-                            if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtDocumento.getText() + '"')) {
-                                Utileria.mensaje("Solo puede ingresar numeros en documento");
-                            } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtEdad.getText() + '"')) {
-                                Utileria.mensaje("Solo puede ingresar numeros en edad");
-                            } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtPeso.getText() + '"')) {
-                                Utileria.mensaje("Solo puede ingresar numeros en peso");
-                            } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtAltura.getText() + '"')) {
-                                Utileria.mensaje("Solo puede ingresar numeros enteros o double (es punto y no coma) en altura");
-                            }
-                        } catch (NullPointerException e) {
-                            Utileria.mensaje("Llene todos los campos");
-                        }
+                        aux = 1;
                     }
                 }
             } else {
                 Utileria.mensaje("Numero de telefono no valido");
-//                    return;
+                return;
+            }
+            if (aux == 1) {
+                try {
+                    pac.setNombre(jtNombre.getText());
+                    pac.setApellido(jtApellido.getText());
+                    pac.setDni(Integer.parseInt(jtDocumento.getText()));
+                    pac.setGenero(sexo());
+                    pac.setEdad(Integer.parseInt(jtEdad.getText()));
+                    pac.setTelefono(jtTelefono.getText());
+                    pac.setDomicilio(jtDireccion.getText());
+                    pac.setEmail(jtMail.getText());
+//                if (!jtAltura.getText().isEmpty()) {
+                    pac.setAltura(Double.parseDouble(jtAltura.getText()));
+//                } else {
+//                    pac.setAltura(0);
+//                }
+//                if (!jtPeso.getText().isEmpty()) {
+                    pac.setPesoActual(Double.parseDouble(jtPeso.getText()));
+//                } else {
+//                    pac.setPesoActual(0);
+//                }
+                    pac.setEstado(2);
+                    pdata.cargarPaciente(pac);
+                    limpiarCeldas();
+                } catch (NumberFormatException e) {
+                    System.out.println("prueba1: " + e.getLocalizedMessage().trim());
+                    if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtDocumento.getText() + '"')) {
+                        Utileria.mensaje("Solo puede ingresar numeros en documento");
+                    } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtEdad.getText() + '"')) {
+                        Utileria.mensaje("Solo puede ingresar numeros en edad");
+                    } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtPeso.getText() + '"')) {
+                        Utileria.mensaje("Solo puede ingresar numeros en peso");
+                    } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtAltura.getText() + '"')) {
+                        Utileria.mensaje("Solo puede ingresar numeros enteros o double (es punto y no coma) en altura");
+                    }
+                } catch (NullPointerException e) {
+                    Utileria.mensaje("Llene todos los campos");
+                }
             }
         }
     }//GEN-LAST:event_jrCargarActionPerformed
