@@ -104,6 +104,7 @@ public class EscritorioColor2 extends javax.swing.JFrame {
         jrFichaPaciente.setForeground(new java.awt.Color(41, 65, 43));
         jrFichaPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ficha.png"))); // NOI18N
         jrFichaPaciente.setText("Ver Ficha Pac.   ");
+        jrFichaPaciente.setColorBorde(null);
         jrFichaPaciente.setColorPressed(new java.awt.Color(41, 65, 43));
         jrFichaPaciente.setColorTextNormal(new java.awt.Color(41, 65, 43));
         jrFichaPaciente.setFocusPainted(false);
@@ -141,6 +142,7 @@ public class EscritorioColor2 extends javax.swing.JFrame {
         jrListaComidas.setForeground(new java.awt.Color(41, 65, 43));
         jrListaComidas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/bandeja comida.png"))); // NOI18N
         jrListaComidas.setText("Comidas           ");
+        jrListaComidas.setColorBorde(null);
         jrListaComidas.setColorPressed(new java.awt.Color(41, 65, 43));
         jrListaComidas.setColorTextNormal(new java.awt.Color(41, 65, 43));
         jrListaComidas.setFocusPainted(false);
@@ -177,6 +179,7 @@ public class EscritorioColor2 extends javax.swing.JFrame {
         jrAdminPaciente.setForeground(new java.awt.Color(41, 65, 43));
         jrAdminPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/111Recurso 7-8.png"))); // NOI18N
         jrAdminPaciente.setText("Paciente             ");
+        jrAdminPaciente.setColorBorde(null);
         jrAdminPaciente.setColorPressed(new java.awt.Color(41, 65, 43));
         jrAdminPaciente.setColorTextNormal(new java.awt.Color(41, 65, 43));
         jrAdminPaciente.setFocusPainted(false);
@@ -200,6 +203,7 @@ public class EscritorioColor2 extends javax.swing.JFrame {
         jrListaPacientesDieta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pacientes con dieta.png"))); // NOI18N
         jrListaPacientesDieta.setText("Pac. c/ Dietas ");
         jrListaPacientesDieta.setAlignmentX(0.5F);
+        jrListaPacientesDieta.setColorBorde(null);
         jrListaPacientesDieta.setColorPressed(new java.awt.Color(41, 65, 43));
         jrListaPacientesDieta.setColorTextNormal(new java.awt.Color(41, 65, 43));
         jrListaPacientesDieta.setFocusPainted(false);
@@ -222,6 +226,7 @@ public class EscritorioColor2 extends javax.swing.JFrame {
         jrListaDietas.setForeground(new java.awt.Color(41, 65, 43));
         jrListaDietas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/dieta.png"))); // NOI18N
         jrListaDietas.setText("Dietas                ");
+        jrListaDietas.setColorBorde(null);
         jrListaDietas.setColorPressed(new java.awt.Color(41, 65, 43));
         jrListaDietas.setColorTextNormal(new java.awt.Color(41, 65, 43));
         jrListaDietas.setFocusPainted(false);
@@ -258,6 +263,7 @@ public class EscritorioColor2 extends javax.swing.JFrame {
         jrListaPacientes.setForeground(new java.awt.Color(41, 65, 43));
         jrListaPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/paciente.png"))); // NOI18N
         jrListaPacientes.setText("Pacientes          ");
+        jrListaPacientes.setColorBorde(null);
         jrListaPacientes.setColorPressed(new java.awt.Color(41, 65, 43));
         jrListaPacientes.setColorTextNormal(new java.awt.Color(41, 65, 43));
         jrListaPacientes.setFocusPainted(false);
@@ -280,6 +286,7 @@ public class EscritorioColor2 extends javax.swing.JFrame {
         jrAdminDietas.setForeground(new java.awt.Color(41, 65, 43));
         jrAdminDietas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/111Recurso 9-8.png"))); // NOI18N
         jrAdminDietas.setText("Dietas                 ");
+        jrAdminDietas.setColorBorde(null);
         jrAdminDietas.setColorPressed(new java.awt.Color(41, 65, 43));
         jrAdminDietas.setColorTextNormal(new java.awt.Color(41, 65, 43));
         jrAdminDietas.setFocusPainted(false);
@@ -302,6 +309,7 @@ public class EscritorioColor2 extends javax.swing.JFrame {
         jrAdminComidas.setForeground(new java.awt.Color(41, 65, 43));
         jrAdminComidas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/111Recurso 8-8.png"))); // NOI18N
         jrAdminComidas.setText("Comidas            ");
+        jrAdminComidas.setColorBorde(null);
         jrAdminComidas.setColorPressed(new java.awt.Color(41, 65, 43));
         jrAdminComidas.setColorTextNormal(new java.awt.Color(41, 65, 43));
         jrAdminComidas.setFocusPainted(false);
@@ -324,7 +332,7 @@ public class EscritorioColor2 extends javax.swing.JFrame {
         jrNuevaDieta.setForeground(new java.awt.Color(41, 65, 43));
         jrNuevaDieta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cargar.png"))); // NOI18N
         jrNuevaDieta.setText("Nueva Dieta     ");
-        jrNuevaDieta.setColorBorde(new javax.swing.border.LineBorder(new java.awt.Color(59, 107, 65), 1, true));
+        jrNuevaDieta.setColorBorde(null);
         jrNuevaDieta.setColorPressed(new java.awt.Color(41, 65, 43));
         jrNuevaDieta.setColorTextNormal(new java.awt.Color(41, 65, 43));
         jrNuevaDieta.setFocusPainted(false);
@@ -348,6 +356,7 @@ public class EscritorioColor2 extends javax.swing.JFrame {
         jrSalir.setForeground(new java.awt.Color(51, 51, 51));
         jrSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
         jrSalir.setText("SALIR");
+        jrSalir.setColorBorde(null);
         jrSalir.setColorHover(new java.awt.Color(59, 107, 65));
         jrSalir.setColorNormal(new java.awt.Color(130, 186, 137));
         jrSalir.setColorPressed(new java.awt.Color(227, 238, 228));

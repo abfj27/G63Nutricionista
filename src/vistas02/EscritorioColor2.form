@@ -97,6 +97,9 @@
               <Image iconType="3" name="/Imagenes/ficha.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ver Ficha Pac.   "/>
+            <Property name="colorBorde" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
             <Property name="colorPressed" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2b" green="41" red="29" type="rgb"/>
             </Property>
@@ -140,6 +143,9 @@
               <Image iconType="3" name="/Imagenes/bandeja comida.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Comidas           "/>
+            <Property name="colorBorde" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
             <Property name="colorPressed" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2b" green="41" red="29" type="rgb"/>
             </Property>
@@ -182,6 +188,9 @@
               <Image iconType="3" name="/Imagenes/111Recurso 7-8.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Paciente             "/>
+            <Property name="colorBorde" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
             <Property name="colorPressed" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2b" green="41" red="29" type="rgb"/>
             </Property>
@@ -209,6 +218,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Pac. c/ Dietas "/>
             <Property name="alignmentX" type="float" value="0.5"/>
+            <Property name="colorBorde" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
             <Property name="colorPressed" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2b" green="41" red="29" type="rgb"/>
             </Property>
@@ -235,6 +247,9 @@
               <Image iconType="3" name="/Imagenes/dieta.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Dietas                "/>
+            <Property name="colorBorde" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
             <Property name="colorPressed" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2b" green="41" red="29" type="rgb"/>
             </Property>
@@ -277,6 +292,9 @@
               <Image iconType="3" name="/Imagenes/paciente.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Pacientes          "/>
+            <Property name="colorBorde" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
             <Property name="colorPressed" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2b" green="41" red="29" type="rgb"/>
             </Property>
@@ -303,6 +321,9 @@
               <Image iconType="3" name="/Imagenes/111Recurso 9-8.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Dietas                 "/>
+            <Property name="colorBorde" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
             <Property name="colorPressed" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2b" green="41" red="29" type="rgb"/>
             </Property>
@@ -329,6 +350,9 @@
               <Image iconType="3" name="/Imagenes/111Recurso 8-8.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Comidas            "/>
+            <Property name="colorBorde" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
             <Property name="colorPressed" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2b" green="41" red="29" type="rgb"/>
             </Property>
@@ -356,11 +380,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Nueva Dieta     "/>
             <Property name="colorBorde" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                <LineBorder roundedCorners="true">
-                  <Color PropertyName="color" blue="41" green="6b" red="3b" type="rgb"/>
-                </LineBorder>
-              </Border>
+              <Border info="null"/>
             </Property>
             <Property name="colorPressed" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="2b" green="41" red="29" type="rgb"/>
@@ -391,6 +411,9 @@
               <Image iconType="3" name="/Imagenes/salir.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="SALIR"/>
+            <Property name="colorBorde" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="null"/>
+            </Property>
             <Property name="colorHover" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="41" green="6b" red="3b" type="rgb"/>
             </Property>
