@@ -10,10 +10,8 @@ import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 import javax.swing.table.DefaultTableModel;
 import stuff.Utileria;
-import vistas02.EscritorioColor2;
 import vistas01.DatosPaciente;
-import vistas01.NuevaDietaVen;
-import vistas01.ModificarPaciente;
+
 
 /**
  *
@@ -21,6 +19,7 @@ import vistas01.ModificarPaciente;
  */
 public class AdministrativoPacientes2 extends javax.swing.JInternalFrame {
 
+        private int mouseX, mouseY;
     private int num;
     private Paciente pacEnv;
     private int click;
@@ -69,7 +68,6 @@ public class AdministrativoPacientes2 extends javax.swing.JInternalFrame {
         Cabecera();
         utileria.ordenamientoDeTabla(jTpacientes);
         cargarComboBox();
-
     }
 
     @SuppressWarnings("unchecked")
@@ -94,6 +92,16 @@ public class AdministrativoPacientes2 extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(235, 235, 231));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Admin. Pacientes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 14), new java.awt.Color(41, 65, 43))); // NOI18N
         setPreferredSize(new java.awt.Dimension(700, 500));
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
 
         jTingreso.setBackground(new java.awt.Color(246, 246, 246));
         jTingreso.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -424,7 +432,6 @@ public class AdministrativoPacientes2 extends javax.swing.JInternalFrame {
                 Utileria.mensaje("Debe seleccionar una fila");
             }
         } else {
-            // if (filaS != -1) {
             if (jTpacientes.getSelectedRow() >= 0) {
                 int dni = pd.buscarPacienteDocumento(Integer.valueOf(jTpacientes.getValueAt(jTpacientes.getSelectedRow(), 2).toString())).getDni();
                 NuevaDietaVen2.recibir(dni);
@@ -442,6 +449,17 @@ public class AdministrativoPacientes2 extends javax.swing.JInternalFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jbCerrar1ActionPerformed
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+         if (evt.getButton() == java.awt.event.MouseEvent.BUTTON1) {
+            mouseX = evt.getX();
+            mouseY = evt.getY();
+        }
+    }//GEN-LAST:event_formMousePressed
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+          this.setLocation(getLocation().x + evt.getX() - mouseX, getLocation().y + evt.getY() - mouseY);
+    }//GEN-LAST:event_formMouseDragged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
