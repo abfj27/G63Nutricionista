@@ -1,13 +1,8 @@
 package vistas01;
 
-import vistasdieta.ListaDietaVen;
-import vistasdieta.NuevaDietaVen;
 import entidades.Comida;
 import entidades.Dieta;
 import javax.swing.JOptionPane;
-import vistasadministracion.*;
-import vistascomida.*;
-import vistaspaciente.*;
 
 public class Escritorio0 extends javax.swing.JFrame {
 
