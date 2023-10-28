@@ -190,10 +190,10 @@ public class crear_modificar_comida2 extends javax.swing.JInternalFrame {
     private void jTcaloriasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTcaloriasKeyTyped
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)) {
-            if (evt.getKeyChar() == 32 ) {
+            if (evt.getKeyChar() == 32 || evt.getKeyChar() == 127) {
                 evt.consume();
             }
-            if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 255) {
+            if ((evt.getKeyChar() >= 33 && evt.getKeyChar() <= 126) || (evt.getKeyChar() >= 128 && evt.getKeyChar() <= 255)) {
                 evt.consume();
                 Utileria.mensaje("Solo se permite numeros enteros");
             }
