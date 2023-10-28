@@ -444,10 +444,12 @@ public class DietaData {
             if (rs.next()) {
                 PacienteData pd = new PacienteData();
                 paciente = pd.buscarPacienteDocumento(dni);
+//                paciente = pd.buscarPacienteCodigo(rs.getInt("idPaciente"));
                 dieta = new Dieta();
                 dieta.setIdDieta(rs.getInt("idDieta"));
                 dieta.setNombre(rs.getString("nombre"));
                 dieta.setPaciente(paciente);
+//                dieta.setPaciente(pd.buscarPacienteCodigo(rs.getInt("idPaciente")));
                 dieta.setPesoInicial(rs.getFloat("pesoInicial"));
                 dieta.setPesoObjetivo(rs.getFloat("pesoObjetivo"));
                 dieta.setFechaInicial(rs.getDate("fechaInicial").toLocalDate());
@@ -474,6 +476,7 @@ public class DietaData {
                 PacienteData pd = new PacienteData();
                 paciente = pd.buscarPacienteDocumento(dni);
                 dieta = new Dieta();
+                dieta.setIdDieta(rs.getInt("idDieta"));
                 dieta.setNombre(rs.getString("nombre"));
                 dieta.setPaciente(paciente);
                 dieta.setPesoInicial(rs.getFloat("pesoInicial"));

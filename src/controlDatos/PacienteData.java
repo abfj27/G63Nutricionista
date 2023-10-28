@@ -74,6 +74,30 @@ public class PacienteData {
             Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void modificarPaciente2(Paciente paciente) {
+        String sql = "UPDATE paciente SET dni=?, apellido=?, nombre=?, pesoActual=?, altura=?, edad=?, genero=?, domicilio=?, telefono=?, email=?, estado=? WHERE idPaciente=?";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, paciente.getDni());
+            ps.setString(2, paciente.getApellido());
+            ps.setString(3, paciente.getNombre());
+            ps.setDouble(4, paciente.getPesoActual());
+            ps.setDouble(5, paciente.getAltura());
+            ps.setInt(6, paciente.getEdad());
+            ps.setString(7, paciente.getGenero());
+            ps.setString(8, paciente.getDomicilio());
+            ps.setString(9, paciente.getTelefono());
+            ps.setString(10, paciente.getEmail());
+            ps.setInt(11, paciente.getEstado());
+            ps.setInt(12, paciente.getIdPaciente());
+            ps.executeUpdate();
+            ps.close();
+//            Utileria.mensaje("Se modifico el paciente correctamente");
+        } catch (SQLException ex) {
+            Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     public void eliminarPaciente(Paciente paciente) {
         String sql = "UPDATE paciente SET estado=0 WHERE idPaciente=?";

@@ -466,7 +466,7 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
                     }
                     Utileria.mensaje("Visita guardada exitosamente");
                     pac.setPesoActual(Double.parseDouble(jtPeso.getText()));
-                    pdata.modificarPaciente(pac);
+                    pdata.modificarPaciente2(pac);
                     limpiarCeldas2();
                 } else {
                     Utileria.mensaje("No se encontró el paciente con el documento proporcionado");
