@@ -381,7 +381,7 @@ public class AdministrativoPacientes2 extends javax.swing.JInternalFrame {
     private void jbVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVerActionPerformed
         if (filaS != -1) {
             pacEnv = pd.buscarPacienteDocumento(Integer.valueOf(jTpacientes.getValueAt(filaS, 2).toString()));
-            DatosPaciente dp = new DatosPaciente(pacEnv);
+            DatosPaciente2 dp = new DatosPaciente2(pacEnv);
             getParent().add(dp);
             dp.setVisible(true);
         } else {

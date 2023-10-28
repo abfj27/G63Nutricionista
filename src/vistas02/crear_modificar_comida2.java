@@ -109,7 +109,7 @@ public class crear_modificar_comida2 extends javax.swing.JInternalFrame {
         jTdetalle.setForeground(new java.awt.Color(59, 107, 65));
         jTdetalle.setRows(5);
         jTdetalle.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(154, 179, 155), 2, true));
-        jTdetalle.setCaretColor(new java.awt.Color(246, 246, 246));
+        jTdetalle.setCaretColor(new java.awt.Color(59, 107, 65));
         jTdetalle.setSelectedTextColor(new java.awt.Color(59, 107, 65));
         jTdetalle.setSelectionColor(new java.awt.Color(130, 186, 137));
         jScrollPane2.setViewportView(jTdetalle);

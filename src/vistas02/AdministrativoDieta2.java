@@ -367,7 +367,7 @@ public class AdministrativoDieta2 extends javax.swing.JInternalFrame {
     private void jbVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVerActionPerformed
         if (filaS != -1) {
             dietEnv = dd.AdminBuscarXDniYFechas(Integer.valueOf(jTdietas.getValueAt(filaS, 2).toString()), LocalDate.parse(String.valueOf(jTdietas.getValueAt(filaS, 4))), LocalDate.parse(String.valueOf(jTdietas.getValueAt(filaS, 5))));
-            DetallesDieta dd = new DetallesDieta(dietEnv);
+            DetallesDieta2 dd = new DetallesDieta2(dietEnv);
             EscritorioColor2.escritorio.add(dd);
             dd.toFront();
             dd.setVisible(true);

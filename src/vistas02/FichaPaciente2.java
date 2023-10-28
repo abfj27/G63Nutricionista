@@ -420,7 +420,7 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
                     Object[] op = {"Aceptar", "Cancelar"};
                     int i = JOptionPane.showOptionDialog(this, "Desea Crear dieta?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
                     if (i == JOptionPane.YES_OPTION) {
-                        NuevaDietaVen ndvVista = new NuevaDietaVen(pac.getDni());
+                        NuevaDietaVen2 ndvVista = new NuevaDietaVen2(pac.getDni());
                         EscritorioColor2.escritorio.add(ndvVista);
                         ndvVista.toFront();
                         ndvVista.setVisible(true);
