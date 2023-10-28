@@ -106,6 +106,7 @@ public class HistorialDeVisitas2 extends javax.swing.JInternalFrame {
         jtHistorial.setGridColor(new java.awt.Color(59, 107, 65));
         jtHistorial.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jtHistorial.setSelectionForeground(new java.awt.Color(130, 186, 137));
+        jtHistorial.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtHistorial);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N

@@ -115,6 +115,8 @@ public class DietaComidaData {
             } else {
                 Utileria.mensaje("No se encontro DATO. 'error.116'");
             }
+            rs.close();
+            ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(DietaComidaData.class.getName()).log(Level.SEVERE, null, ex);
         }

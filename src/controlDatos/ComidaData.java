@@ -61,7 +61,7 @@ public class ComidaData {
             ps.setInt(5, comida.getIdComida());
             ps.executeUpdate();
             ps.close();
-            //mensaje
+            Utileria.mensaje("Comida modificada satisfactoriamente");
         } catch (SQLException ex) {
             Utileria.mensaje("Comida ingresada ya existe y esta siendo utilizada");
         }

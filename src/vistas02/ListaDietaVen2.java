@@ -100,6 +100,7 @@ public class ListaDietaVen2 extends javax.swing.JInternalFrame {
         tableDieta.setGridColor(new java.awt.Color(59, 107, 65));
         tableDieta.setSelectionBackground(new java.awt.Color(59, 107, 65));
         tableDieta.setSelectionForeground(new java.awt.Color(130, 186, 137));
+        tableDieta.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableDieta);
 
         jbCerrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar rojo.png"))); // NOI18N

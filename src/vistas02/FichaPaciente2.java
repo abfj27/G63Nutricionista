@@ -68,7 +68,7 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
         jbModificar = new vistas02rsbuttom.RSButtonMetro();
 
         setBackground(new java.awt.Color(235, 235, 231));
-        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FIcha Paciente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 1, 16), new java.awt.Color(41, 65, 43))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ficha Paciente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 1, 16), new java.awt.Color(41, 65, 43))); // NOI18N
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setForeground(new java.awt.Color(130, 186, 137));
         setFocusable(false);

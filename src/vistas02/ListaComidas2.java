@@ -152,6 +152,7 @@ public class ListaComidas2 extends javax.swing.JInternalFrame {
         jTComidas.setGridColor(new java.awt.Color(59, 107, 65));
         jTComidas.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jTComidas.setSelectionForeground(new java.awt.Color(130, 186, 137));
+        jTComidas.getTableHeader().setReorderingAllowed(false);
         jTComidas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTComidasMouseClicked(evt);
@@ -375,25 +376,41 @@ public class ListaComidas2 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbCerrar1ActionPerformed
 
     private void jbAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAltaActionPerformed
-        if (filaS != -1) {
-            cd.darAlta(jTComidas.getValueAt(filaS, 0).toString(), Integer.valueOf(jTComidas.getValueAt(filaS, 2).toString()));
+         if (jTComidas.getSelectedRow() >= 0) {
+            cd.darBaja(jTComidas.getValueAt(jTComidas.getSelectedRow(), 0).toString(), Integer.valueOf(jTComidas.getValueAt(jTComidas.getSelectedRow(), 2).toString()));
+           cd.darAlta(jTComidas.getValueAt(jTComidas.getSelectedRow(), 0).toString(), Integer.valueOf(jTComidas.getValueAt(jTComidas.getSelectedRow(), 2).toString()));
             borrarFila();
             obtencionDeDatos();
-            filaS = -1;
-        } else {
+        }else {
             Utileria.mensaje("Debe seleccionar una fila");
         }
+        
+//        if (filaS != -1) {
+//            cd.darAlta(jTComidas.getValueAt(filaS, 0).toString(), Integer.valueOf(jTComidas.getValueAt(filaS, 2).toString()));
+//            borrarFila();
+//            obtencionDeDatos();
+//            filaS = -1;
+//        } else {
+//            Utileria.mensaje("Debe seleccionar una fila");
+//        }
     }//GEN-LAST:event_jbAltaActionPerformed
 
     private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
-        if (filaS != -1) {
-            cd.darBaja(jTComidas.getValueAt(filaS, 0).toString(), Integer.valueOf(jTComidas.getValueAt(filaS, 2).toString()));
+        if (jTComidas.getSelectedRow() >= 0) {
+            cd.darBaja(jTComidas.getValueAt(jTComidas.getSelectedRow(), 0).toString(), Integer.valueOf(jTComidas.getValueAt(jTComidas.getSelectedRow(), 2).toString()));
             borrarFila();
             obtencionDeDatos();
-            filaS = -1;
-        } else {
+        }else {
             Utileria.mensaje("Debe seleccionar una fila");
         }
+
+//        if (filaS != -1) {
+//            cd.darBaja(jTComidas.getValueAt(filaS, 0).toString(), Integer.valueOf(jTComidas.getValueAt(filaS, 2).toString()));
+//
+//            filaS = -1;
+//        } else {
+//            Utileria.mensaje("Debe seleccionar una fila");
+//        }
     }//GEN-LAST:event_jbBajaActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed

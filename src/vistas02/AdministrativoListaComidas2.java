@@ -139,6 +139,7 @@ public class AdministrativoListaComidas2 extends javax.swing.JInternalFrame {
         jTComidas.setGridColor(new java.awt.Color(59, 107, 65));
         jTComidas.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jTComidas.setSelectionForeground(new java.awt.Color(130, 186, 137));
+        jTComidas.getTableHeader().setReorderingAllowed(false);
         jTComidas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTComidasMouseClicked(evt);

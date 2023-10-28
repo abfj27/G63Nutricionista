@@ -150,6 +150,7 @@ public class AdministrativoDieta2 extends javax.swing.JInternalFrame {
         jTdietas.setGridColor(new java.awt.Color(59, 107, 65));
         jTdietas.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jTdietas.setSelectionForeground(new java.awt.Color(130, 186, 137));
+        jTdietas.getTableHeader().setReorderingAllowed(false);
         jTdietas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTdietasMouseClicked(evt);

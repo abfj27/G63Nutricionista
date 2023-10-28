@@ -80,6 +80,11 @@ public class ListadoPacienteConDieta2 extends javax.swing.JInternalFrame {
         jtFiltro.setCaretColor(new java.awt.Color(59, 107, 65));
         jtFiltro.setSelectedTextColor(new java.awt.Color(59, 107, 65));
         jtFiltro.setSelectionColor(new java.awt.Color(130, 186, 137));
+        jtFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtFiltroActionPerformed(evt);
+            }
+        });
         jtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jtFiltroKeyReleased(evt);
@@ -147,6 +152,7 @@ public class ListadoPacienteConDieta2 extends javax.swing.JInternalFrame {
         jtListado.setGridColor(new java.awt.Color(59, 107, 65));
         jtListado.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jtListado.setSelectionForeground(new java.awt.Color(130, 186, 137));
+        jtListado.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtListado);
 
         jbCerrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar rojo.png"))); // NOI18N
@@ -309,6 +315,10 @@ public class ListadoPacienteConDieta2 extends javax.swing.JInternalFrame {
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
         this.setLocation(getLocation().x + evt.getX() - mouseX, getLocation().y + evt.getY() - mouseY);
     }//GEN-LAST:event_formMouseDragged
+
+    private void jtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtFiltroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

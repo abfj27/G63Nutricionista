@@ -384,7 +384,7 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
                     pdata.cargarPaciente(pac);
                     limpiarCeldas();
                 } catch (NumberFormatException e) {
-                    System.out.println("prueba1: " + e.getLocalizedMessage().trim());
+//                    System.out.println("prueba1: " + e.getLocalizedMessage().trim());
                     if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtDocumento.getText() + '"')) {
                         Utileria.mensaje("Solo puede ingresar numeros en documento");
                     } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtEdad.getText() + '"')) {

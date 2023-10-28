@@ -169,6 +169,7 @@ public class DetallesDieta2 extends javax.swing.JInternalFrame {
         tableComidas.setGridColor(new java.awt.Color(59, 107, 65));
         tableComidas.setSelectionBackground(new java.awt.Color(59, 107, 65));
         tableComidas.setSelectionForeground(new java.awt.Color(130, 186, 137));
+        tableComidas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableComidas);
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N

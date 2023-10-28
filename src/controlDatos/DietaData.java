@@ -18,13 +18,13 @@ import java.util.logging.Logger;
 import stuff.Utileria;
 
 public class DietaData {
-    
+
     private Connection conec;
-    
+
     public DietaData() {
         conec = Conexion.getConexion();
     }
-    
+
     public void cargarDieta(Dieta dieta) {
         String sql = "INSERT INTO dieta (nombre, idPaciente, pesoInicial, pesoObjetivo, fechaInicial, fechaFinal, estado) VALUES (?,?,?,?,?,?,?)";
         try {
@@ -60,7 +60,7 @@ public class DietaData {
             Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void modificarDieta(Dieta dieta) {
         String sql = "UPDATE dieta SET nombre=?, idPaciente=?, pesoInicial=?, pesoObjetivo=?, fechaInicial=?, fechaFinal=?, estado=? WHERE idDieta=?";
         try {
@@ -80,7 +80,7 @@ public class DietaData {
             Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void eliminarDieta(Dieta dieta) {
         String sql = "UPDATE dieta SET estado=0 WHERE idDieta=?";
         try {
@@ -93,7 +93,7 @@ public class DietaData {
             Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public List<Dieta> listaDietasAll() {
         List<Dieta> lista = new ArrayList<>();
         PacienteData pdata = new PacienteData();
@@ -122,7 +122,7 @@ public class DietaData {
         }
         return lista;
     }
-    
+
     public List<Dieta> listaDietas() {
         List<Dieta> lista = new ArrayList<>();
         PacienteData pdata = new PacienteData();
@@ -151,7 +151,7 @@ public class DietaData {
         }
         return lista;
     }
-    
+
     public List<Dieta> listaDietasEnAlta() {
         List<Dieta> lista = new ArrayList<>();
         PacienteData pdata = new PacienteData();
@@ -180,7 +180,7 @@ public class DietaData {
         }
         return lista;
     }
-    
+
     public List<Dieta> listaDietas2(String string, int num) {
         List<Dieta> lista = new ArrayList<>();
         PacienteData pdata = new PacienteData();
@@ -209,7 +209,7 @@ public class DietaData {
         }
         return lista;
     }
-    
+
     private String crearString1(String string, int num) {
         String sql = "";
         switch (num) {
@@ -236,7 +236,7 @@ public class DietaData {
         }
         return sql;
     }
-    
+
     public Dieta buscarDietaXid(int id) {
         Dieta dieta = new Dieta();
         PacienteData pdata = new PacienteData();
@@ -267,7 +267,7 @@ public class DietaData {
         }
         return dieta;
     }
-    
+
     public Dieta dietaFechaFinalMax(int dni) {
         Dieta dietaFechaMax = null;
         String sql = "SELECT d.* FROM dieta d where d.estado=2 and d.fechaFinal=(SELECT max(fechaFinal) from dieta where (idPaciente=d.idPaciente)) and d.idPaciente=(SELECT idPaciente from paciente WHERE dni=?)";
@@ -328,7 +328,7 @@ public class DietaData {
                 sql = "SELECT *,max(v.fecha) FROM dieta d join paciente p on (d.idPaciente=p.idPaciente) JOIN visita v on(d.idDieta=v.idDieta) WHERE d.idPaciente in(SELECT idPaciente from paciente where dni=?) and d.estado>=? group by d.idDieta";
             }
         }
-        
+
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
 //            if (seleccion.equals("nombre paciente") || seleccion.equals("nombre dieta")) {
@@ -367,7 +367,7 @@ public class DietaData {
                 paciente.setTelefono(rs.getString("p.telefono"));
                 paciente.setEmail(rs.getString("p.email"));
                 paciente.setEstado(rs.getInt("p.estado"));
-                
+
                 dieta.setIdDieta(rs.getInt("d.idDieta"));
                 dieta.setNombre(rs.getString("d.nombre"));
                 dieta.setPaciente(paciente);
@@ -378,17 +378,17 @@ public class DietaData {
                 dieta.setFechaUltimaVisita(rs.getDate("max(v.fecha)").toLocalDate());
                 dieta.setEstado(rs.getInt("d.estado"));
                 dietas.add(dieta);
-                
+
             }
             rs.close();
             ps.close();
         } catch (SQLException ex) {
             Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return dietas;
     }
-    
+
     public Dieta AdminBuscar(int dni) {
         Dieta dieta = null;
         Paciente paciente = null;
@@ -421,7 +421,7 @@ public class DietaData {
                 dieta.setFechaFinal(rs.getDate("d.fechaFinal").toLocalDate());
                 dieta.setFechaUltimaVisita(rs.getDate("max(v.fecha)").toLocalDate());
                 dieta.setEstado(rs.getInt("d.estado"));
-                
+
             }
             rs.close();
             ps.close();
@@ -430,7 +430,7 @@ public class DietaData {
         }
         return dieta;
     }
-    
+
     public Dieta AdminBuscarXDniYFechas(int dni, LocalDate fechaInicial, LocalDate fechaFinal) {
         Dieta dieta = null;
         Paciente paciente = null;
@@ -461,7 +461,7 @@ public class DietaData {
         }
         return dieta;
     }
-    
+
     public Dieta BuscarXDniYFechaFinal(int dni) {
         Dieta dieta = null;
         Paciente paciente = null;
@@ -489,7 +489,7 @@ public class DietaData {
         }
         return dieta;
     }
-    
+
     public void adminEliminar(int dni, LocalDate fechaInicial, LocalDate fechaFinal) {
         String sql = "UPDATE `dieta` SET estado=0 WHERE fechaInicial=? and fechaFinal=? and idPaciente = (SELECT idPaciente from paciente where dni=?)";
         try {
@@ -503,7 +503,7 @@ public class DietaData {
             Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void adminDarAlta(int dni, LocalDate fechaInicial, LocalDate fechaFinal) {
         String sql = "UPDATE `dieta` SET estado=2 WHERE fechaInicial=? and fechaFinal=? and idPaciente = (SELECT idPaciente from paciente where dni=?)";
         try {
@@ -517,7 +517,7 @@ public class DietaData {
             Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void adminDarBaja(int dni, LocalDate fechaInicial, LocalDate fechaFinal) {
         String sql = "UPDATE `dieta` SET estado=1 WHERE fechaInicial=? and fechaFinal=? and idPaciente = (SELECT idPaciente from paciente where dni=?)";
         try {
@@ -531,7 +531,7 @@ public class DietaData {
             Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public Dieta buscarDietaCodigo(int idDieta) {
         Dieta dieta = null;
         String sql = "SELECT * FROM dieta WHERE idDieta=?";
@@ -557,7 +557,7 @@ public class DietaData {
         }
         return dieta;
     }
-    
+
     public List<Dieta> pacienteDieta(int check, String apellido) {
         List<Dieta> lista = new ArrayList<>();
         PacienteData pdata = new PacienteData();
@@ -586,7 +586,7 @@ public class DietaData {
         }
         return lista;
     }
-    
+
     private String SQLpacienteDieta(int check, String apellido) {
         String sql = "";
         switch (check) {
@@ -614,6 +614,12 @@ public class DietaData {
         String sql = "";
         switch (check) {
             case 1:
+                 if (ingreso.isEmpty()) {
+                    sql = "Select d.* from dieta d where d.estado=2 and fechaFinal<=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+                } else {
+                    sql = "Select d.* from dieta d where d.idPaciente in (SELECT idPaciente from paciente where apellido like ?) and d.estado=2 and d.fechaFinal<=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+                }
+                break;
             case 2:
                 if (ingreso.isEmpty()) {
                     sql = "Select d.* from dieta d where d.estado=2 and fechaFinal<=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
@@ -634,10 +640,11 @@ public class DietaData {
                 } else {
                     sql = "Select d.* from dieta d where d.idPaciente in (SELECT idPaciente from paciente where apellido like ?) and d.estado=2 and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
                 }
-            
+
         }
+        
         try {
-            PreparedStatement ps = conec.prepareStatement(sql);
+          PreparedStatement ps = conec.prepareStatement(sql);
             if (!ingreso.isEmpty()) {
                 ps.setString(1, ingreso + "%");
             }
@@ -659,7 +666,8 @@ public class DietaData {
         } catch (SQLException ex) {
             Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+       
+       
         //verificacion por peso de ultima visita
         ArrayList<Dieta> dietasVeri = new ArrayList<>();
         for (Dieta re : dietas) {
@@ -681,12 +689,12 @@ public class DietaData {
                         dietasVeri.add(re);
                 }
             } catch (NullPointerException e) {
-                
+
             }
         }
         return dietasVeri;
     }
-    
+
     private Visita ultimaVisita(int idPaciente) {
         Visita visita = null;
         String sql = "SELECT * FROM visita v where v.estado=2 and v.idPaciente=? and v.fecha=(SELECT max(fecha) from visita v2 where v2.idPaciente=v.idPaciente) and v.idVisita=(Select max(v3.idVisita) from visita v3 where v3.idPaciente=v.idPaciente)";

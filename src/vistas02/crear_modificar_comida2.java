@@ -28,7 +28,7 @@ public class crear_modificar_comida2 extends javax.swing.JInternalFrame {
         if (String.valueOf(comida).equals("null")) {
 //            jLtitulo.setText("Crear Comida");
             jbModificar.setIcon(guardarIcon);
-            jbModificar.setText("Guardar");
+            jbModificar.setText("GUARDAR");
         } else {
             estadoReciv = comida.getEstado();
             jLid.setText(String.valueOf(comida.getIdComida()));
@@ -210,7 +210,7 @@ public class crear_modificar_comida2 extends javax.swing.JInternalFrame {
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         Comida comida = new Comida();
-        if (jbModificar.getText() == "Modificar") {
+        if (jbModificar.getText() == "MODIFICAR") {
             comida.setIdComida(Integer.valueOf(jLid.getText()));
         }
         if (jTnombre.getText().isEmpty() || jTdetalle.getText().isEmpty() || jTcalorias.getText().isEmpty()) {
@@ -220,17 +220,17 @@ public class crear_modificar_comida2 extends javax.swing.JInternalFrame {
         comida.setNombre(jTnombre.getText());
         comida.setDetalle(jTdetalle.getText());
         comida.setCalorias(Integer.valueOf(jTcalorias.getText()));
-        if (jbModificar.getText() == "Modificar") {
+        if (jbModificar.getText() == "MODIFICAR") {
             comida.setEstado(estadoReciv);
         } else {
             comida.setEstado(2);
         }
-        if (jbModificar.getText().equals("Guardar")) {
+        if (jbModificar.getText().equals("GUARDAR")) {
             cd.cargarComida(comida);
         } else {
             cd.modificarComida(comida);
         }
-        if (jbModificar.getText().equals("Modificar")) {
+        if (jbModificar.getText().equals("MODIFICAR")) {
             dispose();
         }
         limpiarCampos();

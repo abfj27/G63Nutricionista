@@ -7,7 +7,7 @@
     </Property>
     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-        <TitledBorder justification="1" position="2" title="FIcha Paciente">
+        <TitledBorder justification="1" position="2" title="Ficha Paciente">
           <Font PropertyName="font" name="Tahoma" size="16" style="1"/>
           <Color PropertyName="color" blue="2b" green="41" red="29" type="rgb"/>
         </TitledBorder>

@@ -5,6 +5,7 @@ import controlDatos.DietaComidaData;
 import entidades.Comida;
 import entidades.Dieta;
 import entidades.DietaComida;
+import java.awt.image.LookupTable;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.InternalFrameAdapter;
@@ -108,6 +109,7 @@ public class ModificarComidaEnDieta2 extends javax.swing.JInternalFrame {
         jtComidasEnDieta.setGridColor(new java.awt.Color(59, 107, 65));
         jtComidasEnDieta.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jtComidasEnDieta.setSelectionForeground(new java.awt.Color(130, 186, 137));
+        jtComidasEnDieta.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtComidasEnDieta);
 
         jtListaDeComidas.setBackground(new java.awt.Color(227, 238, 228));
@@ -127,6 +129,7 @@ public class ModificarComidaEnDieta2 extends javax.swing.JInternalFrame {
         jtListaDeComidas.setGridColor(new java.awt.Color(59, 107, 65));
         jtListaDeComidas.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jtListaDeComidas.setSelectionForeground(new java.awt.Color(130, 186, 137));
+        jtListaDeComidas.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jtListaDeComidas);
 
         jbSacarDe.setBackground(new java.awt.Color(235, 235, 231));

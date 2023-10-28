@@ -69,7 +69,7 @@ public class PacienteData {
             ps.setInt(12, paciente.getIdPaciente());
             ps.executeUpdate();
             ps.close();
-//            Utileria.mensaje("Se modifico el paciente correctamente");
+            Utileria.mensaje("Se modifico el paciente correctamente");
         } catch (SQLException ex) {
             Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
         }
