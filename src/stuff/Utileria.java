@@ -4,11 +4,14 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
@@ -22,6 +25,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 public class Utileria {
+
     private int cont;
 
     public static void mensaje(String mensaje) {
@@ -47,6 +51,57 @@ public class Utileria {
         }
     }
 
+    public static boolean validarDate(Date fecha, int numero) {
+        // numero 1 - solo valida que sea una fecha con un año mayor a 2000
+        // numero 2 - valida que no sea una fecha mayor a la actual
+        String fechaS = new SimpleDateFormat("dd/MM/yyyy").format(fecha);
+        String[] dateParts = fechaS.split("/");
+        int anio = Integer.parseInt(dateParts[2]),
+                mes = Integer.parseInt(dateParts[1]),
+                dia = Integer.parseInt(dateParts[0]);
+        if (anio < 2000) {
+            mensaje("Fecha no valida a");
+            return false;
+        }
+        switch (numero) {
+            case 1:
+                try {
+                    SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
+                    formatoFecha.setLenient(false);
+                    formatoFecha.parse(fechaS);
+                } catch (ParseException e) {
+                    mensaje("Fecha no valida b");
+                    return false;
+                }
+                break;
+            case 2:
+                LocalDate fActu = LocalDate.now();
+                String fechaA = new SimpleDateFormat("yyyy/MM/dd").format(convertirDate(fActu));
+                dateParts = fechaA.split("/");
+                int anioA = Integer.parseInt(dateParts[0]),
+                 mesA = Integer.parseInt(dateParts[1]),
+                 diaA = Integer.parseInt(dateParts[2]);
+                if (anio <= anioA) {
+                    if (mes <= mesA) {
+                        if (dia <= diaA) {
+                            // nada?
+                        } else {
+                            mensaje("La fecha ingresada es mayor a la actual");
+                            return false;
+                        }
+                    } else {
+                        mensaje("La fecha ingresada es mayor a la actual");
+                        return false;
+                    }
+                } else {
+                    mensaje("La fecha ingresada es mayor a la actual");
+                    return false;
+                }
+                break;
+        }
+        return true;
+    }
+
     public Utileria(int cont) {
         this.cont = cont;
     }
@@ -60,7 +115,7 @@ public class Utileria {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                
+
                 if (e.getClickCount() == cont) {
                     int colum = nombre.columnAtPoint(e.getPoint());
                     sorter.toggleSortOrder(colum);
@@ -78,7 +133,7 @@ public class Utileria {
     }
 
     private static void ajustarColumnas(TableColumn columna, JTable tabla) {
-       int max = 0;
+        int max = 0;
 
         TableCellRenderer render = tabla.getTableHeader().getDefaultRenderer();
         Component cabeza = render.getTableCellRendererComponent(tabla, columna.getHeaderValue(), false, false, 0, 0);
@@ -99,8 +154,8 @@ public class Utileria {
         ventana.setLocation((dts.width - fs.width) / 2, (dts.height - fs.height) / 2);
         ventana.show();
     }
-    
-     public static void fondo(JDesktopPane escritorio, JInternalFrame ventana, ImageIcon icono) {
+
+    public static void fondo(JDesktopPane escritorio, JInternalFrame ventana, ImageIcon icono) {
         escritorio.removeAll();
         escritorio.repaint();
         ventana.setVisible(true);
@@ -111,6 +166,6 @@ public class Utileria {
         escritorio.moveToFront(ventana);
         Utileria.centrarInternalFrame(escritorio, ventana);
     }
-     
+
     //
 }

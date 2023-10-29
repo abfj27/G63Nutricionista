@@ -4,6 +4,9 @@ import controlDatos.DietaData;
 import entidades.Dieta;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
 import javax.swing.table.DefaultTableModel;
 import stuff.Utileria;
 import vistas02.EscritorioColor2;
@@ -11,6 +14,7 @@ import vistas02.EscritorioColor2;
 public class ListaDietaVen2 extends javax.swing.JInternalFrame {
 
     private int mouseX, mouseY;
+    private InternalFrameListener internalFrameListener;
 
     private DefaultTableModel modeloT = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
@@ -19,6 +23,7 @@ public class ListaDietaVen2 extends javax.swing.JInternalFrame {
     };
 
     public ListaDietaVen2() {
+        detectorCerradoVentada();
         initComponents();
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         armarCabecera();
@@ -100,6 +105,7 @@ public class ListaDietaVen2 extends javax.swing.JInternalFrame {
         tableDieta.setGridColor(new java.awt.Color(59, 107, 65));
         tableDieta.setSelectionBackground(new java.awt.Color(59, 107, 65));
         tableDieta.setSelectionForeground(new java.awt.Color(130, 186, 137));
+        tableDieta.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tableDieta.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableDieta);
 
@@ -232,6 +238,7 @@ public class ListaDietaVen2 extends javax.swing.JInternalFrame {
             Dieta dieta = ddata.buscarDietaXid((int) tableDieta.getValueAt(tableDieta.getSelectedRow(), 0));
             NuevaDietaVen2 ven = new NuevaDietaVen2(dieta);
             EscritorioColor2.escritorio.add(ven);
+            ven.addInternalFrameListener(internalFrameListener);
             ven.toFront();
             ven.setVisible(true);
         } else {
@@ -256,6 +263,7 @@ public class ListaDietaVen2 extends javax.swing.JInternalFrame {
         Dieta dieta = new Dieta();
         NuevaDietaVen2 ven = new NuevaDietaVen2(dieta);
         EscritorioColor2.escritorio.add(ven);
+        ven.addInternalFrameListener(internalFrameListener);
         ven.toFront();
         ven.setVisible(true);
     }//GEN-LAST:event_jbNuevaDietaActionPerformed
@@ -331,5 +339,19 @@ public class ListaDietaVen2 extends javax.swing.JInternalFrame {
         }
     }
 
+    private void detectorCerradoVentada() {
+        internalFrameListener = new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+                borrarFilas();
+                DietaData ddata = new DietaData();
+                if (jcBox.getSelectedIndex() == 0) {
+                    actualizarTabla(ddata.listaDietasEnAlta());
+                } else if (!jtxt.getText().equals("Busqueda")) {
+                    actualizarTabla(ddata.listaDietas2(jtxt.getText(), jcBox.getSelectedIndex()));
+                }
+            }
+        };
+    }
 //
 } // llave final

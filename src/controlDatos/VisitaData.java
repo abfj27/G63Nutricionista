@@ -35,7 +35,7 @@ public class VisitaData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 visita.setIdVisita(rs.getInt(1));
-                //mensaje
+                Utileria.mensaje("Visita guardada exitosamente");
             }
             rs.close();
             ps.close();

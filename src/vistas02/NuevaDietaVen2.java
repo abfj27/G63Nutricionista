@@ -4,6 +4,7 @@ import controlDatos.DietaData;
 import controlDatos.PacienteData;
 import entidades.Dieta;
 import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import java.util.logging.Level;
@@ -320,10 +321,9 @@ public class NuevaDietaVen2 extends javax.swing.JInternalFrame {
     private void jrCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrCargarActionPerformed
         if (dietaV.getIdDieta() <= 0) {
             nuevaDieta();
-            System.out.println("new 1");
+            this.dispose();
         } else {
             modificarDieta();
-            System.out.println("mod 2");
             this.dispose();
         }
     }//GEN-LAST:event_jrCargarActionPerformed
@@ -372,22 +372,29 @@ public class NuevaDietaVen2 extends javax.swing.JInternalFrame {
                 dieta.setNombre(jtNombre.getText());
                 dieta.setPaciente(pdata.buscarPacienteDocumento(Integer.parseInt(jtDocumento.getText())));
                 if (dieta.getPaciente().equals("")) {
-                    System.out.println("666");
                     return;
                 }
                 dieta.setPesoInicial(Double.parseDouble(jtPInicial.getText()));
                 dieta.setPesoObjetivo(Double.parseDouble(jtPFinal.getText()));
-                if (jdFInicial.getDate() instanceof Date && jdFFinal.getDate() instanceof Date) {
-                    // hay que verificar con el año
-                    dieta.setFechaInicial(Utileria.convertirLocalDate(jdFInicial.getDate()));
-                    dieta.setFechaFinal(Utileria.convertirLocalDate(jdFFinal.getDate()));
-                } else {
+                boolean aux1 = Utileria.validarDate(jdFInicial.getDate(), 1),
+                        aux2 = Utileria.validarDate(jdFFinal.getDate(), 1);
+                dieta.setFechaInicial(Utileria.convertirLocalDate(jdFInicial.getDate()));
+                dieta.setFechaFinal(Utileria.convertirLocalDate(jdFFinal.getDate()));
+                if (aux1 == false) {
+                    Utileria.mensaje("La fecha inicial ingresada no es valida");
+                    return;
+                } else if (aux2 == false) {
+                    Utileria.mensaje("La fecha final ingresada no es valida");
+                    return;
+                }
+                if (jdFInicial.getDate().compareTo(jdFFinal.getDate()) > 0) {
+                    Utileria.mensaje("La fecha final no puede ser menor a la inicial");
                     return;
                 }
                 dieta.setEstado(2);
                 ddata.cargarDieta(dieta);
-//            } catch (NullPointerException ex) {
-//                Utileria.mensaje("Debe completar todos los campos");
+            } catch (NullPointerException ex) {
+                Utileria.mensaje("Debe completar todos los campos");
             } catch (NumberFormatException ex) {
                 if (ex.getLocalizedMessage().intern().equals("For input string: " + '"' + jtDocumento.getText() + '"')) {
                     Utileria.mensaje("Debe buscar un paciente antes de poder crear una dieta");
@@ -413,8 +420,21 @@ public class NuevaDietaVen2 extends javax.swing.JInternalFrame {
             dieta.setPaciente(pdata.buscarPacienteDocumento(Integer.parseInt(jtDocumento.getText())));
             dieta.setPesoInicial(Double.parseDouble(jtPInicial.getText()));
             dieta.setPesoObjetivo(Double.parseDouble(jtPFinal.getText()));
+            boolean aux1 = Utileria.validarDate(jdFInicial.getDate(), 1),
+                    aux2 = Utileria.validarDate(jdFFinal.getDate(), 1);
             dieta.setFechaInicial(Utileria.convertirLocalDate(jdFInicial.getDate()));
             dieta.setFechaFinal(Utileria.convertirLocalDate(jdFFinal.getDate()));
+            if (aux1 == false) {
+                Utileria.mensaje("La fecha inicial ingresada no es valida");
+                return;
+            } else if (aux2 == false) {
+                Utileria.mensaje("La fecha final ingresada no es valida");
+                return;
+            }
+            if (jdFInicial.getDate().compareTo(jdFFinal.getDate()) > 0) {
+                Utileria.mensaje("La fecha final no puede ser menor a la inicial");
+                return;
+            }
             dieta.setIdDieta(dietaV.getIdDieta());
             dieta.setEstado(dietaV.getEstado());
             ddata.modificarDieta(dieta);
@@ -422,9 +442,17 @@ public class NuevaDietaVen2 extends javax.swing.JInternalFrame {
         } catch (NullPointerException ex) {
             Utileria.mensaje("Debe completar todos los campos");
         } catch (NumberFormatException ex) {
-            Utileria.mensaje("  Los campos de peso" + "\n" + "solo pueden contener numeros");
+            if (ex.getLocalizedMessage().intern().equals("For input string: " + '"' + jtDocumento.getText() + '"')) {
+                Utileria.mensaje("Debe buscar un paciente antes de poder crear una dieta");
+            } else if (ex.getLocalizedMessage().intern().equals("For input string: " + '"' + jtPInicial.getText() + '"')) {
+                Utileria.mensaje("Peso inicial no valido");
+            } else if (ex.getLocalizedMessage().equals("For input string: " + '"' + jtPFinal.getText() + '"')) {
+                Utileria.mensaje("Peso final no valido");
+            } else {
+                Utileria.mensaje("Falta completar campos");
+            }
         } catch (Exception ex) {
-            Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
     }
 

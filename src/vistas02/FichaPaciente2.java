@@ -24,12 +24,14 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
 
     public FichaPaciente2() {
         initComponents();
+        jlDoc.setVisible(false);
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
     }
 
     public FichaPaciente2(int dni) {
         initComponents();
         cargarDatos(dni);
+        jlDoc.setVisible(false);
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
     }
 
@@ -66,6 +68,7 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
         jbGuardar = new vistas02rsbuttom.RSButtonMetro();
         jbHistorial = new vistas02rsbuttom.RSButtonMetro();
         jbModificar = new vistas02rsbuttom.RSButtonMetro();
+        jlDoc = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(235, 235, 231));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ficha Paciente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 1, 16), new java.awt.Color(41, 65, 43))); // NOI18N
@@ -276,7 +279,6 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
                             .addComponent(jDateVisita, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jtBuscarDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,22 +288,6 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
                                 .addComponent(jlMail, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlGenero)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jlPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jlAltura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
                                 .addComponent(jbDieta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,14 +296,38 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jbHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jbHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jlDoc))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jlTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jlDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jlNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlGenero)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jlPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jlAltura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jlDoc))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,6 +403,8 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
                 jlPeso.setText(String.valueOf(pac.getPesoActual()));
                 LocalDate fechaActual = LocalDate.now();
                 jDateVisita.setDate(Date.valueOf(fechaActual.toString()));
+                jtPeso.setText(jlPeso.getText());
+                jlDoc.setText(jtBuscarDocumento.getText());
             } catch (NumberFormatException e) {
                 Utileria.mensaje("Solo puede ingresar numeros en documento");
             } catch (NullPointerException e) {
@@ -441,20 +453,27 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbCerrar1ActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        if (!jtBuscarDocumento.getText().isEmpty()) {
+        if (!jlDoc.getText().isEmpty()) {
             try {
-                int documento = Integer.parseInt(jtBuscarDocumento.getText());
+                jtBuscarDocumento.setText(jlDoc.getText());
                 PacienteData pdata = new PacienteData();
                 DietaData dd = new DietaData();
                 VisitaData vdata = new VisitaData();
-                Paciente pac = pdata.buscarPacienteDocumento(documento);
-
+                Paciente pac = pdata.buscarPacienteDocumento(Integer.parseInt(jlDoc.getText()));
                 if (pac != null) {
+                    if (jtPeso.getText().equals("")) {
+                        Utileria.mensaje("Debe ingresar un peso valido");
+                        return;
+                    }
                     double peso = Double.parseDouble(jlPeso.getText());
-                    Visita vic = new Visita(); // FALTA VER COMO AGREGAR LO DE DIETA    <<<<<<<<<<<<<<<<<<<<<<<
+                    Visita vic = new Visita();
                     Dieta dieta = dd.dietaFechaFinalMax(pac.getDni());
                     vic.setDieta(dieta);
                     vic.setPaciente(pac);
+                    boolean aux = Utileria.validarDate(jDateVisita.getDate(), 2);
+                    if (aux == false) {
+                        return;
+                    }
                     LocalDate fechaActual = Utileria.convertirLocalDate(jDateVisita.getDate());
                     vic.setFecha(fechaActual);
                     vic.setPeso(peso);
@@ -464,15 +483,16 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
                     } else {
                         vdata.cargarVisita2(vic);
                     }
-                    Utileria.mensaje("Visita guardada exitosamente");
                     pac.setPesoActual(Double.parseDouble(jtPeso.getText()));
                     pdata.modificarPaciente2(pac);
                     limpiarCeldas2();
                 } else {
                     Utileria.mensaje("No se encontró el paciente con el documento proporcionado");
                 }
+            } catch (NullPointerException e) {
+                Utileria.mensaje("Fecha no valida");
             } catch (NumberFormatException e) {
-                Utileria.mensaje("Error al obtener el documento del paciente");
+                Utileria.mensaje("Valide los campos");
             }
         } else {
             Utileria.mensaje("Debe buscar un paciente primero");
@@ -537,6 +557,7 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
     private vistas02rsbuttom.RSButtonMetro jbModificar;
     private javax.swing.JLabel jlAltura;
     private javax.swing.JLabel jlDireccion;
+    private javax.swing.JLabel jlDoc;
     private javax.swing.JLabel jlGenero;
     private javax.swing.JLabel jlMail;
     private javax.swing.JLabel jlNombre;
