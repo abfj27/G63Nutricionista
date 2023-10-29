@@ -127,8 +127,8 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
             }
         ));
         jTdietas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTdietasMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTdietasMouseReleased(evt);
             }
         });
         jScrollPane1.setViewportView(jTdietas);
@@ -322,25 +322,6 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jCbFiltradoActionPerformed
 
-    private void jTdietasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTdietasMouseClicked
-        // TODO add your handling code here:
-        filaS = jTdietas.getSelectedRow();
-        if (estado != 1) {
-            jBeliminar.setEnabled(true);
-            jBver.setEnabled(true);
-        }
-
-        if (estado == 0) {
-            if (jTdietas.getValueAt(filaS, 6) == "true" || jTdietas.getValueAt(filaS, 6) == "false") {
-                jBalta_baja.setEnabled(true);
-                jBeliminar.setEnabled(true);
-            } else if (jTdietas.getValueAt(filaS, 6) == "eliminado") {
-                jBalta_baja.setEnabled(true);
-                jBeliminar.setEnabled(false);
-            }
-        }
-    }//GEN-LAST:event_jTdietasMouseClicked
-
     private void jBalta_bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalta_bajaActionPerformed
         // TODO add your handling code here:
         int[] filasS = jTdietas.getSelectedRows();
@@ -396,6 +377,25 @@ public class AdministrativoDieta extends javax.swing.JInternalFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jBcerrarActionPerformed
+
+    private void jTdietasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTdietasMouseReleased
+        // TODO add your handling code here:
+        filaS = jTdietas.getSelectedRow();
+        if (estado != 1) {
+            jBeliminar.setEnabled(true);
+            jBver.setEnabled(true);
+        }
+
+        if (estado == 0) {
+            if (jTdietas.getValueAt(filaS, 6) == "true" || jTdietas.getValueAt(filaS, 6) == "false") {
+                jBalta_baja.setEnabled(true);
+                jBeliminar.setEnabled(true);
+            } else if (jTdietas.getValueAt(filaS, 6) == "eliminado") {
+                jBalta_baja.setEnabled(true);
+                jBeliminar.setEnabled(false);
+            }
+        }
+    }//GEN-LAST:event_jTdietasMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
