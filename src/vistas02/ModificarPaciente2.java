@@ -62,6 +62,8 @@ public class ModificarPaciente2 extends javax.swing.JInternalFrame {
         jrCargar = new vistas02rsbuttom.RSButtonMetro();
         jrCerrar = new vistas02rsbuttom.RSButtonMetro();
         jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jtPeso = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(235, 235, 231));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificar Datos Paciente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Verdana", 1, 16), new java.awt.Color(41, 65, 43))); // NOI18N
@@ -234,6 +236,18 @@ public class ModificarPaciente2 extends javax.swing.JInternalFrame {
         jLabel12.setForeground(new java.awt.Color(41, 65, 43));
         jLabel12.setText("DATOS DEL PACIENTE");
 
+        jLabel11.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(41, 65, 43));
+        jLabel11.setText("Peso:");
+
+        jtPeso.setBackground(new java.awt.Color(246, 246, 246));
+        jtPeso.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        jtPeso.setForeground(new java.awt.Color(59, 107, 65));
+        jtPeso.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(154, 179, 155), 2, true));
+        jtPeso.setCaretColor(new java.awt.Color(59, 107, 65));
+        jtPeso.setSelectedTextColor(new java.awt.Color(59, 107, 65));
+        jtPeso.setSelectionColor(new java.awt.Color(130, 186, 137));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -278,16 +292,22 @@ public class ModificarPaciente2 extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                             .addComponent(jrMasculino)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jrFemenino))
-                                        .addComponent(jtTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(jtTelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jtMail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(19, 50, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -334,14 +354,21 @@ public class ModificarPaciente2 extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jrCargar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jrCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jrCargar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jrCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabel11)
+                            .addComponent(jtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jLabel9.getAccessibleContext().setAccessibleName("");
@@ -380,7 +407,7 @@ public class ModificarPaciente2 extends javax.swing.JInternalFrame {
                 jtDireccion.setText(pac.getDomicilio());
                 jtMail.setText(pac.getEmail());
                 jtAltura.setText(String.valueOf(pac.getAltura()));
-
+                jtPeso.setText(String.valueOf(pac.getPesoActual()));
             } catch (NumberFormatException e) {
                 Utileria.mensaje("Solo puede ingresar numeros en documento");
             } catch (NullPointerException e) {
@@ -393,40 +420,66 @@ public class ModificarPaciente2 extends javax.swing.JInternalFrame {
 
     private void jrCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrCargarActionPerformed
         if (jtNombre.getText().equals("") || jtApellido.getText().equals("") || jtDocumento.getText().equals("") || jtEdad.getText().equals("")) {
-            Utileria.mensaje("Debe llenar todos los campos");
+            Utileria.mensaje("Debe llenar todos los campos obligatorios");
         } else if ((!jrFemenino.isSelected() && !jrMasculino.isSelected())) {
             Utileria.mensaje("Debe seleccionar el genero");
         } else {
             PacienteData pdata = new PacienteData();
-            Paciente pac = new Paciente();
-            try {
-                pac = pdata.buscarPacienteDocumento(Integer.parseInt(jtBuscarDocumento.getText()));
-                pac.setNombre(jtNombre.getText());
-                pac.setApellido(jtApellido.getText());
-                pac.setDni(Integer.parseInt(jtDocumento.getText()));
-                pac.setGenero(sexo());
-                pac.setEdad(Integer.parseInt(jtEdad.getText()));
-                pac.setTelefono(jtTelefono.getText());
-                pac.setDomicilio(jtDireccion.getText());
-                pac.setEmail(jtMail.getText());
-                if (!jtAltura.getText().isEmpty()) {
-                    pac.setAltura(Double.parseDouble(jtAltura.getText()));
+            Paciente pac = pdata.buscarPacienteDocumento(Integer.valueOf(jtBuscarDocumento.getText()));
+            int aux = 0;
+            if (jtTelefono.getText().length() >= 6) {
+                for (int i = 0; i < jtTelefono.getText().length(); i++) {
+                    if (jtTelefono.getText().charAt(i) < 48 || jtTelefono.getText().charAt(i) > 57) {
+                        Utileria.mensaje("Solo puede ingresar numeros en telefono");
+                        aux = 0;
+                        break;
+                    } else {
+                        aux = 1;
+                    }
+                }
+            } else {
+                if (!jtTelefono.getText().equals("")) {
+                    Utileria.mensaje("Numero de telefono no valido");
+                    return;
                 } else {
-                    pac.setAltura(0);
+                    aux = 1;
                 }
-
-                pdata.modificarPaciente(pac);
-
-                if (this.num == 1) {
-                    this.dispose();
+            }
+            if (aux == 1) {
+                try {
+                    System.out.println("111");
+                    pac.setNombre(jtNombre.getText());
+                    pac.setApellido(jtApellido.getText());
+                    pac.setDni(Math.abs(Integer.parseInt(jtDocumento.getText())));
+                    pac.setGenero(sexo());
+                    pac.setEdad(Math.abs(Integer.parseInt(jtEdad.getText())));
+                    pac.setTelefono(jtTelefono.getText());
+                    pac.setDomicilio(jtDireccion.getText());
+                    pac.setEmail(jtMail.getText());
+                    pac.setAltura(Math.abs(Double.parseDouble(jtAltura.getText())));
+                    pac.setPesoActual(Math.abs(Double.parseDouble(jtPeso.getText())));
+                    pdata.modificarPaciente(pac);
+                    if (this.num == 1) {
+                        this.dispose();
+                    }
+                    limpiarCeldas();
+                } catch (NumberFormatException e) {
+                    if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtDocumento.getText() + '"')) {
+                        Utileria.mensaje("Solo puede ingresar numeros en documento");
+                    } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtEdad.getText() + '"')) {
+                        Utileria.mensaje("Solo puede ingresar numeros en edad");
+                    } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtPeso.getText() + '"')) {
+                        Utileria.mensaje("Solo puede ingresar numeros en peso");
+                    } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtAltura.getText() + '"')) {
+                        Utileria.mensaje("Solo puede ingresar numeros en altura");
+                    } else {
+                        Utileria.mensaje("Llene todos los campos obligatorios");
+                    }
+                } catch (NullPointerException e) {
+                    Utileria.mensaje("Llene todos los campos obligatorios");
+                } catch (Exception e) {
+                    Utileria.mensaje(e.getMessage());
                 }
-
-                limpiarCeldas();
-            } catch (NumberFormatException e) {
-                Utileria.mensaje("Solo puede ingresar numeros en documento");
-                System.out.println(e.getMessage());
-            } catch (NullPointerException e) {
-                Utileria.mensaje("Llene todos los campos");
             }
         }
     }//GEN-LAST:event_jrCargarActionPerformed
@@ -455,6 +508,7 @@ public class ModificarPaciente2 extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -477,6 +531,7 @@ public class ModificarPaciente2 extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtEdad;
     private javax.swing.JTextField jtMail;
     private javax.swing.JTextField jtNombre;
+    private javax.swing.JTextField jtPeso;
     private javax.swing.JTextField jtTelefono;
     // End of variables declaration//GEN-END:variables
 
@@ -500,6 +555,7 @@ public class ModificarPaciente2 extends javax.swing.JInternalFrame {
         jtDireccion.setText("");
         jtMail.setText("");
         jtAltura.setText("");
+        jtPeso.setText("");
         jtBuscarDocumento.setText("");
     }
 
@@ -522,6 +578,7 @@ public class ModificarPaciente2 extends javax.swing.JInternalFrame {
                 jtDireccion.setText(pac.getDomicilio());
                 jtMail.setText(pac.getEmail());
                 jtAltura.setText(String.valueOf(pac.getAltura()));
+                jtPeso.setText(String.valueOf(pac.getPesoActual()));
             } else {
                 Utileria.mensaje("No se encontró el paciente con el DNI proporcionado");
             }

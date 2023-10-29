@@ -45,6 +45,7 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jrCerrar = new vistas02rsbuttom.RSButtonMetro();
         jrCargar = new vistas02rsbuttom.RSButtonMetro();
+        jLabel11 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(235, 235, 231));
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nuevo Paciente", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Tahoma", 1, 16), new java.awt.Color(41, 65, 43))); // NOI18N
@@ -67,7 +68,7 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(41, 65, 43));
-        jLabel1.setText("Nombre");
+        jLabel1.setText("Nombre*");
 
         jtNombre.setBackground(new java.awt.Color(246, 246, 246));
         jtNombre.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -80,7 +81,7 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(41, 65, 43));
-        jLabel2.setText("Apellido");
+        jLabel2.setText("Apellido*");
 
         jtApellido.setBackground(new java.awt.Color(246, 246, 246));
         jtApellido.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -92,7 +93,7 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(41, 65, 43));
-        jLabel3.setText("Documento");
+        jLabel3.setText("Documento*");
 
         jtDocumento.setBackground(new java.awt.Color(246, 246, 246));
         jtDocumento.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -104,7 +105,7 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(41, 65, 43));
-        jLabel4.setText("Edad");
+        jLabel4.setText("Edad*");
 
         jtEdad.setBackground(new java.awt.Color(246, 246, 246));
         jtEdad.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -125,11 +126,6 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
         jtTelefono.setCaretColor(new java.awt.Color(59, 107, 65));
         jtTelefono.setSelectedTextColor(new java.awt.Color(59, 107, 65));
         jtTelefono.setSelectionColor(new java.awt.Color(130, 186, 137));
-        jtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtTelefonoKeyTyped(evt);
-            }
-        });
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(41, 65, 43));
@@ -157,7 +153,7 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
 
         jLabel8.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(41, 65, 43));
-        jLabel8.setText("Peso");
+        jLabel8.setText("Peso*");
 
         jtPeso.setBackground(new java.awt.Color(246, 246, 246));
         jtPeso.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -169,7 +165,7 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
 
         jLabel9.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(41, 65, 43));
-        jLabel9.setText("Altura");
+        jLabel9.setText("Altura*");
 
         jtAltura.setBackground(new java.awt.Color(246, 246, 246));
         jtAltura.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -193,7 +189,7 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
 
         jLabel10.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(41, 65, 43));
-        jLabel10.setText("Genero");
+        jLabel10.setText("Genero*");
 
         jrCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar rojo.png"))); // NOI18N
         jrCerrar.setText("CERRAR");
@@ -215,50 +211,59 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Verdana", 1, 10)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(41, 65, 43));
+        jLabel11.setText("(*)Obligatorio");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jrMasculino)
-                                    .addGap(44, 44, 44)
-                                    .addComponent(jrFemenino))
-                                .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel11)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jrCargar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jrCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(60, 60, 60))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addComponent(jrMasculino)
+                                            .addGap(44, 44, 44)
+                                            .addComponent(jrFemenino))
+                                        .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jrCargar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jrCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(60, 60, 60))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,49 +289,35 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jrCargar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jrCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(jtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(jtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel11)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jrCargar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jrCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtTelefonoKeyTyped
-//        char c = evt.getKeyChar();
-//        if (!Character.isDigit(c)) {
-//            if (evt.getKeyChar() == 32) {
-//                evt.consume();
-//            }
-//            if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 126) {
-//                evt.consume();
-//                Utileria.mensaje("Solo se permite numeros enteros");
-//            }
-//        }
-    }//GEN-LAST:event_jtTelefonoKeyTyped
 
     private void jrCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrCerrarActionPerformed
         Object[] op = {"Aceptar", "Cancelar"};
@@ -338,7 +329,7 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
 
     private void jrCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrCargarActionPerformed
         if (jtNombre.getText().equals("") || jtApellido.getText().equals("") || jtDocumento.getText().equals("") || jtEdad.getText().equals("")) {
-            Utileria.mensaje("Debe llenar todos los campos");
+            Utileria.mensaje("Debe llenar todos los campos obligatorios");
         } else if ((!jrFemenino.isSelected() && !jrMasculino.isSelected())) {
             Utileria.mensaje("Debe seleccionar el genero");
         } else {
@@ -347,7 +338,6 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
             int aux = 0;
             if (jtTelefono.getText().length() >= 6) {
                 for (int i = 0; i < jtTelefono.getText().length(); i++) {
-//                    System.out.println(jtTelefono.getText().charAt(i));
                     if (jtTelefono.getText().charAt(i) < 48 || jtTelefono.getText().charAt(i) > 57) {
                         Utileria.mensaje("Solo puede ingresar numeros en telefono");
                         aux = 0;
@@ -357,34 +347,29 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
                     }
                 }
             } else {
-                Utileria.mensaje("Numero de telefono no valido");
-                return;
+                if (!jtTelefono.getText().equals("")) {
+                    Utileria.mensaje("Numero de telefono no valido");
+                    return;
+                } else {
+                    aux = 1;
+                }
             }
             if (aux == 1) {
                 try {
                     pac.setNombre(jtNombre.getText());
                     pac.setApellido(jtApellido.getText());
-                    pac.setDni(Integer.parseInt(jtDocumento.getText()));
+                    pac.setDni(Math.abs(Integer.parseInt(jtDocumento.getText())));
                     pac.setGenero(sexo());
-                    pac.setEdad(Integer.parseInt(jtEdad.getText()));
+                    pac.setEdad(Math.abs(Integer.parseInt(jtEdad.getText())));
                     pac.setTelefono(jtTelefono.getText());
                     pac.setDomicilio(jtDireccion.getText());
                     pac.setEmail(jtMail.getText());
-//                if (!jtAltura.getText().isEmpty()) {
-                    pac.setAltura(Double.parseDouble(jtAltura.getText()));
-//                } else {
-//                    pac.setAltura(0);
-//                }
-//                if (!jtPeso.getText().isEmpty()) {
-                    pac.setPesoActual(Double.parseDouble(jtPeso.getText()));
-//                } else {
-//                    pac.setPesoActual(0);
-//                }
+                    pac.setAltura(Math.abs(Double.parseDouble(jtAltura.getText())));
+                    pac.setPesoActual(Math.abs(Double.parseDouble(jtPeso.getText())));
                     pac.setEstado(2);
                     pdata.cargarPaciente(pac);
                     limpiarCeldas();
                 } catch (NumberFormatException e) {
-//                    System.out.println("prueba1: " + e.getLocalizedMessage().trim());
                     if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtDocumento.getText() + '"')) {
                         Utileria.mensaje("Solo puede ingresar numeros en documento");
                     } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtEdad.getText() + '"')) {
@@ -392,10 +377,14 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
                     } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtPeso.getText() + '"')) {
                         Utileria.mensaje("Solo puede ingresar numeros en peso");
                     } else if (e.getLocalizedMessage().intern().equals("For input string: " + '"' + jtAltura.getText() + '"')) {
-                        Utileria.mensaje("Solo puede ingresar numeros enteros o double (es punto y no coma) en altura");
+                        Utileria.mensaje("Solo puede ingresar numeros en altura");
+                    } else {
+                        Utileria.mensaje("Llene todos los campos obligatorios");
                     }
                 } catch (NullPointerException e) {
-                    Utileria.mensaje("Llene todos los campos");
+                    Utileria.mensaje("Llene todos los campos obligatorios");
+                } catch (Exception e) {
+                    Utileria.mensaje(e.getMessage());
                 }
             }
         }
@@ -417,6 +406,7 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

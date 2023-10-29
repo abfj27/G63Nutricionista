@@ -465,7 +465,7 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
                         Utileria.mensaje("Debe ingresar un peso valido");
                         return;
                     }
-                    double peso = Double.parseDouble(jlPeso.getText());
+                    double peso = Math.abs(Double.parseDouble(jlPeso.getText()));
                     Visita vic = new Visita();
                     Dieta dieta = dd.dietaFechaFinalMax(pac.getDni());
                     vic.setDieta(dieta);
@@ -514,7 +514,7 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         if (!jtBuscarDocumento.getText().isEmpty()) {
             int documento = Integer.parseInt(jtBuscarDocumento.getText());
-            ModificarPaciente2 mpVista = new ModificarPaciente2(documento);
+            ModificarPaciente2 mpVista = new ModificarPaciente2(documento, 1);
             EscritorioColor2.escritorio.add(mpVista);
             mpVista.toFront();
             mpVista.setVisible(true);

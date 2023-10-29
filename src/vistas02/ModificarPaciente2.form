@@ -97,10 +97,8 @@
                               </Group>
                               <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jtAltura" min="-2" pref="75" max="-2" attributes="0"/>
                                   <Component id="jtEdad" alignment="0" min="-2" pref="75" max="-2" attributes="0"/>
                                   <Component id="jtDireccion" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
-                                  <Component id="jtMail" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jrMasculino" min="-2" max="-2" attributes="0"/>
@@ -108,6 +106,16 @@
                                           <Component id="jrFemenino" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jtTelefono" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jtAltura" min="-2" pref="75" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jLabel11" min="-2" pref="79" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jtPeso" min="-2" pref="75" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jtMail" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -171,16 +179,27 @@
                   <Component id="jtMail" alignment="2" min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel9" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                  <Component id="jtAltura" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel9" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jtAltura" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jrCargar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jrCerrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="jLabel11" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtPeso" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jrCargar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jrCerrar" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -674,6 +693,46 @@
           <Color blue="2b" green="41" red="29" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="DATOS DEL PACIENTE"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel11">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Verdana" size="18" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="2b" green="41" red="29" type="rgb"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Peso:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtPeso">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="f6" green="f6" red="f6" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Verdana" size="14" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="41" green="6b" red="3b" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder roundedCorners="true" thickness="2">
+              <Color PropertyName="color" blue="9b" green="b3" red="9a" type="rgb"/>
+            </LineBorder>
+          </Border>
+        </Property>
+        <Property name="caretColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="41" green="6b" red="3b" type="rgb"/>
+        </Property>
+        <Property name="selectedTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="41" green="6b" red="3b" type="rgb"/>
+        </Property>
+        <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="89" green="ba" red="82" type="rgb"/>
+        </Property>
       </Properties>
     </Component>
   </SubComponents>
