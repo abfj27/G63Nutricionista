@@ -118,8 +118,8 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
             }
         ));
         jTComidas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTComidasMouseClicked(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTComidasMouseReleased(evt);
             }
         });
         jScrollPane1.setViewportView(jTComidas);
@@ -298,24 +298,6 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jCbFiltradoActionPerformed
 
-    private void jTComidasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTComidasMouseClicked
-        // TODO add your handling code here:
-        filaS = jTComidas.getSelectedRow();
-        if (estado != 1) {
-            jBeliminar.setEnabled(true);
-        }
-
-        if (estado == 0) {
-            if (jTComidas.getValueAt(filaS, 3) == "true" || jTComidas.getValueAt(filaS, 3) == "false") {
-                jBalta_baja.setEnabled(true);
-                jBeliminar.setEnabled(true);
-            } else if (jTComidas.getValueAt(filaS, 3) == "eliminado") {
-                jBalta_baja.setEnabled(true);
-                jBeliminar.setEnabled(false);
-            }
-        }
-    }//GEN-LAST:event_jTComidasMouseClicked
-
     private void jBalta_bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBalta_bajaActionPerformed
         // TODO add your handling code here:
         int[] filasS = jTComidas.getSelectedRows();
@@ -358,6 +340,24 @@ public class AdministrativoListaComidas extends javax.swing.JInternalFrame {
             this.dispose();
         }
     }//GEN-LAST:event_jBcerrarActionPerformed
+
+    private void jTComidasMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTComidasMouseReleased
+
+        filaS = jTComidas.getSelectedRow();
+        if (estado != 1) {
+            jBeliminar.setEnabled(true);
+        }
+
+        if (estado == 0) {
+            if (jTComidas.getValueAt(filaS, 3) == "true" || jTComidas.getValueAt(filaS, 3) == "false") {
+                jBalta_baja.setEnabled(true);
+                jBeliminar.setEnabled(true);
+            } else if (jTComidas.getValueAt(filaS, 3) == "eliminado") {
+                jBalta_baja.setEnabled(true);
+                jBeliminar.setEnabled(false);
+            }
+        }
+    }//GEN-LAST:event_jTComidasMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

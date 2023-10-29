@@ -223,7 +223,7 @@ public class ComidaData {
                 }
                 ps.setInt(1, Integer.valueOf(ingreso));
             } else if (!ingreso.isEmpty()) {
-                ps.setString(1, ingreso);
+                ps.setString(1, ingreso + "%");
             }
             if (!ingreso.isEmpty()) {
                 ps.setInt(2, estado);
