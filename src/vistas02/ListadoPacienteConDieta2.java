@@ -96,6 +96,7 @@ public class ListadoPacienteConDieta2 extends javax.swing.JInternalFrame {
         jrCompleta.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jrCompleta.setForeground(new java.awt.Color(41, 65, 43));
         jrCompleta.setText("Completa");
+        jrCompleta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jrCompleta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrCompletaActionPerformed(evt);
@@ -107,6 +108,7 @@ public class ListadoPacienteConDieta2 extends javax.swing.JInternalFrame {
         jrIncompleta.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jrIncompleta.setForeground(new java.awt.Color(41, 65, 43));
         jrIncompleta.setText("Incompleta");
+        jrIncompleta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jrIncompleta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrIncompletaActionPerformed(evt);
@@ -118,6 +120,7 @@ public class ListadoPacienteConDieta2 extends javax.swing.JInternalFrame {
         jrTodos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jrTodos.setForeground(new java.awt.Color(41, 65, 43));
         jrTodos.setText("Todos");
+        jrTodos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jrTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrTodosActionPerformed(evt);
@@ -129,6 +132,7 @@ public class ListadoPacienteConDieta2 extends javax.swing.JInternalFrame {
         jrCurso.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jrCurso.setForeground(new java.awt.Color(41, 65, 43));
         jrCurso.setText("En curso");
+        jrCurso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jrCurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrCursoActionPerformed(evt);
@@ -149,11 +153,14 @@ public class ListadoPacienteConDieta2 extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtListado.setColumnSelectionAllowed(true);
         jtListado.setGridColor(new java.awt.Color(59, 107, 65));
         jtListado.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jtListado.setSelectionForeground(new java.awt.Color(130, 186, 137));
+        jtListado.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jtListado.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtListado);
+        jtListado.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jbCerrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar rojo.png"))); // NOI18N
         jbCerrar1.setText("CERRAR");

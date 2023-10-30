@@ -123,7 +123,7 @@ public class NuevaDietaVen2 extends javax.swing.JInternalFrame {
         jradialModificable.setBackground(new java.awt.Color(235, 235, 231));
         jradialModificable.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jradialModificable.setForeground(new java.awt.Color(41, 65, 43));
-        jradialModificable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jradialModificable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jradialModificable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jradialModificableActionPerformed(evt);

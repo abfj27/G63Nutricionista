@@ -180,12 +180,14 @@ public class NuevoPaciente2 extends javax.swing.JInternalFrame {
         jrMasculino.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jrMasculino.setForeground(new java.awt.Color(41, 65, 43));
         jrMasculino.setText("Masculino");
+        jrMasculino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jrFemenino.setBackground(new java.awt.Color(235, 235, 231));
         buttonGroup1.add(jrFemenino);
         jrFemenino.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jrFemenino.setForeground(new java.awt.Color(41, 65, 43));
         jrFemenino.setText("Femenino");
+        jrFemenino.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel10.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(41, 65, 43));
