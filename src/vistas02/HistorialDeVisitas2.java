@@ -103,11 +103,14 @@ public class HistorialDeVisitas2 extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtHistorial.setColumnSelectionAllowed(true);
         jtHistorial.setGridColor(new java.awt.Color(59, 107, 65));
         jtHistorial.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jtHistorial.setSelectionForeground(new java.awt.Color(130, 186, 137));
+        jtHistorial.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jtHistorial.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtHistorial);
+        jtHistorial.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(41, 65, 43));

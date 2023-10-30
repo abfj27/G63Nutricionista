@@ -94,6 +94,7 @@ public class AdministrativoDieta2 extends javax.swing.JInternalFrame {
         jCbFiltrado.setForeground(new java.awt.Color(59, 107, 65));
         jCbFiltrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         jCbFiltrado.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(130, 186, 137), 2, true));
+        jCbFiltrado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jCbFiltrado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCbFiltradoActionPerformed(evt);
@@ -105,6 +106,7 @@ public class AdministrativoDieta2 extends javax.swing.JInternalFrame {
         jRbActivos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jRbActivos.setForeground(new java.awt.Color(41, 65, 43));
         jRbActivos.setText("Estados True (1y2)");
+        jRbActivos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRbActivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRbActivosActionPerformed(evt);
@@ -116,6 +118,7 @@ public class AdministrativoDieta2 extends javax.swing.JInternalFrame {
         jRbTodos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jRbTodos.setForeground(new java.awt.Color(41, 65, 43));
         jRbTodos.setText("Todos");
+        jRbTodos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRbTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRbTodosActionPerformed(evt);
@@ -127,6 +130,7 @@ public class AdministrativoDieta2 extends javax.swing.JInternalFrame {
         jRbInactivos.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jRbInactivos.setForeground(new java.awt.Color(41, 65, 43));
         jRbInactivos.setText("Estado false(0)");
+        jRbInactivos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRbInactivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRbInactivosActionPerformed(evt);
@@ -147,9 +151,11 @@ public class AdministrativoDieta2 extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTdietas.setColumnSelectionAllowed(true);
         jTdietas.setGridColor(new java.awt.Color(59, 107, 65));
         jTdietas.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jTdietas.setSelectionForeground(new java.awt.Color(130, 186, 137));
+        jTdietas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTdietas.getTableHeader().setReorderingAllowed(false);
         jTdietas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -157,6 +163,7 @@ public class AdministrativoDieta2 extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(jTdietas);
+        jTdietas.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(41, 65, 43));

@@ -102,12 +102,14 @@ public class ListaDietaVen2 extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tableDieta.setColumnSelectionAllowed(true);
         tableDieta.setGridColor(new java.awt.Color(59, 107, 65));
         tableDieta.setSelectionBackground(new java.awt.Color(59, 107, 65));
         tableDieta.setSelectionForeground(new java.awt.Color(130, 186, 137));
         tableDieta.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tableDieta.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableDieta);
+        tableDieta.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jbCerrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar rojo.png"))); // NOI18N
         jbCerrar1.setText("CERRAR");
