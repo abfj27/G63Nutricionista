@@ -153,19 +153,16 @@ public class ListaComidas2 extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTComidas.setColumnSelectionAllowed(true);
         jTComidas.setGridColor(new java.awt.Color(59, 107, 65));
         jTComidas.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jTComidas.setSelectionForeground(new java.awt.Color(130, 186, 137));
         jTComidas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTComidas.getTableHeader().setReorderingAllowed(false);
         jTComidas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTComidasMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTComidas);
-        jTComidas.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(41, 65, 43));
@@ -391,15 +388,6 @@ public class ListaComidas2 extends javax.swing.JInternalFrame {
         }else {
             Utileria.mensaje("Debe seleccionar una fila");
         }
-        
-//        if (filaS != -1) {
-//            cd.darAlta(jTComidas.getValueAt(filaS, 0).toString(), Integer.valueOf(jTComidas.getValueAt(filaS, 2).toString()));
-//            borrarFila();
-//            obtencionDeDatos();
-//            filaS = -1;
-//        } else {
-//            Utileria.mensaje("Debe seleccionar una fila");
-//        }
     }//GEN-LAST:event_jbAltaActionPerformed
 
     private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
@@ -410,14 +398,6 @@ public class ListaComidas2 extends javax.swing.JInternalFrame {
         }else {
             Utileria.mensaje("Debe seleccionar una fila");
         }
-
-//        if (filaS != -1) {
-//            cd.darBaja(jTComidas.getValueAt(filaS, 0).toString(), Integer.valueOf(jTComidas.getValueAt(filaS, 2).toString()));
-//
-//            filaS = -1;
-//        } else {
-//            Utileria.mensaje("Debe seleccionar una fila");
-//        }
     }//GEN-LAST:event_jbBajaActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed

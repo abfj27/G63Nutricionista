@@ -26,7 +26,6 @@ public class crear_modificar_comida2 extends javax.swing.JInternalFrame {
         ImageIcon modificarIcon = new ImageIcon(getClass().getResource("/Imagenes/editar.png"));
 
         if (String.valueOf(comida).equals("null")) {
-//            jLtitulo.setText("Crear Comida");
             jbModificar.setIcon(guardarIcon);
             jbModificar.setText("GUARDAR");
         } else {

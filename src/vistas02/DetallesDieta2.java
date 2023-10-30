@@ -166,14 +166,11 @@ public class DetallesDieta2 extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableComidas.setColumnSelectionAllowed(true);
         tableComidas.setGridColor(new java.awt.Color(59, 107, 65));
         tableComidas.setSelectionBackground(new java.awt.Color(59, 107, 65));
         tableComidas.setSelectionForeground(new java.awt.Color(130, 186, 137));
         tableComidas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tableComidas.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tableComidas);
-        tableComidas.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(41, 65, 43));
@@ -387,7 +384,6 @@ public class DetallesDieta2 extends javax.swing.JInternalFrame {
         jlNombreDieta.setText(dieta.getNombre());
         jlDocumento.setText(paciente.getDni() + "");
         jlApellido.setText(paciente.getApellido() + ", " + paciente.getNombre());
-//        jlNombre.setText(paciente.getNombre());
         jlPesoActual.setText(paciente.getPesoActual() + "");
         jlPesoInicial.setText(dieta.getPesoInicial() + "");
         jlPesoObje.setText(dieta.getPesoObjetivo() + "");

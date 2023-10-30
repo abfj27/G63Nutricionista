@@ -178,11 +178,9 @@ public class ModificarDietaComida2 extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarCombo() {
-//        jcHorario.removeAllItems();
         for (Horario aux : Horario.values()) {
             jcHorario.addItem(aux);
         }
-//        jcPorcion.removeAllItems();
         for (Porcion aux : Porcion.values()) {
             jcPorcion.addItem(aux);
         }

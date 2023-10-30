@@ -180,7 +180,6 @@ public class AdministrativoPacientes2 extends javax.swing.JInternalFrame {
         jTpacientes.setGridColor(new java.awt.Color(59, 107, 65));
         jTpacientes.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jTpacientes.setSelectionForeground(new java.awt.Color(130, 186, 137));
-        jTpacientes.getTableHeader().setReorderingAllowed(false);
         jTpacientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTpacientesMouseReleased(evt);

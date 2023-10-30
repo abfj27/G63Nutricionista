@@ -93,7 +93,6 @@ public class PacienteData {
             ps.setInt(12, paciente.getIdPaciente());
             ps.executeUpdate();
             ps.close();
-//            Utileria.mensaje("Se modifico el paciente correctamente");
         } catch (SQLException ex) {
             Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -106,7 +105,6 @@ public class PacienteData {
             ps.setInt(1, paciente.getIdPaciente());
             ps.executeUpdate();
             ps.close();
-            //mensaje
         } catch (SQLException ex) {
             Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -133,9 +131,7 @@ public class PacienteData {
                 pac.setEdad(rs.getInt("edad"));
                 pac.setAltura(rs.getDouble("altura"));
                 pac.setGenero(rs.getString("genero"));
-            } else {
-                //mensaje
-            }
+            } 
             rs.close();
             ps.close();
         } catch (SQLException ex) {
@@ -261,7 +257,6 @@ public class PacienteData {
             } else {
                 sql = "SELECT* FROM paciente WHERE dni = ? and estado=2";
             }
-
             try {
                 PreparedStatement ps = conec.prepareStatement(sql);
                 if (!ingreso.isEmpty()) {
@@ -306,7 +301,6 @@ public class PacienteData {
             ps.setInt(1, dni);
             ps.executeUpdate();
             ps.close();
-
         } catch (SQLException ex) {
             Logger.getLogger(ComidaData.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -320,7 +314,6 @@ public class PacienteData {
             ps.setInt(1, dni);
             ps.executeUpdate();
             ps.close();
-
         } catch (SQLException ex) {
             Logger.getLogger(ComidaData.class
                     .getName()).log(Level.SEVERE, null, ex);
@@ -334,7 +327,6 @@ public class PacienteData {
             ps.setInt(1, dni);
             ps.executeUpdate();
             ps.close();
-
         } catch (SQLException ex) {
             Logger.getLogger(ComidaData.class
                     .getName()).log(Level.SEVERE, null, ex);

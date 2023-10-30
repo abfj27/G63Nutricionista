@@ -5,7 +5,6 @@ import controlDatos.DietaComidaData;
 import entidades.Comida;
 import entidades.Dieta;
 import entidades.DietaComida;
-import java.awt.image.LookupTable;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.InternalFrameAdapter;
@@ -106,14 +105,11 @@ public class ModificarComidaEnDieta2 extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtComidasEnDieta.setColumnSelectionAllowed(true);
         jtComidasEnDieta.setGridColor(new java.awt.Color(59, 107, 65));
         jtComidasEnDieta.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jtComidasEnDieta.setSelectionForeground(new java.awt.Color(130, 186, 137));
         jtComidasEnDieta.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jtComidasEnDieta.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtComidasEnDieta);
-        jtComidasEnDieta.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jtListaDeComidas.setBackground(new java.awt.Color(227, 238, 228));
         jtListaDeComidas.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -129,14 +125,11 @@ public class ModificarComidaEnDieta2 extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtListaDeComidas.setColumnSelectionAllowed(true);
         jtListaDeComidas.setGridColor(new java.awt.Color(59, 107, 65));
         jtListaDeComidas.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jtListaDeComidas.setSelectionForeground(new java.awt.Color(130, 186, 137));
         jtListaDeComidas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jtListaDeComidas.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jtListaDeComidas);
-        jtListaDeComidas.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jbSacarDe.setBackground(new java.awt.Color(235, 235, 231));
         jbSacarDe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar.png"))); // NOI18N
@@ -352,7 +345,6 @@ public class ModificarComidaEnDieta2 extends javax.swing.JInternalFrame {
             EscritorioColor2.escritorio.add(ven);
             ven.toFront();
             ven.setVisible(true);
-            //Utileria.centrarInternalFrame(EscritorioColor2.escritorio, ven);
             //
         } else {
             Utileria.mensaje("Debe seleccionar una fila de la tabla 'Comidas en Dieta'");

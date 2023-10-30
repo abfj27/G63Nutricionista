@@ -13,7 +13,6 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import stuff.Utileria;
 import vistas02.EscritorioColor2;
-import vistas01.DetallesDieta;
 
 /**
  *
@@ -151,19 +150,16 @@ public class AdministrativoDieta2 extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTdietas.setColumnSelectionAllowed(true);
         jTdietas.setGridColor(new java.awt.Color(59, 107, 65));
         jTdietas.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jTdietas.setSelectionForeground(new java.awt.Color(130, 186, 137));
         jTdietas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTdietas.getTableHeader().setReorderingAllowed(false);
         jTdietas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTdietasMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTdietas);
-        jTdietas.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(41, 65, 43));

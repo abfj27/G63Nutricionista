@@ -140,19 +140,16 @@ public class AdministrativoListaComidas2 extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTComidas.setColumnSelectionAllowed(true);
         jTComidas.setGridColor(new java.awt.Color(59, 107, 65));
         jTComidas.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jTComidas.setSelectionForeground(new java.awt.Color(130, 186, 137));
         jTComidas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTComidas.getTableHeader().setReorderingAllowed(false);
         jTComidas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTComidasMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTComidas);
-        jTComidas.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(41, 65, 43));
@@ -472,21 +469,4 @@ public class AdministrativoListaComidas2 extends javax.swing.JInternalFrame {
         Utileria.ajustarTabla(jTComidas);
     }
 
-//    public void ordenamientoDeTabla() {
-//        //ordena la tabla segun donde le de click en la cabecera
-//        TableRowSorter<TableModel> sorter = new TableRowSorter<>(jTComidas.getModel());
-//        jTComidas.setRowSorter(sorter);
-//
-//        jTComidas.getTableHeader().addMouseListener(new MouseAdapter() {
-//
-//            @Override
-//            public void mouseClicked(MouseEvent e) {
-//                if (e.getClickCount() == e.getClickCount()) {
-//                    int colum = jTComidas.columnAtPoint(e.getPoint());
-//                    sorter.toggleSortOrder(colum);
-//                    click += 1;
-//                }
-//            }
-//        });
-//    }
 }

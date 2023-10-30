@@ -48,7 +48,6 @@ public class VisitaData {
         String sql = "INSERT INTO visita ( idPaciente, peso, fecha, estado) VALUES (?,?,?,?)";
         try {
             PreparedStatement ps = conec.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-//            ps.setInt(1, visita.getDieta().getIdDieta());
             ps.setInt(1, visita.getPaciente().getIdPaciente());
             ps.setDouble(2, visita.getPeso());
             ps.setDate(3, Date.valueOf(visita.getFecha()));
@@ -57,7 +56,6 @@ public class VisitaData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 visita.setIdVisita(rs.getInt(1));
-                //mensaje
             }
             rs.close();
             ps.close();
@@ -79,7 +77,6 @@ public class VisitaData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 visita.setIdVisita(rs.getInt(1));
-//                Utileria.mensaje("Visita guardada exitosamente");
             }
             rs.close();
             ps.close();
@@ -100,7 +97,6 @@ public class VisitaData {
             ps.setInt(6, visita.getIdVisita());
             ps.executeUpdate();
             ps.close();
-            //mensaje
         } catch (SQLException ex) {
             Logger.getLogger(VisitaData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -113,7 +109,6 @@ public class VisitaData {
             ps.setInt(1, visita.getIdVisita());
             ps.executeUpdate();
             ps.close();
-            //mensaje
         } catch (SQLException ex) {
             Logger.getLogger(VisitaData.class.getName()).log(Level.SEVERE, null, ex);
         }

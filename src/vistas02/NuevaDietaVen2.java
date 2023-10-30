@@ -3,18 +3,12 @@ package vistas02;
 import controlDatos.DietaData;
 import controlDatos.PacienteData;
 import entidades.Dieta;
-import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.util.Date;
 import javax.swing.JOptionPane;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
 import stuff.Utileria;
 import vistas02.EscritorioColor2;
-import vistas01.AdministrativoPacientes;
 
 public class NuevaDietaVen2 extends javax.swing.JInternalFrame {
 
@@ -406,7 +400,6 @@ public class NuevaDietaVen2 extends javax.swing.JInternalFrame {
                 if (ex.getLocalizedMessage().equals("For input string: " + '"' + jtDocumento.getText() + '"')) {
                     Utileria.mensaje("Debe buscar un paciente antes de poder crear una dieta");
                 } else if (ex.getLocalizedMessage().equals("For input string: " + '"' + jtPInicial.getText() + '"')) {
-                    System.out.println(jtPInicial.getText());
                     Utileria.mensaje("Peso inicial no valido");
                 } else if (ex.getLocalizedMessage().equals("For input string: " + '"' + jtPFinal.getText() + '"')) {
                     Utileria.mensaje("Peso final no valido");

@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
 import stuff.Utileria;
 import vistas02.EscritorioColor2;
 import vistas02.DetallesDieta2;
-import vistas01.NuevaDietaVen;
 
 /**
  *
@@ -394,7 +393,6 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
                 int dni = Integer.parseInt(jtBuscarDocumento.getText());
                 pac = pdata.buscarPacienteDocumento(dni);
                 jlNombre.setText(pac.getApellido() + ", " + pac.getNombre());
-//                jlApellido.setText(pac.getApellido());
                 jlGenero.setText(pac.getGenero());
                 jlTelefono.setText(pac.getTelefono());
                 jlDireccion.setText(pac.getDomicilio());

@@ -449,7 +449,6 @@ public class ModificarPaciente2 extends javax.swing.JInternalFrame {
             }
             if (aux == 1) {
                 try {
-                    System.out.println("111");
                     pac.setNombre(jtNombre.getText());
                     pac.setApellido(jtApellido.getText());
                     pac.setDni(Math.abs(Integer.parseInt(jtDocumento.getText())));

@@ -38,13 +38,11 @@ public class DietaComidaData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 dc.setIdDC(rs.getInt(1));
-                //mensaje
             }
             rs.close();
             ps.close();
         } catch (SQLIntegrityConstraintViolationException ex) {
             Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
-            // mensaje
         } catch (SQLException ex) {
             Logger.getLogger(DietaComidaData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,7 +60,6 @@ public class DietaComidaData {
             ps.setInt(6, dc.getIdDC());
             ps.executeUpdate();
             ps.close();
-            //mensaje
         } catch (SQLException ex) {
             Logger.getLogger(DietaComidaData.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -75,7 +72,6 @@ public class DietaComidaData {
             ps.setInt(1, dc.getIdDC());
             ps.executeUpdate();
             ps.close();
-            //mensaje
         } catch (SQLException ex) {
             Logger.getLogger(DietaComidaData.class.getName()).log(Level.SEVERE, null, ex);
         }
