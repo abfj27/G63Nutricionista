@@ -239,7 +239,7 @@ public class DietaData {
 
     public Dieta buscarDietaXid(int id) {
         Dieta dieta = new Dieta();
-        PacienteData pdata = new PacienteData();
+//        PacienteData pdata = new PacienteData();
         String sql = "SELECT nombre, idPaciente, pesoInicial, pesoObjetivo, fechaInicial , fechaFinal, idDieta, estado FROM dieta WHERE idDieta = ?";
         try {
             PreparedStatement ps = conec.prepareStatement(sql);
@@ -247,7 +247,8 @@ public class DietaData {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Paciente paciente = new Paciente();
-                paciente = pdata.buscarPacienteCodigo(rs.getInt("idPaciente"));
+//                paciente = pdata.buscarPacienteCodigo(rs.getInt("idPaciente"));
+                paciente = buscarPacienteCodigoendieta(rs.getInt("idPaciente"));
                 dieta.setNombre(rs.getString("nombre"));
                 dieta.setPaciente(paciente);
                 dieta.setPesoInicial(rs.getDouble("pesoInicial"));
@@ -617,17 +618,21 @@ public class DietaData {
         String sql = "";
         switch (check) {
             case 1:
-                 if (ingreso.isEmpty()) {
-                    sql = "Select d.* from dieta d where d.estado=2 and fechaFinal<=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+                if (ingreso.isEmpty()) {
+//                    sql = "Select d.* from dieta d where d.estado=2 and fechaFinal<=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+                    sql = "Select d.* from dieta d where d.estado=2";
                 } else {
-                    sql = "Select d.* from dieta d where d.idPaciente in (SELECT idPaciente from paciente where apellido like ?) and d.estado=2 and d.fechaFinal<=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+//                    sql = "Select d.* from dieta d where d.idPaciente in (SELECT idPaciente from paciente where apellido like ?) and d.estado=2 and d.fechaFinal<=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+                    sql = "Select d.* from dieta d where d.idPaciente in (SELECT idPaciente from paciente where apellido like ?) and d.estado=2";
                 }
                 break;
             case 2:
                 if (ingreso.isEmpty()) {
-                    sql = "Select d.* from dieta d where d.estado=2 and fechaFinal<=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+//                    sql = "Select d.* from dieta d where d.estado=2 and fechaFinal<=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+                    sql = "Select d.* from dieta d where d.estado=2 and fechaFinal<=curdate()";
                 } else {
-                    sql = "Select d.* from dieta d where d.idPaciente in (SELECT idPaciente from paciente where apellido like ?) and d.estado=2 and d.fechaFinal<=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+//                    sql = "Select d.* from dieta d where d.idPaciente in (SELECT idPaciente from paciente where apellido like ?) and d.estado=2 and d.fechaFinal<=curdate() and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
+                    sql = "Select d.* from dieta d where d.idPaciente in (SELECT idPaciente from paciente where apellido like ?) and d.estado=2 and d.fechaFinal<=curdate()";
                 }
                 break;
             case 3:
@@ -639,24 +644,25 @@ public class DietaData {
                 break;
             default:
                 if (ingreso.isEmpty()) {
+//                    sql = "Select d.* from dieta d where d.estado=2 and d.fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
                     sql = "Select d.* from dieta d where d.estado=2 and d.fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
                 } else {
                     sql = "Select d.* from dieta d where d.idPaciente in (SELECT idPaciente from paciente where apellido like ?) and d.estado=2 and fechaFinal=(SELECT max(fechaFinal) from dieta d2 where d2.idPaciente=d.idPaciente)";
                 }
 
         }
-        
+
         try {
-          PreparedStatement ps = conec.prepareStatement(sql);
+            PreparedStatement ps = conec.prepareStatement(sql);
             if (!ingreso.isEmpty()) {
                 ps.setString(1, ingreso + "%");
             }
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                PacienteData pd = new PacienteData();
+//                PacienteData pd = new PacienteData();
                 Dieta dieta = new Dieta();
                 dieta.setIdDieta(rs.getInt("idDieta"));
-                dieta.setPaciente(pd.buscarPacienteCodigo(rs.getInt("idPaciente")));
+                dieta.setPaciente(buscarPacienteCodigoendieta(rs.getInt("idPaciente")));
                 dieta.setPesoInicial(rs.getFloat("pesoInicial"));
                 dieta.setPesoObjetivo(rs.getFloat("pesoObjetivo"));
                 dieta.setFechaInicial(rs.getDate("fechaInicial").toLocalDate());
@@ -669,8 +675,7 @@ public class DietaData {
         } catch (SQLException ex) {
             Logger.getLogger(DietaData.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-       
+
         //verificacion por peso de ultima visita
         ArrayList<Dieta> dietasVeri = new ArrayList<>();
         for (Dieta re : dietas) {
@@ -678,12 +683,12 @@ public class DietaData {
             try {
                 switch (check) {
                     case 1:
-                        if (uv.getPeso() >= re.getPesoObjetivo() - 5 && uv.getPeso() <= re.getPesoObjetivo() + 5) {
+                        if (uv.getPeso() >= re.getPesoObjetivo() - 2.5 && uv.getPeso() <= re.getPesoObjetivo() + 2.5) {
                             dietasVeri.add(re);
                         }
                         break;
                     case 2:
-                        if (uv.getPeso() < re.getPesoObjetivo() - 5 || uv.getPeso() > re.getPesoObjetivo() + 5) {
+                        if (uv.getPeso() < re.getPesoObjetivo() - 2.5 || uv.getPeso() > re.getPesoObjetivo() + 2.5) {
                             dietasVeri.add(re);
                         }
                         break;
@@ -706,11 +711,11 @@ public class DietaData {
             ps.setInt(1, idPaciente);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                PacienteData pd = new PacienteData();
+//                PacienteData pd = new PacienteData();
                 visita = new Visita();
                 visita.setIdVisita(rs.getInt("idVisita"));
                 visita.setDieta(buscarDietaXid(rs.getInt("idDieta")));
-                visita.setPaciente(pd.buscarPacienteCodigo(rs.getInt("idPaciente")));
+                visita.setPaciente(buscarPacienteCodigoendieta(rs.getInt("idPaciente")));
                 visita.setPeso(rs.getFloat("peso"));
                 visita.setFecha(rs.getDate("fecha").toLocalDate());
                 visita.setEstado(rs.getInt("estado"));
@@ -722,4 +727,37 @@ public class DietaData {
         }
         return visita;
     }
-}
+
+    public Paciente buscarPacienteCodigoendieta(int id) {
+        Paciente pac = null;
+        String sql = "SELECT dni, apellido, nombre, pesoActual, altura, edad, genero, domicilio, telefono, email, idPaciente, estado FROM paciente WHERE idPaciente=?";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                pac = new Paciente();
+                pac.setDni(rs.getInt("dni"));
+                pac.setApellido(rs.getString("apellido"));
+                pac.setNombre(rs.getString("nombre"));
+                pac.setPesoActual(rs.getDouble("pesoActual"));
+                pac.setDomicilio(rs.getString("domicilio"));
+                pac.setTelefono(rs.getString("telefono"));
+                pac.setEmail(rs.getString("email"));
+                pac.setIdPaciente(rs.getInt("idPaciente"));
+                pac.setEstado(rs.getInt("estado"));
+                pac.setEdad(rs.getInt("edad"));
+                pac.setAltura(rs.getDouble("altura"));
+                pac.setGenero(rs.getString("genero"));
+            } else {
+                //mensaje
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(PacienteData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return pac;
+    }
+    //
+}//

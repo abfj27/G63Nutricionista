@@ -465,7 +465,10 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
                         Utileria.mensaje("Debe ingresar un peso valido");
                         return;
                     }
-                    double peso = Math.abs(Double.parseDouble(jlPeso.getText()));
+                    double peso = Double.parseDouble(jtPeso.getText());
+                    if (peso <= 0) {
+                        return;
+                    }
                     Visita vic = new Visita();
                     Dieta dieta = dd.dietaFechaFinalMax(pac.getDni());
                     vic.setDieta(dieta);

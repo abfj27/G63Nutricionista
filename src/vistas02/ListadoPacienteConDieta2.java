@@ -473,7 +473,7 @@ public class ListadoPacienteConDieta2 extends javax.swing.JInternalFrame {
         DietaData dd = new DietaData();
         ArrayList<Dieta> dietas = new ArrayList<>(dd.dietasFiltrar(check, ingreso));
         for (Dieta re : dietas) {
-            modelo.addRow(new Object[]{re.getPaciente().getNombre() + " " + re.getPaciente().getApellido(),
+            modelo.addRow(new Object[]{re.getPaciente().getApellido() + " " + re.getPaciente().getNombre(),
                 re.getPesoInicial(),
                 re.getPesoObjetivo(),
                 re.getFechaInicial(),
@@ -482,6 +482,7 @@ public class ListadoPacienteConDieta2 extends javax.swing.JInternalFrame {
                 re.getPaciente().getIdPaciente(),
                 re.getIdDieta()});
         }
+        Utileria.ajustarTabla(jtListado);
     }
 }   //LLAVE FINAL
 
