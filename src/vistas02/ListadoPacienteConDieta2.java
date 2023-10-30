@@ -152,6 +152,7 @@ public class ListadoPacienteConDieta2 extends javax.swing.JInternalFrame {
         jtListado.setGridColor(new java.awt.Color(59, 107, 65));
         jtListado.setSelectionBackground(new java.awt.Color(59, 107, 65));
         jtListado.setSelectionForeground(new java.awt.Color(130, 186, 137));
+        jtListado.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jtListado.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jtListado);
 

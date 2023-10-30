@@ -693,6 +693,12 @@ public class DietaData {
                         }
                         break;
                     case 3:
+                        if (uv.getPeso() >= re.getPesoObjetivo() - 2.5 && uv.getPeso() <= re.getPesoObjetivo() + 2.5) {
+                            
+                        }else{
+                            dietasVeri.add(re);
+                        }
+                        break;
                     default:
                         dietasVeri.add(re);
                 }
