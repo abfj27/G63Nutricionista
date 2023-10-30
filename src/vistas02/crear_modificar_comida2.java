@@ -97,11 +97,6 @@ public class crear_modificar_comida2 extends javax.swing.JInternalFrame {
         jTcalorias.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(154, 179, 155), 2, true));
         jTcalorias.setSelectedTextColor(new java.awt.Color(59, 107, 65));
         jTcalorias.setSelectionColor(new java.awt.Color(130, 186, 137));
-        jTcalorias.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTcaloriasKeyTyped(evt);
-            }
-        });
 
         jTdetalle.setBackground(new java.awt.Color(246, 246, 246));
         jTdetalle.setColumns(20);
@@ -187,19 +182,6 @@ public class crear_modificar_comida2 extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTcaloriasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTcaloriasKeyTyped
-        char c = evt.getKeyChar();
-        if (!Character.isDigit(c)) {
-            if (evt.getKeyChar() == 32 || evt.getKeyChar() == 127) {
-                evt.consume();
-            }
-            if ((evt.getKeyChar() >= 33 && evt.getKeyChar() <= 126) || (evt.getKeyChar() >= 128 && evt.getKeyChar() <= 255)) {
-                evt.consume();
-                Utileria.mensaje("Solo se permite numeros enteros");
-            }
-        }
-    }//GEN-LAST:event_jTcaloriasKeyTyped
-
     private void jrCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrCerrarActionPerformed
         Object[] op = {"Aceptar", "Cancelar"};
         int i = JOptionPane.showOptionDialog(this, "Desea cerrar?", title, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, frameIcon, op, "Aceptar");
@@ -219,7 +201,20 @@ public class crear_modificar_comida2 extends javax.swing.JInternalFrame {
         }
         comida.setNombre(jTnombre.getText());
         comida.setDetalle(jTdetalle.getText());
-        comida.setCalorias(Math.abs(Integer.valueOf(jTcalorias.getText())));
+        int aux = 1;
+        if (!jTcalorias.getText().isEmpty()) {
+            for (int i = 0; i < jTcalorias.getText().length(); i++) {
+                if (jTcalorias.getText().charAt(i) < 48 || jTcalorias.getText().charAt(i) > 57) {
+                    Utileria.mensaje("Solo puede ingresar numeros en calorias");
+                    aux = 0;
+                    break;
+                }
+            }
+        }
+        if (aux == 0) {
+            return;
+        }
+        comida.setCalorias(Integer.valueOf(jTcalorias.getText()));
         if (jbModificar.getText() == "MODIFICAR") {
             comida.setEstado(estadoReciv);
         } else {

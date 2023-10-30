@@ -44,13 +44,12 @@ public class DietaData {
             }
             VisitaData vdata = new VisitaData();
             Visita vis = new Visita();
-            System.out.println(dieta.getIdDieta());
             vis.setPaciente(dieta.getPaciente());
             vis.setDieta(dieta);
             vis.setPeso(dieta.getPesoInicial());
             vis.setFecha(dieta.getFechaInicial());
             vis.setEstado(2);
-            vdata.cargarVisita(vis);
+            vdata.cargarVisita3(vis);
             rs.close();
             ps.close();
         } catch (SQLIntegrityConstraintViolationException ex) {
@@ -694,8 +693,8 @@ public class DietaData {
                         break;
                     case 3:
                         if (uv.getPeso() >= re.getPesoObjetivo() - 2.5 && uv.getPeso() <= re.getPesoObjetivo() + 2.5) {
-                            
-                        }else{
+
+                        } else {
                             dietasVeri.add(re);
                         }
                         break;

@@ -467,6 +467,7 @@ public class FichaPaciente2 extends javax.swing.JInternalFrame {
                     }
                     double peso = Double.parseDouble(jtPeso.getText());
                     if (peso <= 0) {
+                        Utileria.mensaje("El peso tiene que ser mayor a 0 (cero)");
                         return;
                     }
                     Visita vic = new Visita();

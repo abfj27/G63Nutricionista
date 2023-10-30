@@ -66,6 +66,28 @@ public class VisitaData {
         }
     }
 
+    public void cargarVisita3(Visita visita) {
+        String sql = "INSERT INTO visita (idDieta, idPaciente, peso, fecha, estado) VALUES (?,?,?,?,?)";
+        try {
+            PreparedStatement ps = conec.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, visita.getDieta().getIdDieta());
+            ps.setInt(2, visita.getPaciente().getIdPaciente());
+            ps.setDouble(3, visita.getPeso());
+            ps.setDate(4, Date.valueOf(visita.getFecha()));
+            ps.setInt(5, visita.getEstado());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                visita.setIdVisita(rs.getInt(1));
+//                Utileria.mensaje("Visita guardada exitosamente");
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(VisitaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void modificarVisita(Visita visita) {
         String sql = "UPDATE visita SET idDieta=?, idPaciente=?, peso=?, fecha=?, estado=? WHERE idVisita=? ";
         try {
