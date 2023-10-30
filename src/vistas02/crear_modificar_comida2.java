@@ -219,7 +219,7 @@ public class crear_modificar_comida2 extends javax.swing.JInternalFrame {
         }
         comida.setNombre(jTnombre.getText());
         comida.setDetalle(jTdetalle.getText());
-        comida.setCalorias(Integer.valueOf(jTcalorias.getText()));
+        comida.setCalorias(Math.abs(Integer.valueOf(jTcalorias.getText())));
         if (jbModificar.getText() == "MODIFICAR") {
             comida.setEstado(estadoReciv);
         } else {
